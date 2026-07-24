@@ -150,6 +150,7 @@ export async function buildTokenTrace(input: {
   voice?: { mmr_root?: string; mislabel_rejected?: boolean; elevenlabs_ok?: boolean } | null;
   workos_enabled?: boolean;
   coderabbit_key?: boolean;
+  coderabbit_observe?: { leaf_hash: string; pr_number?: number; surface: string; api_key_present: boolean } | null;
   copilotkit_license?: boolean;
 }): Promise<TokenTrace> {
   const content_leaf = input.receipt.leaves[1];
@@ -435,23 +436,33 @@ export async function buildTokenTrace(input: {
     contact_label: "AI voice signature contact (FCG: elevenlabs.ts)",
   });
 
-  await push({
-    sponsor: "CodeRabbit",
-    surface: "discord_path_b",
-    status: input.coderabbit_key ? "pointer" : "skip",
-    binding: input.coderabbit_key
-      ? "API key present — Discord Path B interaction receipt observes repo"
-      : "no CODERABBIT_API_KEY",
-    detail: "Sponsor observer signature — does not rewrite content leaf",
-    in_fcg: false,
-    fcg_artifact: null,
-    actor_class: "sponsor_system",
-    actor_id: "coderabbit:discord_path_b",
-    role: "observer",
-    combine_op: "observe_only",
-    contribute: { key_present: Boolean(input.coderabbit_key) },
-    contact_label: "CodeRabbit observe contact (outside FCG bag)",
-  });
+  {
+    const obs = input.coderabbit_observe;
+    await push({
+      sponsor: "CodeRabbit",
+      surface: obs?.surface || "discord_path_b",
+      status: obs ? "ok" : input.coderabbit_key ? "pointer" : "skip",
+      binding: obs
+        ? `FEATURED observe leaf=${shortId(obs.leaf_hash)}${obs.pr_number != null ? ` · PR #${obs.pr_number}` : ""}`
+        : input.coderabbit_key
+          ? "API key present — seal observe hop via /api/coderabbit/seal-observe"
+          : "no CODERABBIT_API_KEY",
+      detail: "FEATURED sponsor: independent review observer — does not rewrite content leaf",
+      in_fcg: Boolean(obs),
+      fcg_artifact: obs ? "data/coderabbit_observe_latest.json" : null,
+      actor_class: "sponsor_system",
+      actor_id: "coderabbit:observe",
+      role: "observer",
+      combine_op: obs ? "fcg_bag_bind" : "observe_only",
+      contribute: {
+        key_present: Boolean(input.coderabbit_key),
+        observe_leaf: obs?.leaf_hash ?? null,
+        pr_number: obs?.pr_number ?? null,
+        featured: true,
+      },
+      contact_label: "CodeRabbit FEATURED observe contact",
+    });
+  }
 
   await push({
     sponsor: "CopilotKit",

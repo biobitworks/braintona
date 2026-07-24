@@ -15,6 +15,7 @@ import {
 } from "./conversation_custody.js";
 import { mountWorkosRoutes, workosEnabled } from "./workos.js";
 import { mountCopilotKitRoutes, copilotkitLicensePresent } from "./copilotkit.js";
+import { mountCodeRabbitRoutes, coderabbitKeyPresent } from "./coderabbit.js";
 import { runTwoAvatarCallDemo } from "./two_avatar_call.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -32,6 +33,7 @@ app.use(express.static(publicDir));
 mountWorkosRoutes(app);
 // CopilotKit FCO cockpit routes — license via CLI org login
 mountCopilotKitRoutes(app);
+mountCodeRabbitRoutes(app);
 
 app.get("/api/health", (_req, res) => {
   res.json({
@@ -46,7 +48,7 @@ app.get("/api/health", (_req, res) => {
       elevenlabs: Boolean(process.env.ELEVENLABS_API_KEY || process.env.ELEVEN_API_KEY),
       workos: workosEnabled(),
       copilotkit: copilotkitLicensePresent(),
-      coderabbit: Boolean(process.env.CODERABBIT_API_KEY),
+      coderabbit: coderabbitKeyPresent(),
     },
     claim_ceiling: "custody = provenance, not correctness",
     workos: {
@@ -58,6 +60,13 @@ app.get("/api/health", (_req, res) => {
       license_present: copilotkitLicensePresent(),
       status_path: "/api/copilotkit/status",
       dashboard: "https://dashboard.operations.copilotkit.ai",
+    },
+    coderabbit: {
+      featured: true,
+      api_key_present: coderabbitKeyPresent(),
+      status_path: "/api/coderabbit/status",
+      path_b: "docs/CODERABBIT_DISCORD_PATH_B.md",
+      touches: "docs/SPONSOR_TOUCHES.md",
     },
   });
 });

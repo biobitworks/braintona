@@ -9,6 +9,7 @@ import { appendGraphEvent } from "./graph.js";
 import { buildTokenTrace, type TokenTrace } from "../lib/token_trace.js";
 import { loadLatestPrivateConversationPointer } from "./conversation_custody.js";
 import { workosEnabled } from "./workos.js";
+import { loadLatestCodeRabbitObserve } from "../lib/coderabbit_observe.js";
 
 const DATA = path.resolve("data");
 const RECEIPTS = path.join(DATA, "receipts.jsonl");
@@ -132,6 +133,7 @@ export async function runPipeline(opts: {
     privateConversation,
     workos_enabled: workosEnabled(),
     coderabbit_key: Boolean(process.env.CODERABBIT_API_KEY),
+    coderabbit_observe: await loadLatestCodeRabbitObserve(),
     copilotkit_license: Boolean(process.env.COPILOTKIT_LICENSE_TOKEN),
   });
   await writeFile(path.join(DATA, "token_trace_latest.json"), JSON.stringify(token_trace, null, 2));

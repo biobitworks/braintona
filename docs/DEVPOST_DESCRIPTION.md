@@ -83,12 +83,12 @@ Independent attestation beats “trust the same process twice.” Putting custod
 
 | Sponsor | How integrated |
 |---|---|
+| **CodeRabbit** *(featured Best Use)* | Public repo + `coderabbitai[bot]` + Discord Path B; observe hop in token trace |
 | **Daytona** | Ephemeral sandbox recomputes custody root from receipt JSON; tamper fails closed |
 | **Braintrust** | Eval logging / scores for the gold task |
 | **Fireworks AI** | Claim-extraction inference |
 | **ElevenLabs** | Two-avatar call + voice-origin FCO leaves |
 | **CopilotKit** | Best FCO UI fit — license/login path next |
-| **CodeRabbit** | Public repo + Discord Path B challenge |
 | **WorkOS** | AuthKit / participation domain (not demo-critical) |
 
 ## Built with

@@ -520,3 +520,77 @@ if (copilotAiBtn) {
   });
 }
 refreshCopilotStatus();
+
+
+/* Sponsor strip — CodeRabbit featured */
+const sponsorStrip = document.getElementById("sponsorStrip");
+const sponsorMeta = document.getElementById("sponsorMeta");
+const coderabbitSealBtn = document.getElementById("coderabbitSealBtn");
+const coderabbitOut = document.getElementById("coderabbitOut");
+
+const SPONSOR_CARDS = [
+  { id: "coderabbit", name: "CodeRabbit", featured: true, job: "Review observer on public repo + Discord Path B", tip: "Seal observe hop · @coderabbitai on PR #3" },
+  { id: "daytona", name: "Daytona", job: "Second-machine custody recompute", tip: "Pipeline → green / tamper red" },
+  { id: "braintrust", name: "Braintrust", job: "Gold-task eval spans", tip: "Quality ≠ integrity" },
+  { id: "fireworks", name: "Fireworks", job: "Claim extraction inference", tip: "glm-5p1 temp 0" },
+  { id: "elevenlabs", name: "ElevenLabs", job: "Voice origin + two-avatar MMR", tip: "Actual vs AI labels" },
+  { id: "copilotkit", name: "CopilotKit", job: "Operator FCO cockpit", tip: "Org → license → seal turns" },
+  { id: "workos", name: "WorkOS", job: "Optional AuthKit identity", tip: "Not vault SoT" },
+];
+
+function renderSponsors(keys = {}) {
+  if (!sponsorStrip) return;
+  sponsorStrip.innerHTML = SPONSOR_CARDS.map((s) => {
+    const live = keys[s.id];
+    const liveBit = live === undefined ? "" : live ? " · key/live" : " · pending";
+    return `<article class="sponsor-card${s.featured ? " featured" : ""}">
+      <h3>${s.name}</h3>
+      <p>${s.job}${liveBit}</p>
+      <p>${s.tip}</p>
+    </article>`;
+  }).join("");
+}
+
+async function refreshSponsors() {
+  try {
+    const res = await fetch("/api/health");
+    const data = await res.json();
+    renderSponsors(data.keys || {});
+    if (sponsorMeta) {
+      sponsorMeta.textContent = data.coderabbit?.featured
+        ? "CodeRabbit featured — each sponsor gets a named hop (see docs/SPONSOR_TOUCHES.md)"
+        : "Sponsor strip";
+    }
+  } catch (err) {
+    renderSponsors({});
+  }
+}
+
+if (coderabbitSealBtn) {
+  coderabbitSealBtn.addEventListener("click", async () => {
+    coderabbitSealBtn.disabled = true;
+    try {
+      const res = await fetch("/api/coderabbit/seal-observe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          surface: "github_pr_bot",
+          pr_number: 3,
+          pr_url: "https://github.com/biobitworks/braintona/pull/3",
+          event: "featured_observe_seal",
+          note: "CodeRabbit Best Use lane — observe hop for HackSprint demo",
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "seal-observe failed");
+      if (coderabbitOut) coderabbitOut.textContent = JSON.stringify(data.receipt, null, 2);
+      statusEl.textContent = `CodeRabbit observe sealed · ${String(data.receipt.leaf_hash).slice(0, 12)}…`;
+      await refreshSponsors();
+    } catch (err) {
+      statusEl.textContent = `CodeRabbit error: ${err.message || err}`;
+    } finally {
+      coderabbitSealBtn.disabled = false;
+    }
+  });
+}
+refreshSponsors();

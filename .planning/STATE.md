@@ -66,3 +66,5 @@ npm run start
 **Component lock:** MMR of actual voice vs AI (`docs/VOICE_HUMAN_AI_MMR_COMPONENT.md`) — twin/handoff voice unit.
 
 **Growth:** voice human/AI MMR builds over time with other vault-private sensor leaves.
+
+**Sponsors:** each touched specially — CodeRabbit **featured** (`docs/SPONSOR_TOUCHES.md`). Seal observe + `@coderabbitai review` on PR #3.

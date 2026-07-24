@@ -83,11 +83,11 @@ Leaf = `sha256(0x00 ‖ canonical_json)` · Node = `sha256(0x01 ‖ L ‖ R)` ·
 
 | Sponsor | Integration (meaningful, not checkbox) |
 |---|---|
+| **CodeRabbit** *(featured)* | Public repo review observer + Discord Path B; seal observe hop (`/api/coderabbit/seal-observe`) |
 | **Daytona** | Independent sandbox recompute of custody root; planted tamper must fail closed |
 | **Braintrust** | Eval spans / scores for gold claim task (`braintona-hacksprint`) |
 | **Fireworks AI** | Claim extraction inference (`glm-5p1`) |
 | **ElevenLabs** | Two-avatar call + voice-origin FCO leaves (Sarah / Matilda) |
-| **CodeRabbit** | Public repo + Path B Discord review lane (in progress) |
 | **CopilotKit** | Best FCO UI fit — license/login blocked; documented next |
 | **WorkOS** | AuthKit / participation domain (not demo-critical) |
 

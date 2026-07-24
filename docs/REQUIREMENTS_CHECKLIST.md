@@ -41,7 +41,7 @@
 | **Fireworks AI** | YES | YES | Claim extract (`glm-5p1`) |
 | **ElevenLabs** | YES | YES (two-avatar) | Sarah / Matilda call |
 | **CopilotKit** | DOC+FIT | NO | License login next |
-| **CodeRabbit** | Path B DOC | Partial (bot on PRs) | Discord receipt next |
+| **CodeRabbit** *(featured)* | YES observe API + UI | Bot on PRs + seal-observe | Discord Path B when venue OK |
 | **WorkOS** | AuthKit path | Optional | Not demo-critical |
 
 ## Pre-submit gate

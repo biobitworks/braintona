@@ -41,13 +41,15 @@ Agents accelerate science and ops, but teams still cannot walk away: the same bo
 9. WorkOS AuthKit optional for multi-judge sessions  
 
 ## Sponsor tools used
+- **CodeRabbit** *(featured Best Use)* — public `biobitworks/braintona`; `coderabbitai[bot]` on PRs; Discord Path B; observe hop sealed into token trace (does not rewrite content leaf)  
 - **Daytona** — independent sandbox recompute of custody root; tamper must fail closed  
 - **Braintrust** — eval logging / scores for the gold task  
 - **Fireworks AI** — claim-extraction inference  
-- **ElevenLabs** — two-avatar call + voice-origin FCO leaves  
-- **CodeRabbit** — public repo + Discord Path B review lane  
-- **CopilotKit** — operator chat / FCO UI fit (license path next)  
-- **WorkOS** — AuthKit / participation domain  
+- **ElevenLabs** — two-avatar call + voice-origin FCO leaves (actual vs AI MMR component)  
+- **CopilotKit** — operator FCO cockpit (org → license)  
+- **WorkOS** — optional AuthKit identity (not vault SoT)  
+
+Full per-sponsor jobs: `docs/SPONSOR_TOUCHES.md`
 
 ## Repo
 https://github.com/biobitworks/braintona

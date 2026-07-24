@@ -28,7 +28,7 @@
 
 | Piece | State |
 |---|---|
-| Daytona / Braintrust / Fireworks / FCO | Working |
+| Daytona / Braintrust / Fireworks / FCO | Working — **Fireworks promo added** (use for /api/run; keep FireConnect Cursor off) |
 | Custody knowledge graph | Live — `/api/graph` + UI; grows per pipeline run |
 | Touch signatures + PoC | Each hop: actor sig (AI/human/sponsor/runtime) + FCG combine prior⊕touch→tip |
 | Live token trace | Content-leaf token walks Fireworks→Braintrust→FCO/FCG→Daytona→sponsors (`/api/trace/latest`) |

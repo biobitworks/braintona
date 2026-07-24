@@ -44,7 +44,7 @@
 | Pitch pack / Devpost paste | **Updated this turn** |
 | Demo video | TODO (blocks polished submit) |
 | CopilotKit license | **Org exists** — CLI login + `license create --write` still needed; FCO cockpit API/UI scaffolded |
-| CodeRabbit Discord Path B | Queued (optional) |
+| CodeRabbit Discord Path B | Blocked — accept the-builders-burrow invite (Notion steps) |
 
 ## Resume
 

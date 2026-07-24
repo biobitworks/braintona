@@ -108,6 +108,24 @@
         <h2>Voice-origin FCO</h2>
         <pre id="voiceOut"></pre>
       </section>
+
+      <section class="panel" id="copilotPanel" aria-label="CopilotKit operator cockpit">
+        <div class="panel-head">
+          <h2>CopilotKit operator cockpit</h2>
+          <p id="copilotMeta" class="graph-meta">Checking license…</p>
+        </div>
+        <p class="lede-sm">
+          Org-linked Best Use lane: each operator/AI turn seals as an FCO leaf; thread tip = interaction MMR.
+          Provenance of recorded turns — not correctness.
+        </p>
+        <label for="copilotText">Operator turn</label>
+        <textarea id="copilotText" rows="3" placeholder="Ask the custody agent to run verify / explain the last root…"></textarea>
+        <div class="cta-row">
+          <button id="copilotHumanBtn" type="button">Seal operator turn</button>
+          <button id="copilotAiBtn" type="button" class="ghost">Seal AI reply (demo)</button>
+        </div>
+        <pre id="copilotOut"></pre>
+      </section>
     </main>
     <script type="module" src="/app.js"></script>
   </body>

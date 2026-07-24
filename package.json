@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit",
     "seal:conversation": "tsx scripts/seal_private_conversation.ts",
-    "demo:two-avatar": "tsx scripts/run_two_avatar_demo.ts"
+    "demo:two-avatar": "tsx scripts/run_two_avatar_demo.ts",
+    "copilotkit:bootstrap": "bash scripts/copilotkit_org_bootstrap.sh"
   },
   "engines": {
     "node": ">=20"

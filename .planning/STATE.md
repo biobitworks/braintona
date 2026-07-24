@@ -43,7 +43,7 @@
 | Two-avatar ElevenLabs | Wired (Sarah / Matilda) |
 | Pitch pack / Devpost paste | **Updated this turn** |
 | Demo video | TODO (blocks polished submit) |
-| CopilotKit license | Blocked (optional) |
+| CopilotKit license | **Org exists** — CLI login + `license create --write` still needed; FCO cockpit API/UI scaffolded |
 | CodeRabbit Discord Path B | Queued (optional) |
 
 ## Resume
@@ -59,4 +59,6 @@ npm run start
 ```
 
 **Next (blocking submit):** (1) paste Devpost fields (2) record &lt;2m demo (3) submit  
-**Next (optional):** CopilotKit license · CodeRabbit Discord receipt  
+**Next (optional):** CopilotKit license · CodeRabbit Discord receipt
+
+**CopilotKit:** org exists; run `bash scripts/copilotkit_org_bootstrap.sh` then restart server. Cockpit: `/api/copilotkit/*` + UI panel.

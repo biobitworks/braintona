@@ -14,6 +14,7 @@ import {
   sealCursorConversationPrivate,
 } from "./conversation_custody.js";
 import { mountWorkosRoutes, workosEnabled } from "./workos.js";
+import { mountCopilotKitRoutes, copilotkitLicensePresent } from "./copilotkit.js";
 import { runTwoAvatarCallDemo } from "./two_avatar_call.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -29,6 +30,8 @@ app.use(express.static(publicDir));
 
 // AuthKit routes (/login /callback /logout /api/auth/status) — optional, non-gating
 mountWorkosRoutes(app);
+// CopilotKit FCO cockpit routes — license via CLI org login
+mountCopilotKitRoutes(app);
 
 app.get("/api/health", (_req, res) => {
   res.json({
@@ -42,7 +45,7 @@ app.get("/api/health", (_req, res) => {
       braintrust: Boolean(process.env.BRAINTRUST_API_KEY),
       elevenlabs: Boolean(process.env.ELEVENLABS_API_KEY || process.env.ELEVEN_API_KEY),
       workos: workosEnabled(),
-      copilotkit: Boolean(process.env.COPILOTKIT_LICENSE_TOKEN),
+      copilotkit: copilotkitLicensePresent(),
       coderabbit: Boolean(process.env.CODERABBIT_API_KEY),
     },
     claim_ceiling: "custody = provenance, not correctness",
@@ -50,6 +53,11 @@ app.get("/api/health", (_req, res) => {
       enabled: workosEnabled(),
       redirect_uri: process.env.WORKOS_REDIRECT_URI || "http://127.0.0.1:8787/callback",
       mode: "local_first_optional_auth",
+    },
+    copilotkit: {
+      license_present: copilotkitLicensePresent(),
+      status_path: "/api/copilotkit/status",
+      dashboard: "https://dashboard.operations.copilotkit.ai",
     },
   });
 });

@@ -413,3 +413,12 @@ a {
   font-weight: 700;
 }
 .avatar-players audio { width: 100%; }
+
+.lede-sm {
+  color: var(--foam);
+  opacity: 0.78;
+  max-width: 52ch;
+  line-height: 1.45;
+  font-size: 0.92rem;
+  margin: 0 0 1rem;
+}

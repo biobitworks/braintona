@@ -444,3 +444,79 @@ if (twoAvatarBtn) {
     }
   });
 }
+
+
+/* CopilotKit FCO cockpit */
+const copilotMeta = document.getElementById("copilotMeta");
+const copilotText = document.getElementById("copilotText");
+const copilotOut = document.getElementById("copilotOut");
+const copilotHumanBtn = document.getElementById("copilotHumanBtn");
+const copilotAiBtn = document.getElementById("copilotAiBtn");
+
+async function refreshCopilotStatus() {
+  if (!copilotMeta) return;
+  try {
+    const res = await fetch("/api/copilotkit/status");
+    const data = await res.json();
+    copilotMeta.textContent = data.license_present
+      ? "License present · org-linked · seal turns below"
+      : "License missing — run: bash scripts/copilotkit_org_bootstrap.sh (login → pick org → license --write)";
+  } catch (err) {
+    copilotMeta.textContent = `Status error: ${err.message || err}`;
+  }
+}
+
+async function sealCopilotTurn(actor) {
+  const text = (copilotText?.value || "").trim();
+  if (!text) {
+    statusEl.textContent = "Enter an operator turn first.";
+    return;
+  }
+  const res = await fetch("/api/copilotkit/seal-turn", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text, actor }),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || "seal-turn failed");
+  if (copilotOut) {
+    copilotOut.textContent = JSON.stringify(
+      {
+        interaction_id: data.thread.interaction_id,
+        turns: data.thread.turns.length,
+        interaction_mmr_root: data.thread.interaction_mmr_root,
+        license_present: data.thread.license_present,
+        last_turn: data.thread.turns[data.thread.turns.length - 1],
+        claim_ceiling: data.thread.claim_ceiling,
+      },
+      null,
+      2,
+    );
+  }
+  statusEl.textContent = `CopilotKit turn sealed · MMR ${String(data.thread.interaction_mmr_root).slice(0, 12)}…`;
+  await refreshCopilotStatus();
+}
+
+if (copilotHumanBtn) {
+  copilotHumanBtn.addEventListener("click", async () => {
+    try {
+      await sealCopilotTurn("operator");
+    } catch (err) {
+      statusEl.textContent = `CopilotKit error: ${err.message || err}`;
+    }
+  });
+}
+if (copilotAiBtn) {
+  copilotAiBtn.addEventListener("click", async () => {
+    try {
+      const prior = (copilotText?.value || "").trim() || "operator asked for custody status";
+      if (copilotText) {
+        copilotText.value = `Custody tip acknowledged for: ${prior.slice(0, 120)}. Provenance only — not correctness.`;
+      }
+      await sealCopilotTurn("ai");
+    } catch (err) {
+      statusEl.textContent = `CopilotKit error: ${err.message || err}`;
+    }
+  });
+}
+refreshCopilotStatus();

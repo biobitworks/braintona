@@ -2,6 +2,8 @@
 
 **Locked:** 2026-07-24 — CopilotKit is the most relevant HackSprint sponsor UI for Braintona’s FCO/interaction model.
 
+**Update:** Operator has a **CopilotKit organization**. Local CLI was still **Not logged in** — org must be selected via browser login on this machine, then license written to `.env`.
+
 ## Why it fits
 
 | FCO concept | CopilotKit surface |
@@ -12,42 +14,52 @@
 | Two trees under one MMR | Operator tree + agent tree bagged per thread |
 | Claim ceiling in UI | Render provenance strip on every reply (root, sig, PoC) — not “the model is correct” |
 
-Daytona/Braintrust/Fireworks prove **custody**. CopilotKit is where a human **drives and sees** that custody as conversation turns — same pattern as Sauna/BioCustody voice turns, but for the operator cockpit.
+Daytona/Braintrust/Fireworks prove **custody**. CopilotKit is where a human **drives and sees** that custody as conversation turns.
 
-## Best Use path (Path C — FCO-native)
+## Operator gate (org → license) — do this now
 
-Not a generic chat widget. Wire CopilotKit so that:
-
-1. Operator sends a message → seal **human** (or operator) turn leaf  
-2. Agent/tool runs pipeline / two-avatar / graph query → seal **AI/tool** turn leaf  
-3. Thread tip = MMR of turn leaves; show `signature_chain_tip` + custody root in the UI  
-4. Optional: “Run verify” / “Seal voice” as CopilotKit actions that call existing `/api/*`
-
-## Gate (operator)
-
-License is missing. CLI reports **Not logged in.**
+Dashboard: https://dashboard.operations.copilotkit.ai
 
 ```bash
 cd /Users/byron/projects/active/braintona
-npx copilotkit@latest login          # browser
-npx copilotkit@latest license create # or: license list
-# Ensure COPILOTKIT_LICENSE_TOKEN lands in .env (never commit)
+bash scripts/copilotkit_org_bootstrap.sh
+# equivalent:
+#   npx copilotkit@latest login          # pick your organization
+#   npx copilotkit@latest project select
+#   npx copilotkit@latest license create --write
+npm run start   # restart so /api/health shows copilotkit: true
 ```
 
-Older docs mentioned `npx copilotkit@latest license --write`; current CLI uses `license create` / `license list`.
+`COPILOTKIT_LICENSE_TOKEN` stays in `.env` (gitignored). Never commit it.
 
-## Non-goals until license
+## Wired in repo (pre-license + post-license)
 
-- Full CopilotKit scaffold rewrite of the Express demo  
-- Replacing the existing button UI before a licensed chat thread seals turns  
+| Surface | Path |
+|---|---|
+| Status | `GET /api/copilotkit/status` |
+| Seal turn | `POST /api/copilotkit/seal-turn` `{ text, actor }` |
+| Latest thread | `GET /api/copilotkit/interaction/latest` |
+| UI panel | `/` → **CopilotKit operator cockpit** |
+| Bootstrap | `scripts/copilotkit_org_bootstrap.sh` |
+
+Each sealed turn → FCO leaf (`text_sha256` only in public JSON) → `interaction_mmr_root`.  
+`license_present` is recorded on the thread when the token exists.
+
+## Best Use path (Path C — FCO-native)
+
+1. Operator sends a message → seal **operator/human** turn leaf  
+2. Agent/tool runs pipeline / verify → seal **AI/tool** turn leaf  
+3. Thread tip = MMR of turn leaves  
+4. Next (post-license): full `@copilotkit/*` chat widget calling the same seal + `/api/*` actions  
 
 ## Done when
 
+- [ ] `npx copilotkit@latest whoami` shows org (not “Not logged in”)  
 - [ ] `COPILOTKIT_LICENSE_TOKEN` in `.env`  
-- [ ] Operator chat visible on demo  
-- [ ] ≥1 human turn + ≥1 AI/tool turn sealed into interaction MMR  
-- [ ] Devpost bullet: CopilotKit operator cockpit over FCO receipt stream  
+- [ ] `/api/health` → `keys.copilotkit: true`  
+- [ ] ≥1 operator turn + ≥1 AI turn sealed (`/api/copilotkit/interaction/latest`)  
+- [ ] Devpost: CopilotKit operator cockpit over FCO receipt stream  
 
-## Priority vs other sponsors
+## Priority
 
-Elevated above CodeRabbit Discord for **FCO design relevance**. CodeRabbit remains Path B (observe). CopilotKit is the interactive custody cockpit.
+Elevated for **FCO design relevance**. Org existing unblocks Best Use — finish login + license before 15:30 if possible; do **not** block Devpost submit on the full React widget.

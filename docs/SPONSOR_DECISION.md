@@ -66,3 +66,7 @@ ONE DEMO LOOP (≤60s on stage):
 ## PhoneBio tertiary goal (PB-G3 — 2026-07-24T17:17:32Z)
 
 Lineage note: PhoneBio’s **tertiary** goal is to use **local sensors** to estimate **how many people** to help with **voice distinguishing** (presence-class only). Owner: `phonebio/.planning/PHONEBIO_TERTIARY_SENSOR_PEOPLE_VOICE_GOAL.md`.
+
+### PB-G3a (2026-07-24T17:18:24Z)
+
+Tertiary path companions: **user custody vault** + **local quant models** (Ollama/ExecuTorch edge). WorkOS ≠ Merkle-root vault.

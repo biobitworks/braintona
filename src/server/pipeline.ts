@@ -6,6 +6,9 @@ import { evaluate, getDefaultTask } from "./eval.js";
 import { fireworksComplete } from "./fireworks.js";
 import { daytonaRecompute } from "./daytona.js";
 import { appendGraphEvent } from "./graph.js";
+import { buildTokenTrace, type TokenTrace } from "../lib/token_trace.js";
+import { loadLatestPrivateConversationPointer } from "./conversation_custody.js";
+import { workosEnabled } from "./workos.js";
 
 const DATA = path.resolve("data");
 const RECEIPTS = path.join(DATA, "receipts.jsonl");
@@ -28,6 +31,7 @@ export interface PipelineResult {
   tamper_receipt?: CustodyReceipt;
   tamper_verify?: Awaited<ReturnType<typeof verifyReceipt>>;
   graph?: CustodyGraph;
+  token_trace?: TokenTrace;
   narrate?: string;
 }
 
@@ -110,7 +114,30 @@ export async function runPipeline(opts: {
     eval_f1: evalResult.f1,
   });
 
+  const privateConversation = await loadLatestPrivateConversationPointer();
+  const token_trace = await buildTokenTrace({
+    receipt,
+    model: {
+      id: fw.model_id,
+      provider: fw.provider,
+      tokens_in: fw.tokens_in,
+      tokens_out: fw.tokens_out,
+      mock: fw.mock,
+    },
+    eval: evalResult,
+    verify_local,
+    daytona,
+    tamper_verify,
+    graph,
+    privateConversation,
+    workos_enabled: workosEnabled(),
+    coderabbit_key: Boolean(process.env.CODERABBIT_API_KEY),
+    copilotkit_license: Boolean(process.env.COPILOTKIT_LICENSE_TOKEN),
+  });
+  await writeFile(path.join(DATA, "token_trace_latest.json"), JSON.stringify(token_trace, null, 2));
+
   const narrate = [
+    `Token ${token_trace.token_id} traced across ${token_trace.hops.length} hops.`,
     `Braintona eval ${evalResult.pass ? "PASS" : "FAIL"}`,
     `F1 ${(evalResult.f1 * 100).toFixed(0)} percent.`,
     `Local custody ${verify_local.ok ? "verified" : "rejected"}.`,
@@ -142,6 +169,7 @@ export async function runPipeline(opts: {
     tamper_receipt,
     tamper_verify,
     graph,
+    token_trace,
     narrate,
   };
 }
@@ -150,6 +178,15 @@ export async function loadLatestReceipt(): Promise<CustodyReceipt | null> {
   try {
     const raw = await readFile(path.join(DATA, "latest_receipt.json"), "utf8");
     return JSON.parse(raw) as CustodyReceipt;
+  } catch {
+    return null;
+  }
+}
+
+export async function loadLatestTokenTrace(): Promise<TokenTrace | null> {
+  try {
+    const raw = await readFile(path.join(DATA, "token_trace_latest.json"), "utf8");
+    return JSON.parse(raw) as TokenTrace;
   } catch {
     return null;
   }

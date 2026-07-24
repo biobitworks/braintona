@@ -2,7 +2,7 @@
   "schema": "portfolio.fcg_bag.v1",
   "project": "braintona",
   "title": "Daytona HackSprint SF Jul 2026 \u2014 Braintona",
-  "updated_at_utc": "2026-07-24T16:30:46.308618+00:00",
+  "updated_at_utc": "2026-07-24T17:58:33.335535+00:00",
   "signed": false,
   "pi_seal": false,
   "llm_in_science_leaf": false,
@@ -20,8 +20,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 814,
-      "sha256_fco_style": "sha256:c0dbeed1f1c769e6ad9d23b15bf146877a9e69616d149ab7a15978c6392be808"
+      "bytes": 1059,
+      "sha256_fco_style": "sha256:1e29ae3137fa47dbff94cebdb7e127efbb8c18c4fc9fe5cee430d3075114aa9a"
     },
     {
       "path": "src/lib/fco.ts",
@@ -34,9 +34,24 @@
       "sha256_fco_style": "sha256:9866b20ff3e5fd15a59674e79f4d27dd5537393050714e7a5336e10386dd9e16"
     },
     {
+      "path": "src/lib/custody_graph.ts",
+      "bytes": 6665,
+      "sha256_fco_style": "sha256:b9ce1cc59d35613dfe6306818722718d57f4e6cb9d7a7ff0f709091b7de91ca5"
+    },
+    {
+      "path": "src/lib/token_trace.ts",
+      "bytes": 9898,
+      "sha256_fco_style": "sha256:aa56240bfdb41efc8e06e4ddd847970f5bc59ae157231c23c75c3b94321693fa"
+    },
+    {
+      "path": "src/lib/private_conversation.ts",
+      "bytes": 3071,
+      "sha256_fco_style": "sha256:2f81e66dc73135569dc11c3feca5b77904287c4f5e1bcefd2247d8e09813d91a"
+    },
+    {
       "path": "src/server/pipeline.ts",
-      "bytes": 4172,
-      "sha256_fco_style": "sha256:dc84b626ff51ab78406bee0fbf9c785622682761b47f9b55b5a869f2dbcedb60"
+      "bytes": 5978,
+      "sha256_fco_style": "sha256:5f617d131ed7d5031e80a8f0b63eb710406a7d0a75e633d480923054de8bf1ea"
     },
     {
       "path": "src/server/daytona.ts",
@@ -55,23 +70,23 @@
     },
     {
       "path": "src/server/index.ts",
-      "bytes": 3432,
-      "sha256_fco_style": "sha256:be1f2ec0334d9d53eaf4a8afa83c4b605cffcf7644a104ae292e3574e3d8906f"
+      "bytes": 6460,
+      "sha256_fco_style": "sha256:e7527a41277df319c8fa9c8cb03eb680b05a6f0deac63b0da2422a846208de4c"
     },
     {
       "path": "public/index.html",
-      "bytes": 2767,
-      "sha256_fco_style": "sha256:f7c83a443b1b2f2229a91fb8fc0c44cee6f3a102b7a6efe2f3e859f2b638fa24"
+      "bytes": 4373,
+      "sha256_fco_style": "sha256:09888f24171a28bd0a5e5ffb40c4812791eff876863c391de0772138e0f29a6f"
     },
     {
       "path": "public/app.js",
-      "bytes": 5858,
-      "sha256_fco_style": "sha256:615b157b7ca9c739402d9a1708ede962efb0698eca5537d646bb967fe8c3c171"
+      "bytes": 12446,
+      "sha256_fco_style": "sha256:dde9f59061bb335142aad4472f7e821089779e4c666c29ced375ed8ad87c2d7d"
     },
     {
       "path": "public/styles.css",
-      "bytes": 3666,
-      "sha256_fco_style": "sha256:c1bb8427f3714dc283b21fab0ca26270fc803c90472a63cf9e9a00d1b267aa04"
+      "bytes": 6194,
+      "sha256_fco_style": "sha256:0100fb0f11b3ca3250d675f5bba067edf68dbde35305f7fe833c3066116de0a9"
     },
     {
       "path": "docs/link_capture.jsonl",
@@ -95,14 +110,14 @@
     },
     {
       "path": ".planning/STATE.md",
-      "bytes": 632,
-      "sha256_fco_style": "sha256:68ade0aba942352d2789da41c57eadea8a955727dee11ca186445a70aeac9751"
+      "bytes": 2244,
+      "sha256_fco_style": "sha256:da1b07242efc2fbabf406afedf44005d375bd3f9ba5df0371e8867d8773e99b9"
     },
     {
       "path": ".planning/lexicon/TERMS.jsonl",
-      "bytes": 1318,
-      "sha256_fco_style": "sha256:253f934ff28de2ce484287976f7418c08390dd4911f69e56b76a3da0b28b7e93"
+      "bytes": 1760,
+      "sha256_fco_style": "sha256:2fe954d5a5034737c142cfb7f78f6a3abb2235cc46fa3cb88d8c4095eb42e4db"
     }
   ],
-  "n_artifacts": 19
+  "n_artifacts": 22
 }

@@ -194,6 +194,7 @@ runBtn.addEventListener("click", async () => {
     );
 
     await refreshGraph(data.graph);
+    if (data.token_trace) await renderTokenTrace(data.token_trace, { animate: true });
     resultsEl.hidden = false;
     lastNarrate = data.narrate || "";
     speakBtn.disabled = !lastNarrate;
@@ -280,6 +281,66 @@ if (voiceBtn) {
   });
 }
 
+
+const traceHopsEl = document.getElementById("traceHops");
+const traceMeta = document.getElementById("traceMeta");
+const traceToken = document.getElementById("traceToken");
+const traceBtn = document.getElementById("traceBtn");
+
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+async function renderTokenTrace(trace, { animate = true } = {}) {
+  if (!trace || !traceHopsEl) return;
+  if (traceToken) {
+    traceToken.textContent = `token ${trace.token_id} · content_leaf ${String(trace.content_leaf).slice(0, 16)}…`;
+  }
+  if (traceMeta) {
+    const nFcg = (trace.fcg?.matched_artifacts || []).length;
+    traceMeta.textContent = `${trace.hops.length} hops · FCG artifacts bound ${nFcg} · session ${String(trace.bagged_session_root || "").slice(0, 12)}…`;
+  }
+  traceHopsEl.innerHTML = "";
+  for (const hop of trace.hops) {
+    const li = document.createElement("li");
+    li.className = `status-${hop.status}`;
+    li.dataset.idx = String(hop.idx);
+    li.innerHTML = `
+      <span class="hop-idx">${String(hop.idx).padStart(2, "0")}</span>
+      <div>
+        <div class="hop-sponsor">${hop.sponsor} <span class="hop-surface">/ ${hop.surface} · ${hop.status}</span></div>
+        <div class="hop-bind">${hop.binding}</div>
+        <div class="hop-bind">${hop.detail}</div>
+        ${hop.in_fcg ? `<div class="hop-fcg">FCG ← ${hop.fcg_artifact || "bag"}</div>` : `<div class="hop-fcg">outside FCG bag (sponsor pointer)</div>`}
+      </div>`;
+    traceHopsEl.appendChild(li);
+    if (animate) {
+      await sleep(140);
+      li.classList.add("visible", "active-hop");
+      await sleep(90);
+      li.classList.remove("active-hop");
+    } else {
+      li.classList.add("visible");
+    }
+  }
+}
+
+async function loadLatestTrace(animate = false) {
+  try {
+    const res = await fetch("/api/trace/latest");
+    if (!res.ok) return null;
+    const trace = await res.json();
+    await renderTokenTrace(trace, { animate });
+    return trace;
+  } catch {
+    return null;
+  }
+}
+
+if (traceBtn) {
+  traceBtn.addEventListener("click", () => loadLatestTrace(true));
+}
+
 async function refreshWorkos() {
   try {
     const res = await fetch("/api/auth/status", { credentials: "include" });
@@ -306,3 +367,4 @@ async function refreshWorkos() {
 
 refreshWorkos();
 refreshGraph();
+loadLatestTrace(false);

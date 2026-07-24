@@ -1,6 +1,6 @@
 # STATE — Braintona (handoff)
 
-**Updated:** 2026-07-24 ~10:39 PDT  
+**Updated:** 2026-07-24 ~10:56 PDT  
 **Deadline:** 15:30 PDT Devpost  
 **Hosts:** magicPRObox (cockpit) · magicSTUDIObox (compute)  
 **Session:** cursor-6430eeef-1426-4566-a6fc-5d688723f05b  
@@ -30,6 +30,7 @@
 |---|---|
 | Daytona / Braintrust / Fireworks / FCO | Working |
 | Custody knowledge graph | Live — `/api/graph` + UI; grows per pipeline run |
+| Live token trace | Content-leaf token walks Fireworks→Braintrust→FCO/FCG→Daytona→sponsors (`/api/trace/latest`) |
 | Private conversation custody | Sealed — graph node `conversation_private` (hashes only); vault gitignored |
 | WorkOS local AuthKit | Wired (set dashboard redirects) |
 | Voice-origin API | Working (optional human .mp3 in `public/assets/voice/`) |

@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import { verifyReceipt } from "../lib/receipts.js";
 import { narrateElevenLabs } from "./elevenlabs.js";
 import { loadLatestGraph, refreshCustodyGraph } from "./graph.js";
-import { loadLatestReceipt, runPipeline } from "./pipeline.js";
+import { loadLatestReceipt, loadLatestTokenTrace, runPipeline } from "./pipeline.js";
 import { buildContrastDemo } from "./voice_origin.js";
 import {
   loadLatestPrivateConversationPointer,
@@ -79,6 +79,12 @@ app.get("/api/graph", async (_req, res) => {
   } catch (err) {
     res.status(500).json({ error: err instanceof Error ? err.message : String(err) });
   }
+});
+
+app.get("/api/trace/latest", async (_req, res) => {
+  const trace = await loadLatestTokenTrace();
+  if (!trace) return res.status(404).json({ error: "no token trace yet — run pipeline" });
+  res.json(trace);
 });
 
 app.post("/api/graph/refresh", async (_req, res) => {

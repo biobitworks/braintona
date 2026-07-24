@@ -60,6 +60,8 @@ Fireworks → Braintrust → FCO MMR → Daytona ✓ / tamper ✗
 Token trace + two-avatar (Sarah ↔ Matilda) interaction graph  
 *Provenance ≠ correctness.*
 
+**Component:** MMR of **actual voice vs AI** — labels on sealed bytes, not a deepfake score.
+
 ### 6 — Live bridge
 Show the gap closing: pipeline · attest · tamper · signed path · voice trees + vault.
 

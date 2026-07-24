@@ -28,6 +28,8 @@ Braintona fills the agent handoff gap: Fireworks extracts claims, Braintrust sco
 Agents accelerate science and ops, but teams still cannot walk away: the same box often “verifies” itself, call audio is unlabeled, and sponsor hops leave no point of contact. Braintona makes fail-closed, second-machine attestation first-class — so operators hand off runs, customers keep a private voice tip, reviewers see every touch, and sponsors stop being a black box. We do not claim scientific truth, biometrics, or deepfake scores; that ceiling is the safeguard.
 
 ## Technical architecture
+**Component:** MMR of actual (human) voice vs AI voice under explicit `content_class` labels.
+
 1. Operator UI / CLI posts source text  
 2. Fireworks (`glm-5p1`, temp 0) returns claim JSON  
 3. Local gold eval + Braintrust logger when keyed  

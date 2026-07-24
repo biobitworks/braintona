@@ -62,6 +62,9 @@ Operator UI / CLI
 
 **Components**
 
+**Load-bearing voice component:** MMR of **actual voice** vs **AI voice** (`content_class` human vs ai) — see `docs/VOICE_HUMAN_AI_MMR_COMPONENT.md`.
+
+
 | Layer | What |
 |---|---|
 | Runtime | Node / TypeScript, Express, static UI (`:8787`) |

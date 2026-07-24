@@ -62,3 +62,5 @@ npm run start
 **Next (optional):** CopilotKit license · CodeRabbit Discord receipt
 
 **CopilotKit:** org exists; run `bash scripts/copilotkit_org_bootstrap.sh` then restart server. Cockpit: `/api/copilotkit/*` + UI panel.
+
+**Component lock:** MMR of actual voice vs AI (`docs/VOICE_HUMAN_AI_MMR_COMPONENT.md`) — twin/handoff voice unit.

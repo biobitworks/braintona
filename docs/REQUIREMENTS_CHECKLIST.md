@@ -40,7 +40,7 @@
 | **Braintrust** | YES | YES | Eval spans on gold task |
 | **Fireworks AI** | YES | YES | Claim extract (`glm-5p1`) |
 | **ElevenLabs** | YES | YES (two-avatar) | Sarah / Matilda call |
-| **CopilotKit** | YES cockpit API/UI | Waiting token drop | Phone drop → `.planning/private/copilotkit_license.token` |
+| **CopilotKit** | YES cockpit API/UI | **LIVE** license in `.env` | Seal turns on `/` cockpit panel |
 | **CodeRabbit** *(featured)* | YES observe API + UI | Bot on PRs + seal-observe | Discord Path B when venue OK |
 | **WorkOS** | AuthKit path | Optional | Not demo-critical |
 

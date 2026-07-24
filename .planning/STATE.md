@@ -1,6 +1,6 @@
 # STATE — Braintona (handoff)
 
-**Updated:** 2026-07-24 ~11:47 PDT
+**Updated:** 2026-07-24 ~11:49 PDT
 **Deadline:** **15:30 PDT** Devpost  
 **Hosts:** magicPRObox (cockpit) · magicSTUDIObox (compute)  
 **Session:** cursor-6430eeef-1426-4566-a6fc-5d688723f05b  
@@ -73,3 +73,5 @@ npm run start
 **Server:** http://127.0.0.1:8787 (restarted with sponsor routes).
 **CodeRabbit:** review in progress on PR #3.
 **Devpost phone paste:** `docs/DEVPOST_PHONE_PASTE.md`.
+
+**CopilotKit license LIVE** (OPERATOR authorized ingest; token in `.env` only; sha256 banked in receipts). Cockpit seals with `license_present=true`.

@@ -88,7 +88,7 @@ Leaf = `sha256(0x00 ‖ canonical_json)` · Node = `sha256(0x01 ‖ L ‖ R)` ·
 | **Braintrust** | Eval spans / scores for gold claim task (`braintona-hacksprint`) |
 | **Fireworks AI** | Claim extraction inference (`glm-5p1`) |
 | **ElevenLabs** | Two-avatar call + voice-origin FCO leaves (Sarah / Matilda) |
-| **CopilotKit** | Best FCO UI fit — license/login blocked; documented next |
+| **CopilotKit** | Operator FCO cockpit — **license LIVE**; seal turns → interaction MMR |
 | **WorkOS** | AuthKit / participation domain (not demo-critical) |
 
 Lineage (not current Best Use hosts): Glasswork / Butterbase, BioCustody, voiceworks — cited as prior art, not claimed as this event’s stack.

@@ -72,7 +72,7 @@ gh pr comment 3 --repo biobitworks/braintona --body "@coderabbitai review"
 | **Touch** | Org → license → `/api/copilotkit/seal-turn` UI panel |
 | **Demo** | Seal operator + AI turns → interaction MMR |
 | **Line** | “CopilotKit is where the human drives custody.” |
-| **Gate** | `bash scripts/copilotkit_org_bootstrap.sh` |
+| **Gate** | **LIVE** — license in `.env` (OPERATOR authorized); seal turns on `/` |
 
 ## WorkOS
 
@@ -93,7 +93,7 @@ gh pr comment 3 --repo biobitworks/braintona --body "@coderabbitai review"
 4. Token trace — call each hop by name  
 5. **ElevenLabs** two-avatar / voice MMR  
 6. **CodeRabbit** — open PR review / sealed observe hop (**featured**)  
-7. **CopilotKit** cockpit turn (if license) · **WorkOS** chip (optional)
+7. **CopilotKit** cockpit turn (license LIVE) · **WorkOS** chip (optional)
 
 ---
 

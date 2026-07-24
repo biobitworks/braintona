@@ -46,7 +46,7 @@ Agents accelerate science and ops, but teams still cannot walk away: the same bo
 - **Braintrust** — eval logging / scores for the gold task  
 - **Fireworks AI** — claim-extraction inference  
 - **ElevenLabs** — two-avatar call + voice-origin FCO leaves (actual vs AI MMR component)  
-- **CopilotKit** — operator FCO cockpit (org → license)  
+- **CopilotKit** — operator FCO cockpit (**license LIVE**)  
 - **WorkOS** — optional AuthKit identity (not vault SoT)  
 
 Full per-sponsor jobs: `docs/SPONSOR_TOUCHES.md`

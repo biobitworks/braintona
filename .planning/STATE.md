@@ -30,6 +30,7 @@
 |---|---|
 | Daytona / Braintrust / Fireworks / FCO | Working |
 | Custody knowledge graph | Live — `/api/graph` + UI; grows per pipeline run |
+| Touch signatures + PoC | Each hop: actor sig (AI/human/sponsor/runtime) + FCG combine prior⊕touch→tip |
 | Live token trace | Content-leaf token walks Fireworks→Braintrust→FCO/FCG→Daytona→sponsors (`/api/trace/latest`) |
 | Private conversation custody | Sealed — graph node `conversation_private` (hashes only); vault gitignored |
 | WorkOS local AuthKit | Wired (set dashboard redirects) |

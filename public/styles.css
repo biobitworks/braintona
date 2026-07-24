@@ -364,3 +364,34 @@ a {
 .trace-hops li.active-hop {
   box-shadow: inset 0 0 0 1px rgba(217, 255, 74, 0.35);
 }
+
+.sig-summary {
+  margin-top: 0.85rem;
+  font-size: 0.75rem;
+  color: rgba(232, 247, 244, 0.7);
+  line-height: 1.45;
+}
+
+.sig-strip {
+  margin-top: 0.45rem;
+  padding: 0.45rem 0.55rem;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid var(--line);
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+.sig-strip .actor-ai { color: #b39dff; }
+.sig-strip .actor-human { color: #3dffb5; }
+.sig-strip .actor-sponsor_system { color: #d9ff4a; }
+.sig-strip .actor-custody_runtime { color: #7ec8ff; }
+
+.sig-strip .poc {
+  color: rgba(232, 247, 244, 0.55);
+  word-break: break-all;
+}
+
+.combine-arrow {
+  color: var(--signal);
+  margin: 0 0.2rem;
+}

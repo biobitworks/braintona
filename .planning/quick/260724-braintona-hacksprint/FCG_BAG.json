@@ -2,7 +2,7 @@
   "schema": "portfolio.fcg_bag.v1",
   "project": "braintona",
   "title": "Daytona HackSprint SF Jul 2026 \u2014 Braintona",
-  "updated_at_utc": "2026-07-24T17:58:33.335535+00:00",
+  "updated_at_utc": "2026-07-24T18:03:37.154294+00:00",
   "signed": false,
   "pi_seal": false,
   "llm_in_science_leaf": false,
@@ -40,8 +40,8 @@
     },
     {
       "path": "src/lib/token_trace.ts",
-      "bytes": 9898,
-      "sha256_fco_style": "sha256:aa56240bfdb41efc8e06e4ddd847970f5bc59ae157231c23c75c3b94321693fa"
+      "bytes": 18024,
+      "sha256_fco_style": "sha256:2356b2df9ab2f3e14835a2a237ac5bdba7d5d2dcf0dbb5d0eea80dcc701dee8e"
     },
     {
       "path": "src/lib/private_conversation.ts",
@@ -75,18 +75,18 @@
     },
     {
       "path": "public/index.html",
-      "bytes": 4373,
-      "sha256_fco_style": "sha256:09888f24171a28bd0a5e5ffb40c4812791eff876863c391de0772138e0f29a6f"
+      "bytes": 4497,
+      "sha256_fco_style": "sha256:bb3459bd5bdf4fd825091d12603cb058860c99697ed1e4bc9131f0b67d5dca26"
     },
     {
       "path": "public/app.js",
-      "bytes": 12446,
-      "sha256_fco_style": "sha256:dde9f59061bb335142aad4472f7e821089779e4c666c29ced375ed8ad87c2d7d"
+      "bytes": 13652,
+      "sha256_fco_style": "sha256:629b6944708d94d51638e90d49eb12fe8371005d2e334cfcd4a5f57e8b13a7c3"
     },
     {
       "path": "public/styles.css",
-      "bytes": 6194,
-      "sha256_fco_style": "sha256:0100fb0f11b3ca3250d675f5bba067edf68dbde35305f7fe833c3066116de0a9"
+      "bytes": 6828,
+      "sha256_fco_style": "sha256:892487d99616c61d17851bf5571e87ba95bdaf1d869cf746d44fe4837c78a10f"
     },
     {
       "path": "docs/link_capture.jsonl",
@@ -110,8 +110,8 @@
     },
     {
       "path": ".planning/STATE.md",
-      "bytes": 2244,
-      "sha256_fco_style": "sha256:da1b07242efc2fbabf406afedf44005d375bd3f9ba5df0371e8867d8773e99b9"
+      "bytes": 2368,
+      "sha256_fco_style": "sha256:9b8db6a939c163242c32563b7fb0de27ba54a688f745badca8940cb3e4d1e09c"
     },
     {
       "path": ".planning/lexicon/TERMS.jsonl",

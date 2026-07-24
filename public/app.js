@@ -294,24 +294,42 @@ function sleep(ms) {
 async function renderTokenTrace(trace, { animate = true } = {}) {
   if (!trace || !traceHopsEl) return;
   if (traceToken) {
-    traceToken.textContent = `token ${trace.token_id} · content_leaf ${String(trace.content_leaf).slice(0, 16)}…`;
+    traceToken.textContent = `token ${trace.token_id} · sig tip ${String(trace.signature_chain_tip || "").slice(0, 16)}…`;
   }
   if (traceMeta) {
     const nFcg = (trace.fcg?.matched_artifacts || []).length;
-    traceMeta.textContent = `${trace.hops.length} hops · FCG artifacts bound ${nFcg} · session ${String(trace.bagged_session_root || "").slice(0, 12)}…`;
+    const nActors = (trace.actors_seen || []).length;
+    traceMeta.textContent = `${trace.hops.length} touches · ${nActors} actors · FCG binds ${nFcg} · tip ${String(trace.signature_chain_tip || "").slice(0, 12)}…`;
+  }
+  const sigSummary = document.getElementById("sigSummary");
+  if (sigSummary) {
+    const actors = (trace.actors_seen || [])
+      .map((a) => `${a.actor_class}:${a.actor_id.split("/").pop()}×${a.touches}`)
+      .join(" · ");
+    sigSummary.hidden = false;
+    sigSummary.textContent = `Actors in combine order tip: ${actors}`;
   }
   traceHopsEl.innerHTML = "";
   for (const hop of trace.hops) {
     const li = document.createElement("li");
     li.className = `status-${hop.status}`;
     li.dataset.idx = String(hop.idx);
+    const sig = hop.signature || {};
+    const poc = hop.point_of_contact || {};
+    const actorClass = sig.actor_class || "custody_runtime";
     li.innerHTML = `
       <span class="hop-idx">${String(hop.idx).padStart(2, "0")}</span>
       <div>
         <div class="hop-sponsor">${hop.sponsor} <span class="hop-surface">/ ${hop.surface} · ${hop.status}</span></div>
         <div class="hop-bind">${hop.binding}</div>
         <div class="hop-bind">${hop.detail}</div>
-        ${hop.in_fcg ? `<div class="hop-fcg">FCG ← ${hop.fcg_artifact || "bag"}</div>` : `<div class="hop-fcg">outside FCG bag (sponsor pointer)</div>`}
+        <div class="sig-strip">
+          <div><span class="actor-${actorClass}">${actorClass}</span> · ${sig.actor_id || "?"} · ${sig.role || ""}</div>
+          <div>sig ${String(sig.signature_hash || "").slice(0, 16)}… · ${sig.signature_id || ""}</div>
+          <div class="poc">PoC: ${poc.label || "—"} · ${poc.combine_op || ""}</div>
+          <div class="poc">${String(poc.prior_combined || "").slice(0, 12)} <span class="combine-arrow">⊕</span> ${String(poc.touch_leaf || "").slice(0, 12)} <span class="combine-arrow">→</span> ${String(poc.combined_after || "").slice(0, 12)}</div>
+          ${hop.in_fcg ? `<div class="hop-fcg">FCG contact ← ${hop.fcg_artifact || poc.fcg_artifact || "bag"}</div>` : `<div class="hop-fcg">observe/pointer — outside FCG bag combine</div>`}
+        </div>
       </div>`;
     traceHopsEl.appendChild(li);
     if (animate) {

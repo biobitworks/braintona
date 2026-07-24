@@ -1,0 +1,261 @@
+/**
+ * Local custody knowledge graph for the Braintona demo.
+ * Not Overwatch/SeedGraph writeback — session-local FCO/MMR provenance graph.
+ */
+import { mmr } from "./fco.js";
+import type { CustodyReceipt } from "./receipts.js";
+
+export type GraphNodeKind =
+  | "session"
+  | "run"
+  | "ops_leaf"
+  | "content_leaf"
+  | "custody_root"
+  | "eval"
+  | "daytona"
+  | "tamper"
+  | "voice_origin"
+  | "voice_atom"
+  | "voice_tree"
+  | "voice_interaction"
+  | "voice_vault"
+  | "voice_clone"
+  | "conversation_private";
+
+export interface GraphNode {
+  id: string;
+  kind: GraphNodeKind;
+  label: string;
+  short: string;
+  meta?: Record<string, unknown>;
+}
+
+export interface GraphEdge {
+  id: string;
+  from: string;
+  to: string;
+  rel: string;
+}
+
+export interface CustodyGraph {
+  schema: "braintona.custody_graph.v1";
+  session_id: string;
+  updated_at: string;
+  run_count: number;
+  bagged_session_root: string;
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+  claim_ceiling: string;
+  llm_in_science_leaf: false;
+}
+
+export interface RunGraphEvent {
+  receipt: CustodyReceipt;
+  verify_local_ok?: boolean;
+  daytona_ok?: boolean | null;
+  daytona_skipped?: boolean;
+  tamper_rejected?: boolean | null;
+  eval_pass?: boolean;
+  eval_f1?: number;
+}
+
+function shortHash(h: string, n = 10): string {
+  return (h || "").slice(0, n);
+}
+
+export interface PrivateConversationGraphLink {
+  continuous_session_id: string;
+  content_leaf: string;
+  fco_root: string;
+  mmr_tip: string;
+  transcript_sha256: string;
+  transcript_bytes: number;
+  cloud_agent_bc_id?: string;
+  visibility: "private";
+}
+
+/** Two-avatar / customer↔agent voice interaction (fractal atom + twin trees). */
+export interface VoiceInteractionGraphLink {
+  interaction_id: string;
+  interaction_mmr_root: string;
+  tree_a_tip: string;
+  tree_b_tip: string;
+  customer_vault_root: string;
+  turns: Array<{
+    role: "customer" | "agent" | string;
+    avatar_name: string;
+    voice_id: string;
+    audio_sha256: string;
+    audio_bytes: number;
+    leaf_hash: string;
+    content_leaf: string;
+    fco_root: string;
+    tree: string;
+  }>;
+}
+
+export interface VoiceCloneGraphLink {
+  voice_id: string;
+  display_name?: string;
+  clone_leaf: string;
+  utterance_leaf?: string;
+  mmr_root: string;
+}
+
+export async function buildCustodyGraph(
+  events: RunGraphEvent[],
+  opts: {
+    session_id?: string;
+    privateConversation?: PrivateConversationGraphLink | null;
+    voiceInteraction?: VoiceInteractionGraphLink | null;
+    voiceClone?: VoiceCloneGraphLink | null;
+  } = {},
+): Promise<CustodyGraph> {
+  const session_id = opts.session_id || "braintona-demo";
+  const nodes: GraphNode[] = [
+    {
+      id: `session:${session_id}`,
+      kind: "session",
+      label: "Braintona session",
+      short: session_id,
+      meta: { claim_ceiling: "provenance_not_correctness" },
+    },
+  ];
+  const edges: GraphEdge[] = [];
+  const rootLeaves: string[] = [];
+  let prevRunId: string | null = null;
+
+  events.forEach((ev, idx) => {
+    const r = ev.receipt;
+    const runId = `run:${idx + 1}:${shortHash(r.custody_root)}`;
+    const opsId = `ops:${shortHash(r.leaves[0])}`;
+    const contentId = `content:${shortHash(r.leaves[1])}`;
+    const rootId = `root:${shortHash(r.custody_root)}`;
+    const evalId = `eval:${idx + 1}`;
+
+    nodes.push({
+      id: runId,
+      kind: "run",
+      label: `Run ${idx + 1}`,
+      short: r.operational.ts,
+      meta: {
+        model_id: r.operational.model_id,
+        provider: r.operational.provider,
+        task_id: r.content.task_id,
+      },
+    });
+    nodes.push({
+      id: opsId,
+      kind: "ops_leaf",
+      label: "Ops leaf",
+      short: shortHash(r.leaves[0]),
+      meta: { leaf: r.leaves[0] },
+    });
+    nodes.push({
+      id: contentId,
+      kind: "content_leaf",
+      label: "Content leaf",
+      short: shortHash(r.leaves[1]),
+      meta: {
+        leaf: r.leaves[1],
+        prompt_sha256: r.content.prompt_sha256,
+        output_sha256: r.content.output_sha256,
+      },
+    });
+    nodes.push({
+      id: rootId,
+      kind: "custody_root",
+      label: "Custody MMR root",
+      short: shortHash(r.custody_root),
+      meta: { custody_root: r.custody_root, verify_local_ok: ev.verify_local_ok ?? null },
+    });
+    nodes.push({
+      id: evalId,
+      kind: "eval",
+      label: ev.eval_pass ? "Eval PASS" : "Eval FAIL",
+      short: ev.eval_f1 != null ? `F1 ${(ev.eval_f1 * 100).toFixed(0)}%` : "eval",
+      meta: { pass: ev.eval_pass, f1: ev.eval_f1 },
+    });
+
+    edges.push({ id: `e-${runId}-session`, from: `session:${session_id}`, to: runId, rel: "CONTAINS" });
+    edges.push({ id: `e-${runId}-ops`, from: runId, to: opsId, rel: "HAS_OPS_LEAF" });
+    edges.push({ id: `e-${runId}-content`, from: runId, to: contentId, rel: "HAS_CONTENT_LEAF" });
+    edges.push({ id: `e-${opsId}-root`, from: opsId, to: rootId, rel: "SEALS" });
+    edges.push({ id: `e-${contentId}-root`, from: contentId, to: rootId, rel: "SEALS" });
+    edges.push({ id: `e-${runId}-eval`, from: runId, to: evalId, rel: "SCORED_BY" });
+
+    if (prevRunId) {
+      edges.push({ id: `e-${prevRunId}-${runId}`, from: prevRunId, to: runId, rel: "NEXT_RUN" });
+    }
+    prevRunId = runId;
+    rootLeaves.push(r.custody_root);
+
+    if (ev.daytona_ok != null || ev.daytona_skipped) {
+      const dId = `daytona:${idx + 1}`;
+      nodes.push({
+        id: dId,
+        kind: "daytona",
+        label: ev.daytona_skipped ? "Daytona skipped" : ev.daytona_ok ? "Daytona match" : "Daytona mismatch",
+        short: ev.daytona_skipped ? "skip" : ev.daytona_ok ? "ok" : "bad",
+        meta: { ok: ev.daytona_ok, skipped: ev.daytona_skipped },
+      });
+      edges.push({ id: `e-${rootId}-daytona`, from: rootId, to: dId, rel: "RECOMPUTED_IN" });
+    }
+
+    if (ev.tamper_rejected != null) {
+      const tId = `tamper:${idx + 1}`;
+      nodes.push({
+        id: tId,
+        kind: "tamper",
+        label: ev.tamper_rejected ? "Tamper rejected" : "Tamper unexpected pass",
+        short: ev.tamper_rejected ? "reject" : "leak",
+        meta: { rejected: ev.tamper_rejected },
+      });
+      edges.push({ id: `e-${rootId}-tamper`, from: rootId, to: tId, rel: "CONTRAST" });
+    }
+  });
+
+  if (opts.privateConversation) {
+    const pc = opts.privateConversation;
+    const convId = `conversation_private:${pc.content_leaf.slice(0, 12)}`;
+    nodes.push({
+      id: convId,
+      kind: "conversation_private",
+      label: "Private Cursor conversation",
+      short: pc.transcript_sha256.slice(0, 12),
+      meta: {
+        visibility: "private",
+        continuous_session_id: pc.continuous_session_id,
+        cloud_agent_bc_id: pc.cloud_agent_bc_id || null,
+        transcript_sha256: pc.transcript_sha256,
+        transcript_bytes: pc.transcript_bytes,
+        content_leaf: pc.content_leaf,
+        fco_root: pc.fco_root,
+        mmr_tip: pc.mmr_tip,
+        plaintext_in_public_graph: false,
+      },
+    });
+    edges.push({
+      id: `e-session-${convId}`,
+      from: `session:${session_id}`,
+      to: convId,
+      rel: "INCLUDES_PRIVATE",
+    });
+    // Bind conversation leaf into bagged session commitment (hash only).
+    rootLeaves.push(pc.content_leaf);
+  }
+
+  const bagged_session_root = await mmr(rootLeaves.length ? rootLeaves : []);
+
+  return {
+    schema: "braintona.custody_graph.v1",
+    session_id,
+    updated_at: new Date().toISOString(),
+    run_count: events.length,
+    bagged_session_root,
+    nodes,
+    edges,
+    claim_ceiling: "custody_graph_is_local_provenance_not_science_truth",
+    llm_in_science_leaf: false,
+  };
+}

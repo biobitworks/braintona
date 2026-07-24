@@ -1,0 +1,24 @@
+{
+  "schema": "braintona.dual_license_lock.v1",
+  "ts": "2026-07-24T21:51:53Z",
+  "team": "Biobitworks",
+  "spdx": "(Apache-2.0 AND CC-BY-ND-4.0)",
+  "split": {
+    "software": "Apache-2.0",
+    "docs_media": "CC-BY-ND-4.0"
+  },
+  "leaves": {
+    "LICENSE": "sha256:59c236a6a05f398d069f378d4eb3c9b904d15c4ffb3ff276d1cbc986b03f72f5",
+    "LICENSE-CC-BY-ND-4.0": "sha256:979e844b81db24abe7bd1ccabdbaa43545deeb4a552952537070fa8cbf3723fc",
+    "LICENSE.md": "sha256:66384f5e3674deb5c8f1ae2cc804fbac3abb7fb6ff9d44cd93e54764a9233bbe",
+    "package.json": "sha256:9cdae5ddd54798d5064123e62578bc2d049adc9e46df918106e746fb0f73c639",
+    "README.md": "sha256:221c059d8434845ca2cee6e30fc327b4fc6917fb2907215d54f53a4c67c55a80",
+    "docs/DEVPOST_DESCRIPTION.md": "sha256:fa373c4abde11edd0e4d09251f6cd86d0823d208f8cdf926c74269a5bab23ae6"
+  },
+  "llm_in_science_leaf": false,
+  "signed": false,
+  "tip": "sha256:fe4626142b26dac79e129639c3ab43c80527c7ea23fdb95c5ceb93967aa72bb0",
+  "devpost_submitted": true,
+  "closeout_tip": "sha256:a11f303c878a9a912da9e2571813036b40242acc98fa48f8718ea630b0d46b00",
+  "updated_at_utc": "2026-07-24T21:54:15.605682+00:00"
+}

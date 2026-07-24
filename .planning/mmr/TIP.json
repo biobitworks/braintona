@@ -1,0 +1,13 @@
+{
+  "schema": "fco.mmr.tip.v1",
+  "mmr_tip": "sha256:99c62ea0a7600fb46b4a1fbcb2a9c63d8753891c55a8285997f44796cccab7d0",
+  "parent_mmr_tip": "sha256:2038df5a5b025800ddf0b4eb1438fd61250b72c9dbf23fa39db35d16e7091d27",
+  "last_event_leaf": "sha256:c70228d98df3c6ee462d40f4e655d70ebd842becd57bbaf7fa1af6893626bf38",
+  "signature_id": "SIG-2026-07-24T215424Z-cursor-c70228d9",
+  "continuous_session_id": "cursor-6430eeef-1426-4566-a6fc-5d688723f05b",
+  "scoring_mode": "mix",
+  "anticube": "SS",
+  "msm_admit": "SAFE",
+  "ts_utc": "2026-07-24T215424Z",
+  "llm_in_science_leaf": false
+}

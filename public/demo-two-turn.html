@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Braintona — two-turn voice demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=20260724c" />
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: clamp(1.25rem, 4vw, 2.5rem);
+    }
+    .wrap { width: min(52rem, 100%); }
+    .turn {
+      border: 1px solid var(--line);
+      padding: 1rem 1.1rem;
+      margin: 0.8rem 0;
+      max-width: 52rem;
+      opacity: 0.45;
+      transition: opacity 0.3s ease, border-color 0.3s ease;
+      background: color-mix(in srgb, var(--surface) 80%, transparent);
+    }
+    .turn.on { opacity: 1; border-color: var(--gild-strong); }
+    .turn h2 {
+      font-family: var(--font-display);
+      margin: 0 0 0.5rem;
+      font-size: 1.15rem;
+      color: var(--gild-strong);
+    }
+    .meta { color: var(--muted); font-size: 0.85rem; margin: 0.35rem 0; word-break: break-all; }
+    .ceil { color: var(--ok); margin-top: 1.25rem; max-width: 48ch; font-size: 0.92rem; font-family: var(--font-body); }
+    #status { min-height: 1.4em; color: var(--muted); }
+    audio { width: min(100%, 28rem); margin-top: 0.5rem; }
+    .row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.25rem 0; }
+  </style>
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="brand">BRAINTONA · TWO-TURN</p>
+    <h1>Two-turn voice custody.</h1>
+    <p class="lede">
+      ElevenLabs avatars · two FCO trees · one interaction MMR.
+    </p>
+    <div class="row">
+      <button id="run" type="button">Run two-turn demo</button>
+      <a class="ghost link-btn" href="/demo-voice-star.html">Star chart</a>
+      <a class="ghost link-btn" href="/">Main app</a>
+    </div>
+    <div id="status">Ready</div>
+    <section class="turn" id="tCustomer">
+      <h2>Tree A · Customer</h2>
+      <p class="meta" id="mCustomer">—</p>
+      <audio id="aCustomer" controls></audio>
+    </section>
+    <section class="turn" id="tAgent">
+      <h2>Tree B · Agent</h2>
+      <p class="meta" id="mAgent">—</p>
+      <audio id="aAgent" controls></audio>
+    </section>
+    <p class="ceil">Ceilings: avatar TTS = AI stand-in (content_class=ai). Provenance of recorded bytes — not biometrics, not science truth.</p>
+  </div>
+  <script type="module">
+    const statusEl = document.getElementById("status");
+    const runBtn = document.getElementById("run");
+    function assetUrl(path) {
+      if (!path) return "";
+      const name = path.split("/").pop();
+      return `/assets/voice/${name}`;
+    }
+    function paint(data) {
+      const turns = data.turns || [];
+      const c = turns.find((t) => t.role === "customer");
+      const a = turns.find((t) => t.role === "agent");
+      const tC = document.getElementById("tCustomer");
+      const tA = document.getElementById("tAgent");
+      if (c) {
+        document.getElementById("mCustomer").textContent =
+          `${c.avatar_name} · voice ${c.voice_id} · leaf ${String(c.receipt?.leaf_hash || "").slice(0, 16)}… · ${c.audio_bytes} B`;
+        document.getElementById("aCustomer").src = assetUrl(c.audio_path);
+        tC.classList.add("on");
+      }
+      if (a) {
+        document.getElementById("mAgent").textContent =
+          `${a.avatar_name} · voice ${a.voice_id} · leaf ${String(a.receipt?.leaf_hash || "").slice(0, 16)}… · ${a.audio_bytes} B`;
+        document.getElementById("aAgent").src = assetUrl(a.audio_path);
+        tA.classList.add("on");
+      }
+      statusEl.textContent = data.note || `MMR ${String(data.interaction_mmr_root || "").slice(0, 16)}…`;
+    }
+    runBtn.addEventListener("click", async () => {
+      runBtn.disabled = true;
+      statusEl.textContent = "Synthesizing…";
+      try {
+        const res = await fetch("/api/demo/two-avatar-call", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            customer_voice_id: "5niL0Wu395iXN1uc4zne",
+            agent_voice_id: "IQjnnInWsKbdAesop75D",
+            customer_name: "Byron",
+            agent_name: "Library",
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "failed");
+        paint(data);
+      } catch (e) {
+        statusEl.textContent = `Error: ${e.message || e}`;
+      } finally {
+        runBtn.disabled = false;
+      }
+    });
+    (async () => {
+      try {
+        const res = await fetch("/api/demo/two-avatar-call/latest");
+        if (res.ok) paint(await res.json());
+      } catch (_) {}
+    })();
+  </script>
+    <script src="/demo-guide.js"></script>
+    <footer style="padding:1rem 1.25rem 2rem;font-size:0.8rem;opacity:0.75">
+      Biobitworks · Apache-2.0 + CC BY-ND 4.0 · github.com/biobitworks/braintona
+    </footer>
+  </body>
+</html>

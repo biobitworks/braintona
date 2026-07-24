@@ -2,31 +2,44 @@
   "name": "braintona",
   "version": "0.1.0",
   "private": true,
-  "description": "Daytona × Braintrust × FCO custody agent — HackSprint SF Jul 2026",
+  "description": "Daytona \u00d7 Braintrust \u00d7 FCO custody agent \u2014 HackSprint SF Jul 2026",
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server/index.ts",
     "start": "tsx src/server/index.ts",
     "pipeline": "tsx src/cli/run_pipeline.ts",
     "daytona:verify": "tsx src/cli/daytona_verify.ts",
+    "e2e": "bash scripts/e2e_main_app.sh",
     "typecheck": "tsc --noEmit",
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc --noEmit",
+    "seal:conversation": "tsx scripts/seal_private_conversation.ts",
+    "demo:two-avatar": "tsx scripts/run_two_avatar_demo.ts",
+    "copilotkit:bootstrap": "bash scripts/copilotkit_org_bootstrap.sh",
+    "copilotkit:ingest": "bash scripts/ingest_copilotkit_token.sh",
+    "copilotkit:watch-token": "bash scripts/watch_copilotkit_token_drop.sh",
+    "demo:two-turn": "tsx scripts/run_two_avatar_demo.ts"
   },
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
     "@daytona/sdk": "^0.200.1",
+    "@workos-inc/node": "^10.8.0",
     "braintrust": "^0.4.0",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
     "express": "^5.1.0",
     "zod": "^3.25.0"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/node": "^22.15.0",
     "tsx": "^4.20.0",
     "typescript": "^5.8.3"
-  }
+  },
+  "license": "(Apache-2.0 AND CC-BY-ND-4.0)",
+  "author": "Byron P. Lee / Biobitworks <byron@biobitworks.com>"
 }

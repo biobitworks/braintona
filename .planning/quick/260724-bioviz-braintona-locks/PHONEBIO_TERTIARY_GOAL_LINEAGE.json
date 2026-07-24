@@ -1,0 +1,32 @@
+{
+  "schema": "portfolio.lineage_pointer.v1",
+  "lane": "260724-cloudmer-pitch-live-cellico",
+  "decision_id": "D17.5",
+  "ts_utc": "2026-07-24T17:19:27Z",
+  "operator_note": "PhoneBio tertiary goal (PB-G3/G3a): local sensors \u2192 how many people \u2192 voice distinguishing, while using the user custody vault and local quant models.",
+  "owner_repo": "phonebio",
+  "owner_lock": "phonebio/.planning/PHONEBIO_TERTIARY_SENSOR_PEOPLE_VOICE_GOAL.json",
+  "relation_to_D17": "Lineage/context for voice-origin custody and multi-person audio leaves; does not change FCO/FCG sponsor/BYOM/Merkle vault locks",
+  "llm_in_science_leaf": false,
+  "owner_decision": "PB-G3/PB-G3a",
+  "companions": {
+    "vault": "user FCO custody vault",
+    "quant_models": "local quantized edge models"
+  },
+  "expanded_by": "BB-EXP-1 / BioBridge",
+  "feeds_twin_growth": {
+    "decision": "D17.7c",
+    "role": "other_sensor_data source lineage for private MMR growth beside voice human/AI component",
+    "lock": "PRIVATE_SENSOR_MMR_GROWTH_LOCK.json"
+  },
+  "on_device_runtime": {
+    "decision": "D17.7d",
+    "worked_example": "Samsung phones with ExecuTorch + quantized models",
+    "hosts": [
+      "computers",
+      "phones",
+      "similar edge devices"
+    ],
+    "lock": "ON_DEVICE_EXECUTORCH_QUANT_EDGE_LOCK.json"
+  }
+}

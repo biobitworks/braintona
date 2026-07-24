@@ -1,0 +1,56 @@
+{
+  "schema": "fco.mmr.memory_event.v1",
+  "kind": "memory_event",
+  "event_subtype": "new_chat",
+  "session_continuity": "continuous_variant",
+  "continuous_session_id": "cursor-6430eeef-1426-4566-a6fc-5d688723f05b",
+  "parent_mmr_tip": "sha256:ccc68302599f105a2cbd2a753ffcc48bf7953e73af6f42629475beb39fcdc314",
+  "ts_utc": "2026-07-24T210049Z",
+  "host_id": "cursor-cloud",
+  "git_branch": "cursor/braintona-main-app-kg-e2e-cc88",
+  "git_head": "1c7c89698a6eabb6027236c78a9a91744df5fa64",
+  "established_bindings": [],
+  "note": "transcript_sha256=sha256:b04271810c84e478ef710b7185afcc81f6987f165b19b5a772dcc4a495aa5be4 resume_devpost_form_hard_paths",
+  "scoring_mode": "mix",
+  "anticube": {
+    "label": "SS",
+    "poison_ne_sn": true
+  },
+  "msm_admit": {
+    "gate": "SAFE",
+    "channel": "MSM_ADMIT"
+  },
+  "scores": {
+    "H_info": null,
+    "H_stick": null,
+    "H_bind": null
+  },
+  "graph_update": {
+    "mmr": "deferred",
+    "seedgraph_pointer": "queued",
+    "watchtower_receipt": "written"
+  },
+  "authority": {
+    "claim_promotion": false,
+    "writeback_authorized": false,
+    "push_authorized": false,
+    "commit_authorized": false
+  },
+  "role_header": {
+    "execution_role": "primary_agent",
+    "approval_role": "none",
+    "runtime": "cursor",
+    "model_or_agent": "cursor-grok-4.5"
+  },
+  "llm_in_science_leaf": false,
+  "writeback": false,
+  "pi_signed": false,
+  "fco_style_leaf": "sha256:b4dae8bb88e72d0f028dbc592ac09b219c3351bcc8cb9aa53dc4ef4d4037d823",
+  "mmr_tip": "sha256:2038df5a5b025800ddf0b4eb1438fd61250b72c9dbf23fa39db35d16e7091d27",
+  "signature": {
+    "signature_id": "SIG-2026-07-24T210049Z-cursor-b4dae8bb",
+    "signature_hash": "sha256:ba1229a5a6f916ae822bcbdcb2534d7fd70250420a56e0471c3f0fdef3827311",
+    "signer": "cursor",
+    "note": "local custody signature (not PI ed25519); advisory chain link only"
+  }
+}

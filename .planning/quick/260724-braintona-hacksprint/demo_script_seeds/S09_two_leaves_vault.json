@@ -1,0 +1,36 @@
+{
+  "schema": "braintona.demo_script_seed.v1",
+  "seed_id": "S09_two_leaves_vault",
+  "ordinal": 9,
+  "kind": "seed_of_truth",
+  "created_before": "compiled_teleprompter",
+  "content_class": "human",
+  "statement": "Two-turn audio: customer leaf vs agent leaf with explicit labels. Customer tip stays vault-private. Lose vault, lose private authority.",
+  "say": "Hear it. Customer leaf. Agent leaf. [pause] Labels explicit. Not a deepfake score. [pause] The customer tip stays vault-private. [pause] Lose the vault, lose private authority. By design.",
+  "ui": {
+    "path": "/demo-two-turn.html",
+    "action": "run_two_turn_demo"
+  },
+  "proves": "gap_2_closed",
+  "claim_ceiling": {
+    "allowed": [
+      "explicit content_class human vs ai on sealed audio",
+      "vault-private customer tip"
+    ],
+    "forbidden": [
+      "deepfake detector",
+      "biometric speaker ID",
+      "cloud holds private tip by default"
+    ]
+  },
+  "parents": [
+    "S08_voice_star_traverse",
+    "S04_gap_unlabeled_voice"
+  ],
+  "llm_in_science_leaf": false,
+  "authority": {
+    "claim_promotion": false,
+    "writeback": false,
+    "pi_sign": false
+  }
+}

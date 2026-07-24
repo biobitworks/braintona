@@ -1,0 +1,68 @@
+{
+  "schema": "portfolio.operator_goal_lock.v1",
+  "lane": "260724-cloudmer-pitch-live-cellico",
+  "decision_id": "D17.7b",
+  "ts_utc": "2026-07-24T18:42:00Z",
+  "extends": [
+    "D17.7",
+    "D17.7a"
+  ],
+  "operator_lock": "The load-bearing component of the SS+MSM digital-twin role is the MMR of actual voice data versus AI voice \u2014 human-recorded (or vaulted subject) audio leaves bagged against AI-synthesized leaves under explicit content_class labels.",
+  "expansions": {
+    "component": "The twin's voice custody unit: Merkle Mountain Range over voice-origin FCO leaves split by actual/human vs AI",
+    "actual_voice": "Subject- or human-recorded audio bytes sealed as content_class=human (or vault-private tip) \u2014 not a biometric identity claim",
+    "AI_voice": "Synthesized / TTS / agent audio sealed as content_class=ai with generator metadata",
+    "MMR": "Merkle Mountain Range bagging those leaves into a comparable tip (interaction / twin voice root)"
+  },
+  "means": [
+    "Seal actual voice and AI voice as separate FCO leaves (domain-separated hashes of recorded bytes)",
+    "Bag into an MMR tip that is the twin's voice component across sponsors",
+    "Sponsors that accept models/rules/governance can verify the voice MMR without holding private vault preimages",
+    "Pairs with D17.7a: Pythia/SS+MSM twin carries this voice MMR component as portable evidence of who spoke which bytes",
+    "Demo lineage: Braintona / BioCustody / voiceworks / two-avatar customer vs agent trees"
+  ],
+  "claim_ceiling": {
+    "allowed": [
+      "MMR of actual voice vs AI voice as the twin's load-bearing voice component",
+      "explicit content_class human vs ai on sealed audio bytes",
+      "portable voice MMR tip verifiable across BYOM / multi-sponsor lanes",
+      "architecture: twin = SS+MSM + voice human/AI MMR (+ model/rules/governance packages)",
+      "Builds over time with other private sensor leaves under vaulted MMR tip (D17.7c)"
+    ],
+    "forbidden": [
+      "deepfake detector / biometric speaker ID / liveness score claims",
+      "claim the MMR proves scientific or clinical truth of speech content",
+      "unlabeled mixing of human and AI audio in the same leaf",
+      "shipping raw private voice bytes to sponsors when only hashes/tips are authorized",
+      "SMS conflated with voice MMR component"
+    ]
+  },
+  "distinct_from": [
+    "deepfake / anti-spoof ML classifiers",
+    "PhoneBio presence-class people count (tertiary, not this component)",
+    "ops+content pipeline custody root (different leaf set \u2014 still FCO, not the voice component)"
+  ],
+  "demo_surfaces": [
+    "braintona two-avatar call + voice-origin FCO",
+    "BioCustody / voiceworks lineage",
+    "private vault tip for customer/actual voice"
+  ],
+  "parents": [
+    "D17.7",
+    "D17.7a",
+    "D17.1",
+    "D16"
+  ],
+  "llm_in_science_leaf": false,
+  "authority": {
+    "pi_sign": false,
+    "claim_promotion": false,
+    "writeback": false
+  },
+  "extended_by": "D17.7c",
+  "growth": {
+    "decision": "D17.7c",
+    "text": "Builds over time with other sensor data; keeps private in user vault",
+    "lock": "PRIVATE_SENSOR_MMR_GROWTH_LOCK.json"
+  }
+}

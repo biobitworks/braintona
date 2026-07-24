@@ -7,10 +7,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=20260724g" />
+    <script>
+      if (new URLSearchParams(location.search).get("shot") === "1") {
+        document.documentElement.classList.add("shot-mode");
+      }
+    </script>
   </head>
   <body>
     <div class="atmosphere" aria-hidden="true"></div>
@@ -19,28 +24,73 @@
         <p class="brand">BRAINTONA</p>
         <h1>Audit every agent byte.</h1>
         <p class="lede">
-          Fireworks answers. Braintrust scores. Daytona recomputes custody. Voice-origin FCO/MMR
-          labels human vs AI audio — reject on mismatch.
+          Fireworks answers. Braintrust scores. Daytona recomputes custody. Each run grows a local
+          FCO/MMR knowledge graph — reject on mismatch.
         </p>
-        <div class="cta-row">
+        <div class="cta-row cta-primary">
           <button id="runBtn" type="button">Run live pipeline</button>
-          <button id="voiceBtn" type="button" class="ghost">Seal voice origin</button>
-          <button id="speakBtn" type="button" class="ghost" disabled>Speak verify</button>
+          <a class="ghost link-btn" href="/demo-voice-star.html">Voice star chart</a>
+          <a class="ghost link-btn" href="/demo-two-turn.html">Two-turn audio</a>
+          <a class="ghost link-btn" href="/demo-guide.html">Guided demo</a>
         </div>
+        <p class="lede-sm" style="margin-top: 0.65rem">
+          Record path: Run pipeline (watch technical graph) → star chart → two-turn. Skip WorkOS.
+        </p>
       </header>
 
-      <section class="panel" aria-label="Pipeline">
-        <h2>Pipeline</h2>
-        <label for="source">Source text</label>
-        <textarea id="source" rows="5" placeholder="Paste a short scientific paragraph…"></textarea>
-        <div id="status" class="status">Ready · deadline 3:30 PM PDT</div>
-        <ol id="steps" class="steps">
-          <li data-step="infer">Inference</li>
-          <li data-step="eval">Eval</li>
-          <li data-step="local">Local custody</li>
-          <li data-step="daytona">Daytona recompute</li>
-          <li data-step="tamper">Planted tamper</li>
-        </ol>
+      <div class="demo-stage">
+        <section class="panel" aria-label="Pipeline">
+          <h2>Pipeline</h2>
+          <label for="source">Source text</label>
+          <textarea id="source" rows="4" placeholder="Paste a short scientific paragraph…"></textarea>
+          <div id="status" class="status">Ready · click Run live pipeline</div>
+          <ol id="steps" class="steps">
+            <li data-step="infer">Inference</li>
+            <li data-step="eval">Eval</li>
+            <li data-step="local">Local custody</li>
+            <li data-step="daytona">Daytona recompute</li>
+            <li data-step="tamper">Planted tamper</li>
+            <li data-step="graph">Knowledge graph</li>
+          </ol>
+        </section>
+
+        <section class="panel panel-graph" id="graphPanel" aria-label="Technical custody knowledge graph">
+          <div class="panel-head">
+            <h2>Technical custody graph</h2>
+            <p id="graphMeta" class="graph-meta">Loading session graph…</p>
+          </div>
+          <p class="lede-sm">
+            Session FCO/MMR receipts. Stage figure =
+            <a href="/demo-voice-star.html">voice star chart</a>.
+          </p>
+          <div id="graphEmpty" class="graph-empty">
+            No runs yet. Click <strong>Run live pipeline</strong> — nodes appear here.
+          </div>
+          <svg
+            id="graphSvg"
+            class="graph-svg"
+            viewBox="0 0 920 380"
+            role="img"
+            aria-label="Technical custody graph"
+          ></svg>
+          <pre id="graphOut" class="graph-json" hidden></pre>
+        </section>
+      </div>
+
+      <section class="panel" id="tracePanel" aria-label="Live token trace">
+        <div class="panel-head">
+          <h2>Live token trace</h2>
+          <button id="traceBtn" type="button" class="ghost">Replay hops</button>
+        </div>
+        <p id="traceMeta" class="graph-meta">Run the pipeline to mint a custody token and walk sponsor hops.</p>
+        <p class="trace-token" id="traceToken">token —</p>
+        <ol id="traceHops" class="trace-hops" aria-live="polite"></ol>
+        <p class="ceiling">
+          One custody token = content leaf id. Each touch shows an actor signature (AI / human /
+          sponsor / runtime) and the FCG point of contact where hashes combine. Local custody
+          signatures — not PI seals. Not a payment token; not science truth.
+        </p>
+        <div id="sigSummary" class="sig-summary" hidden></div>
       </section>
 
       <section class="panel results" id="results" hidden>
@@ -57,7 +107,7 @@
         </div>
         <p class="ceiling">
           Ceilings: custody = provenance of recorded bytes, not correctness. LLM = signal. Eval =
-          this gold task only.
+          this gold task only. Graph = local session provenance, not SeedGraph writeback.
         </p>
         <p class="cite">
           Method: Fractal Custody Objects —
@@ -67,7 +117,102 @@
           · Lineage: Glasswork / BioCustody / Sauna
         </p>
       </section>
+
+      <section class="panel" id="twoAvatarPanel">
+        <div class="panel-head">
+          <h2>Two-avatar call (ElevenLabs)</h2>
+          <button id="twoAvatarBtn" type="button" class="ghost">Run Byron ↔ Library</button>
+        </div>
+        <p class="lede-sm">
+          Prefer <a href="/demo-two-turn.html">two-turn page</a> for stage audio.
+        </p>
+        <p id="twoAvatarMeta" class="graph-meta"></p>
+        <div id="twoAvatarPlayers" class="avatar-players"></div>
+        <pre id="twoAvatarOut"></pre>
+      </section>
+
+      <section class="panel" id="clonePanel">
+        <div class="panel-head">
+          <h2>Voice clone FCO</h2>
+          <button id="cloneBtn" type="button" class="ghost">Seal Byron clone</button>
+        </div>
+        <p id="cloneMeta" class="graph-meta"></p>
+        <div id="cloneStrip" class="hash-strip" aria-live="polite"></div>
+        <div id="clonePlayer" class="avatar-players"></div>
+        <pre id="cloneOut"></pre>
+        <p class="ceiling">
+          Clone FCO = labeled AI voice registry. Utterance = content_class=ai bound to that
+          voice_id. Not biometrics / deepfake score.
+        </p>
+      </section>
+
+      <section class="panel" id="voicePanel">
+        <div class="panel-head">
+          <h2>Voice-origin FCO</h2>
+          <button id="voiceBtn" type="button" class="ghost">Seal voice origin</button>
+        </div>
+        <pre id="voiceOut"></pre>
+      </section>
+
+      <section class="panel" id="sponsorPanel" aria-label="Sponsor touches">
+        <div class="panel-head">
+          <h2>Sponsor touches</h2>
+          <p id="sponsorMeta" class="graph-meta">Each sponsor gets a named hop — CodeRabbit featured.</p>
+        </div>
+        <div id="sponsorStrip" class="sponsor-strip"></div>
+        <div class="cta-row">
+          <button id="coderabbitSealBtn" type="button">Seal CodeRabbit observe (featured)</button>
+          <a
+            class="ghost link-btn"
+            href="https://github.com/biobitworks/braintona/pull/3"
+            target="_blank"
+            rel="noreferrer"
+            >Open PR #3</a
+          >
+        </div>
+        <pre id="coderabbitOut"></pre>
+      </section>
+
+      <section class="panel" id="copilotPanel" aria-label="CopilotKit operator cockpit">
+        <div class="panel-head">
+          <h2>CopilotKit operator cockpit</h2>
+          <p id="copilotMeta" class="graph-meta">Checking license…</p>
+        </div>
+        <p class="lede-sm">
+          Org-linked Best Use lane: each operator/AI turn seals as an FCO leaf; thread tip =
+          interaction MMR. Provenance of recorded turns — not correctness.
+        </p>
+        <label for="copilotText">Operator turn</label>
+        <textarea
+          id="copilotText"
+          rows="3"
+          placeholder="Ask the custody agent to run verify / explain the last root…"
+        ></textarea>
+        <div class="cta-row">
+          <button id="copilotHumanBtn" type="button">Seal operator turn</button>
+          <button id="copilotAiBtn" type="button" class="ghost">Seal AI reply (demo)</button>
+          <button id="speakBtn" type="button" class="ghost" disabled>Speak verify</button>
+          <a id="workosLogin" class="ghost link-btn" href="/login">WorkOS (optional)</a>
+          <span id="workosUser" class="auth-chip" hidden></span>
+        </div>
+        <pre id="copilotOut"></pre>
+      </section>
     </main>
-    <script type="module" src="/app.js"></script>
+    <footer class="site-license" style="padding:1rem 1.25rem 2rem;font-size:0.8rem;opacity:0.75">
+      Biobitworks · Braintona · Software
+      <a href="https://github.com/biobitworks/braintona/blob/cursor/braintona-main-app-kg-e2e-cc88/LICENSE">Apache-2.0</a>
+      · Docs &amp; media
+      <a href="https://creativecommons.org/licenses/by-nd/4.0/">CC BY-ND 4.0</a>
+      · <a href="https://github.com/biobitworks/braintona/blob/cursor/braintona-main-app-kg-e2e-cc88/LICENSE.md">LICENSE.md</a>
+    </footer>
+    <script type="module" src="/app.js?v=20260724g"></script>
+    <script src="/demo-guide.js?v=20260724g"></script>
+    <script>
+      (function () {
+        if (new URLSearchParams(location.search).get("shot") !== "1") return;
+        document.documentElement.classList.add("shot-mode");
+        document.body.classList.add("shot-mode");
+      })();
+    </script>
   </body>
 </html>

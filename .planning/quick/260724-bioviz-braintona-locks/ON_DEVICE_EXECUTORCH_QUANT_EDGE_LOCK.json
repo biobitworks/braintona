@@ -1,0 +1,54 @@
+{
+  "schema": "portfolio.operator_goal_lock.v1",
+  "lane": "260724-cloudmer-pitch-live-cellico",
+  "decision_id": "D17.7d",
+  "ts_utc": "2026-07-24T18:44:00Z",
+  "extends": ["D17.7c", "D17.7b", "D17.5", "PB-G3a"],
+  "operator_lock": "Private twin/sensor MMR growth runs within computers, phones, and similar edge devices. A concrete path: Samsung phones with ExecuTorch access running quantized models — local inference beside the user vault, not cloud-as-SoT for private preimages.",
+  "expansions": {
+    "within_devices": "On-device / edge hosts: computers, phones, tablets, and similar local runtimes where sensors and private tips live",
+    "ExecuTorch": "PyTorch edge runtime for on-device quantized model execution (export/deploy path)",
+    "quantized_models": "Local reduced-precision models for on-device triage/inference (fail-soft); not protocol or clinical safety SoT",
+    "Samsung_phones": "Worked example device class with ExecuTorch access for quantized models — architecture example, not a partnership or exclusivity claim"
+  },
+  "means": [
+    "D17.7c private growth happens on the device that holds sensors + vault tip when possible",
+    "Quantized models (ExecuTorch / Ollama / browser edge) label or triage locally before sealing FCO leaves",
+    "Samsung + ExecuTorch + quant models = concrete phone worked example alongside computers and other phones",
+    "Cloud/sponsors may verify tips or host BYOM packages; they do not become the private sensor warehouse by default",
+    "Lineage: PhoneBio PB-G3a quant models; BioCustody Android/ExecuTorch notes; Braintona vault tip demo"
+  ],
+  "claim_ceiling": {
+    "allowed": [
+      "on-device private twin/sensor growth on computers, phones, etc.",
+      "ExecuTorch + quantized models as an edge runtime path",
+      "Samsung phones as a worked example of ExecuTorch-capable quantized on-device inference",
+      "local quant inference fail-soft beside user vault (PB-G3a)"
+    ],
+    "forbidden": [
+      "Samsung partnership, endorsement, or exclusivity claims without OPERATOR approve",
+      "claim all Samsung phones ship this product integrated today",
+      "quantized ExecuTorch model as clinical/safety/protocol authority",
+      "require cloud GPU for private sensor preimage custody",
+      "biometric identity or surveillance product from on-device quant triage"
+    ]
+  },
+  "distinct_from": [
+    "Nebius / cloud GPU as private-root SoT",
+    "sponsor-hosted model as vault SoT",
+    "clinical on-device medical device clearance claims"
+  ],
+  "parents": ["D17.7c", "D17.5", "PB-G3a", "D17.3"],
+  "lineage_pointers": [
+    "PRIVATE_SENSOR_MMR_GROWTH_LOCK.json",
+    "PHONEBIO_TERTIARY_GOAL_LINEAGE.json",
+    "phonebio/.planning/PHONEBIO_TERTIARY_SENSOR_PEOPLE_VOICE_GOAL.json",
+    "biocustody ExecuTorch Android track (lineage demo, not this pitch SoT)"
+  ],
+  "llm_in_science_leaf": false,
+  "authority": {
+    "pi_sign": false,
+    "claim_promotion": false,
+    "writeback": false
+  }
+}

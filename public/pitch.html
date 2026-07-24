@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Braintona — 3-minute pitch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --foam: #f2e7c4;
+        --signal: #f6d36a;
+        --old-gold: #b58a36;
+        --ok: #2bc6be;
+        --warn: #d18864;
+        --mut: #a89983;
+        --bg: #080510;
+        --jewel: #9260d4;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        height: 100%;
+        background: var(--bg);
+        color: var(--foam);
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+      }
+      body {
+        background:
+          radial-gradient(circle at 78% 16%, rgba(246, 211, 106, 0.12), transparent 22rem),
+          linear-gradient(
+            180deg,
+            rgba(8, 5, 16, 0.45) 0%,
+            rgba(8, 5, 16, 0.72) 55%,
+            rgba(6, 4, 10, 0.9) 100%
+          ),
+          url("/assets/bioviz/ship-of-theseus-atlas-bg.png") center / cover no-repeat;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background: url("/assets/voyager/bioviz-voyager-border.svg") center / 100% 100% no-repeat;
+        opacity: 0.38;
+        mix-blend-mode: screen;
+        z-index: 0;
+      }
+      .deck { height: 100%; position: relative; z-index: 1; }
+      .slide {
+        display: none;
+        height: 100%;
+        padding: clamp(2rem, 6vw, 4.5rem);
+        flex-direction: column;
+        justify-content: center;
+        animation: rise 0.45s ease-out both;
+      }
+      .slide.on { display: flex; }
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: none; }
+      }
+      .brand {
+        font-family: Syne, sans-serif;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        color: var(--signal);
+        font-size: 0.9rem;
+        margin: 0 0 1rem;
+      }
+      h1 {
+        font-family: Syne, sans-serif;
+        font-weight: 800;
+        font-size: clamp(2.2rem, 6.5vw, 4.2rem);
+        line-height: 0.95;
+        margin: 0 0 1rem;
+        max-width: 16ch;
+      }
+      h2 {
+        font-family: Syne, sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.7rem, 4.2vw, 2.8rem);
+        margin: 0 0 1rem;
+        max-width: 18ch;
+      }
+      .lede { color: var(--mut); max-width: 44ch; line-height: 1.45; font-size: 1.05rem; }
+      ul { margin: 0; padding-left: 1.1rem; max-width: 52ch; line-height: 1.55; }
+      li { margin: 0.4rem 0; }
+      .fail { color: var(--warn); }
+      .grid2 {
+        display: grid;
+        gap: 1.25rem 2rem;
+        grid-template-columns: 1fr;
+        max-width: 70ch;
+      }
+      @media (min-width: 900px) {
+        .grid2 { grid-template-columns: 1fr 1fr; }
+      }
+      .card h3 {
+        font-family: Syne, sans-serif;
+        margin: 0 0 0.5rem;
+        font-size: 1rem;
+        color: var(--signal);
+      }
+      .card p { margin: 0; color: var(--mut); font-size: 0.92rem; line-height: 1.4; }
+      .ceil { margin-top: 1.25rem; color: var(--ok); font-size: 0.95rem; }
+      .footer {
+        position: fixed;
+        left: 1.25rem;
+        right: 1.25rem;
+        bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        color: rgba(232, 247, 244, 0.45);
+        font-size: 0.75rem;
+      }
+      kbd {
+        border: 1px solid rgba(232, 247, 244, 0.25);
+        padding: 0.1rem 0.35rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="deck" id="deck">
+      <section class="slide on" data-i="0">
+        <p class="brand">BRAINTONA · TEAM SECOND MACHINE</p>
+        <h1>We fill the handoff gap.</h1>
+        <p class="lede">
+          Agents already answer. What’s missing is a custody contract — so the next person
+          can trust the bytes without re-running your whole day.
+        </p>
+      </section>
+
+      <section class="slide" data-i="1">
+        <p class="brand">GAPS WE FILL</p>
+        <h2>Three holes in agent work.</h2>
+        <ul>
+          <li><strong>Same-box verify</strong> — the laptop that ran the agent “checks” itself.</li>
+          <li><strong>Unlabeled voice</strong> — customer vs agent audio looks the same in the log.</li>
+          <li><strong>Silent sponsor hops</strong> — model, eval, sandbox, review touch data with no contact point.</li>
+        </ul>
+        <p class="ceil">We seal those hops. Second machine must match. Fail closed.</p>
+      </section>
+
+      <section class="slide" data-i="2">
+        <p class="brand">WHERE THIS FAILS</p>
+        <h2>Honest ceilings.</h2>
+        <ul>
+          <li class="fail">Does <strong>not</strong> prove the science is true — only that these bytes were recorded.</li>
+          <li class="fail">Does <strong>not</strong> biometrically ID a speaker or score deepfakes.</li>
+          <li class="fail">Does <strong>not</strong> stop a bad prompt — only rejects a tampered receipt.</li>
+          <li class="fail">Private root stays in the <strong>vault</strong>; if you lose the vault, you lose private authority.</li>
+        </ul>
+        <p class="ceil">Judges can trust us because we say where we stop.</p>
+      </section>
+
+      <section class="slide" data-i="3">
+        <p class="brand">VALUE FOR EVERYONE</p>
+        <h2>Who gains.</h2>
+        <div class="grid2">
+          <div class="card">
+            <h3>Operator / scientist</h3>
+            <p>Hand off a run with a receipt. Recompute elsewhere. Don’t re-audit every chat.</p>
+          </div>
+          <div class="card">
+            <h3>Customer on the call</h3>
+            <p>Voice tip stays vault-private and grows with other sensors over time; agent tree labeled separately.</p>
+          </div>
+          <div class="card">
+            <h3>Reviewer / compliance</h3>
+            <p>See AI vs human vs sponsor touches as signatures at each FCG point of contact.</p>
+          </div>
+          <div class="card">
+            <h3>Sponsors in the stack</h3>
+            <p>Fireworks, Braintrust, Daytona, ElevenLabs each leave a bound hop — not a black box.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-i="4">
+        <p class="brand">HOW</p>
+        <h2>Custody contract.</h2>
+        <ul>
+          <li>Fireworks answers · Braintrust scores · FCO MMR seals.</li>
+          <li>Daytona recomputes on a second machine · planted tamper rejects.</li>
+          <li>Token trace + two-avatar call (Byron ↔ Library) build the interaction graph.</li>
+          <li><strong>Component:</strong> MMR of actual voice vs AI — grows over time with other private sensors.</li>
+        </ul>
+        <p class="ceil">Provenance of recorded bytes — not correctness.</p>
+      </section>
+
+      
+      <section class="slide" data-i="5">
+        <p class="brand">SPONSORS · EACH TOUCH</p>
+        <h2>Named hops. CodeRabbit featured.</h2>
+        <ul>
+          <li><strong>CodeRabbit</strong> — review observer on the public repo (Best Use).</li>
+          <li><strong>Daytona</strong> — second machine · <strong>Braintrust</strong> — eval · <strong>Fireworks</strong> — inference.</li>
+          <li><strong>ElevenLabs</strong> — voice MMR · <strong>CopilotKit</strong> — cockpit · <strong>WorkOS</strong> — identity.</li>
+        </ul>
+        <p class="ceil">Not a logo wall — every sponsor leaves a point of contact.</p>
+      </section>
+
+      <section class="slide" data-i="6">
+        <p class="brand">LIVE</p>
+        <h1>Show the gap closing.</h1>
+        <p class="lede">
+          Pipeline → independent attest → tamper fail → signed sponsor path →
+          customer/agent voice trees with vault tip.
+        </p>
+        <p class="ceil">We fill the gap. We name where we fail. Everyone gets a clearer handoff.</p>
+      </section>
+    </div>
+    <div class="footer">
+      <span>← → or space · <kbd>F</kbd> fullscreen · Biobitworks · Apache-2.0 + CC BY-ND 4.0 · github.com/biobitworks/braintona</span>
+      <span id="count">1 / 7</span>
+    </div>
+    <script>
+      const slides = [...document.querySelectorAll(".slide")];
+      let i = 0;
+      const count = document.getElementById("count");
+      function show(n) {
+        i = (n + slides.length) % slides.length;
+        slides.forEach((s, idx) => s.classList.toggle("on", idx === i));
+        count.textContent = `${i + 1} / ${slides.length}`;
+      }
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
+          e.preventDefault();
+          show(i + 1);
+        } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+          e.preventDefault();
+          show(i - 1);
+        } else if (e.key === "f" || e.key === "F") {
+          if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+          else document.exitFullscreen?.();
+        } else if (e.key === "Home") show(0);
+        else if (e.key === "End") show(slides.length - 1);
+      });
+    </script>
+      <script src="/demo-guide.js"></script>
+  </body>
+</html>

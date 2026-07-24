@@ -1,0 +1,17 @@
+{
+  "schema": "portfolio.fcg_bag.v1",
+  "unsigned": true,
+  "llm_in_science_leaf": false,
+  "note": "voice-star unsquish labels: side callouts, larger type, taller frame, soft Cellico nodes",
+  "artifacts": [
+    {
+      "path": "public/voice-star.js",
+      "content_sha256": "sha256:437249c7f0f250f9e7df12d97c9465d5f3041e08029883bb282fc439efc17aed"
+    },
+    {
+      "path": "public/demo-voice-star.html",
+      "content_sha256": "sha256:bb7bb55fe00e516ee4daffffd471e195c635a4d674890458e9a96a74be0265d7"
+    }
+  ],
+  "ts": "2026-07-24T20:32:16Z"
+}

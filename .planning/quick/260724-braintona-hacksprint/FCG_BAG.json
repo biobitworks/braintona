@@ -2,7 +2,7 @@
   "schema": "portfolio.fcg_bag.v1",
   "project": "braintona",
   "title": "Daytona HackSprint SF Jul 2026 \u2014 Braintona",
-  "updated_at_utc": "2026-07-24T16:30:46.308618+00:00",
+  "updated_at_utc": "2026-07-24T21:54:24.281725+00:00",
   "signed": false,
   "pi_seal": false,
   "llm_in_science_leaf": false,
@@ -10,18 +10,33 @@
   "artifacts": [
     {
       "path": "IDEA.md",
-      "bytes": 2812,
-      "sha256_fco_style": "sha256:c2f48de9e86fd463f024dfe2c7febb1ff68fe329866ca43b927659461cc48d0e"
+      "bytes": 2915,
+      "sha256_fco_style": "sha256:c5385744fd6294846d2039e93190d46853554d84f53274fbc2eff1c4058b67b6"
     },
     {
       "path": "README.md",
-      "bytes": 2499,
-      "sha256_fco_style": "sha256:2edec6d701726f4338faf89414eb3c7cbfc5f75109489e280f9d2e96974d0024"
+      "bytes": 2890,
+      "sha256_fco_style": "sha256:221c059d8434845ca2cee6e30fc327b4fc6917fb2907215d54f53a4c67c55a80"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 641,
+      "sha256_fco_style": "sha256:59c236a6a05f398d069f378d4eb3c9b904d15c4ffb3ff276d1cbc986b03f72f5"
+    },
+    {
+      "path": "LICENSE.md",
+      "bytes": 1835,
+      "sha256_fco_style": "sha256:66384f5e3674deb5c8f1ae2cc804fbac3abb7fb6ff9d44cd93e54764a9233bbe"
+    },
+    {
+      "path": "LICENSE-CC-BY-ND-4.0",
+      "bytes": 18438,
+      "sha256_fco_style": "sha256:979e844b81db24abe7bd1ccabdbaa43545deeb4a552952537070fa8cbf3723fc"
     },
     {
       "path": "package.json",
-      "bytes": 814,
-      "sha256_fco_style": "sha256:c0dbeed1f1c769e6ad9d23b15bf146877a9e69616d149ab7a15978c6392be808"
+      "bytes": 1508,
+      "sha256_fco_style": "sha256:9cdae5ddd54798d5064123e62578bc2d049adc9e46df918106e746fb0f73c639"
     },
     {
       "path": "src/lib/fco.ts",
@@ -34,9 +49,69 @@
       "sha256_fco_style": "sha256:9866b20ff3e5fd15a59674e79f4d27dd5537393050714e7a5336e10386dd9e16"
     },
     {
+      "path": "src/lib/custody_graph.ts",
+      "bytes": 7544,
+      "sha256_fco_style": "sha256:25a7684963916ef5b17d15e27042dc870d71796015176d1f14887ecc830c9df7"
+    },
+    {
+      "path": "src/lib/token_trace.ts",
+      "bytes": 18597,
+      "sha256_fco_style": "sha256:d65e7fb52d3bcdb3e1e325f56a741d21e0ea9b3f90ae646712b5e38e3f39cd65"
+    },
+    {
+      "path": "src/lib/private_conversation.ts",
+      "bytes": 3071,
+      "sha256_fco_style": "sha256:2f81e66dc73135569dc11c3feca5b77904287c4f5e1bcefd2247d8e09813d91a"
+    },
+    {
+      "path": "src/server/conversation_custody.ts",
+      "bytes": 3225,
+      "sha256_fco_style": "sha256:b8e540ef2188d4ae41b53d0cfbbd8fe1fc34107774e81ca8b7ea162e2fa7b897"
+    },
+    {
+      "path": "docs/PRIVATE_CONVERSATION_CUSTODY.md",
+      "bytes": 1815,
+      "sha256_fco_style": "sha256:74d9ab4dae890a83d957e102264e958be374d26b29f23cb75fcd8aac5e4fe51e"
+    },
+    {
+      "path": "docs/DEVPOST_DESCRIPTION.md",
+      "bytes": 6998,
+      "sha256_fco_style": "sha256:fa373c4abde11edd0e4d09251f6cd86d0823d208f8cdf926c74269a5bab23ae6"
+    },
+    {
+      "path": "docs/DEVPOST_SUBMISSION.md",
+      "bytes": 3869,
+      "sha256_fco_style": "sha256:bd5245ceeff947c3b9e29e08cd7f9934c5ad3f9acbd4aae0ee2ca2f28874ddd8"
+    },
+    {
+      "path": "docs/PITCH_PACK.md",
+      "bytes": 10794,
+      "sha256_fco_style": "sha256:bca901c86216cd313fad2f54eafc8d88fab003cbf9876c1e946472fbceef0138"
+    },
+    {
+      "path": "docs/SPONSOR_TOUCHES.md",
+      "bytes": 4315,
+      "sha256_fco_style": "sha256:d31dbd64df0589d80397350ac2e5af07081badd0f1c30e8fb7bbfca695112dae"
+    },
+    {
+      "path": "scripts/seal_private_conversation.ts",
+      "bytes": 797,
+      "sha256_fco_style": "sha256:8db9f3a27f2326a5a5b592f9dc3efb85aac28c66422aac788145ff17c7a20ae3"
+    },
+    {
+      "path": "scripts/emit_conversation_turn_fco.py",
+      "bytes": 9472,
+      "sha256_fco_style": "sha256:fb4b084f4ba42f40cc55554203a1f848195af3af12b15b948b6b75bbe4f149f8"
+    },
+    {
+      "path": "scripts/emit_mmr_memory_event.py",
+      "bytes": 6485,
+      "sha256_fco_style": "sha256:0886ec6814fe4c86ed229b466f9169de30c422e7ba32e931156926c7f8882ebe"
+    },
+    {
       "path": "src/server/pipeline.ts",
-      "bytes": 4172,
-      "sha256_fco_style": "sha256:dc84b626ff51ab78406bee0fbf9c785622682761b47f9b55b5a869f2dbcedb60"
+      "bytes": 6115,
+      "sha256_fco_style": "sha256:76228e21b9cc83aba39b54f334a7dd967f7ed3f47d7ffaf1c7bc0591c4204564"
     },
     {
       "path": "src/server/daytona.ts",
@@ -55,23 +130,43 @@
     },
     {
       "path": "src/server/index.ts",
-      "bytes": 3432,
-      "sha256_fco_style": "sha256:be1f2ec0334d9d53eaf4a8afa83c4b605cffcf7644a104ae292e3574e3d8906f"
+      "bytes": 10199,
+      "sha256_fco_style": "sha256:fa1b224916a35b8503a466b45d5c03c8222d1b0821cb372675558bfdeb37164a"
     },
     {
       "path": "public/index.html",
-      "bytes": 2767,
-      "sha256_fco_style": "sha256:f7c83a443b1b2f2229a91fb8fc0c44cee6f3a102b7a6efe2f3e859f2b638fa24"
+      "bytes": 9413,
+      "sha256_fco_style": "sha256:302def7916418523bd53d94fb64898d8da2aed2592fd7eefc173fa1f6a3cd2e4"
     },
     {
       "path": "public/app.js",
-      "bytes": 5858,
-      "sha256_fco_style": "sha256:615b157b7ca9c739402d9a1708ede962efb0698eca5537d646bb967fe8c3c171"
+      "bytes": 26287,
+      "sha256_fco_style": "sha256:42b1a87e8baf0d060283cb09e6a36ec3e7f9009da614f2b1fade7aefedccf6d7"
     },
     {
       "path": "public/styles.css",
-      "bytes": 3666,
-      "sha256_fco_style": "sha256:c1bb8427f3714dc283b21fab0ca26270fc803c90472a63cf9e9a00d1b267aa04"
+      "bytes": 11537,
+      "sha256_fco_style": "sha256:e07f2214bbab36ba56197c1bd8fb8681e71d3ea18afa7a14efaeef4a7efe4774"
+    },
+    {
+      "path": "public/pitch.html",
+      "bytes": 9541,
+      "sha256_fco_style": "sha256:b14fc00f2681c0896ea43b2c39a22c545dba40385dcbbc5b20b5e3c7d182963e"
+    },
+    {
+      "path": "public/demo-voice-star.html",
+      "bytes": 7946,
+      "sha256_fco_style": "sha256:56b6fc8a911bf81bc27126f4142dea19fb360275cad065019ab8ede841d52f3d"
+    },
+    {
+      "path": "demo-video/CUSTODY.json",
+      "bytes": 7354,
+      "sha256_fco_style": "sha256:2f7c75a629e4e125473194f3b2f7b3a5376999c55fdd7f470595058de0ff9f64"
+    },
+    {
+      "path": "demo-video/README.md",
+      "bytes": 891,
+      "sha256_fco_style": "sha256:a1a1634993a7bb6372711de1e65adaec77a9ab4482c5d3b96f81154db16117f5"
     },
     {
       "path": "docs/link_capture.jsonl",
@@ -95,14 +190,24 @@
     },
     {
       "path": ".planning/STATE.md",
-      "bytes": 632,
-      "sha256_fco_style": "sha256:68ade0aba942352d2789da41c57eadea8a955727dee11ca186445a70aeac9751"
+      "bytes": 2361,
+      "sha256_fco_style": "sha256:a09f099439aa8353c1745fc5be37fe49e0d8ed49f412781d8263dca5cd545a29"
     },
     {
       "path": ".planning/lexicon/TERMS.jsonl",
-      "bytes": 1318,
-      "sha256_fco_style": "sha256:253f934ff28de2ce484287976f7418c08390dd4911f69e56b76a3da0b28b7e93"
+      "bytes": 3355,
+      "sha256_fco_style": "sha256:b2c2b214019f1c7b5f85112015b8fc5ad968551e9497063cf07781741660bd09"
+    },
+    {
+      "path": ".planning/quick/260724-braintona-hacksprint/DUAL_LICENSE_FCG.json",
+      "bytes": 1144,
+      "sha256_fco_style": "sha256:2d314539f39bd29893881dc808200ed8ed5afcec3af93737dd48714b71d52c2a"
+    },
+    {
+      "path": ".planning/quick/260724-braintona-hacksprint/SUBMISSION_CLOSEOUT.json",
+      "bytes": 8012,
+      "sha256_fco_style": "sha256:c2e290dbfddfcc8cd10e3baf3ac377502cb3fe3980d799db806f52de21e59759"
     }
   ],
-  "n_artifacts": 19
+  "n_artifacts": 40
 }

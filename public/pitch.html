@@ -12,10 +12,10 @@
     />
     <style>
       :root {
-        --ink: #0b1f24;
         --foam: #e8f7f4;
         --signal: #d9ff4a;
         --ok: #3dffb5;
+        --warn: #ff6b4a;
         --mut: rgba(232, 247, 244, 0.72);
       }
       * { box-sizing: border-box; }
@@ -57,29 +57,38 @@
       h1 {
         font-family: Syne, sans-serif;
         font-weight: 800;
-        font-size: clamp(2.4rem, 7vw, 4.6rem);
+        font-size: clamp(2.2rem, 6.5vw, 4.2rem);
         line-height: 0.95;
         margin: 0 0 1rem;
-        max-width: 14ch;
+        max-width: 16ch;
       }
       h2 {
         font-family: Syne, sans-serif;
         font-weight: 800;
-        font-size: clamp(1.8rem, 4.5vw, 3rem);
+        font-size: clamp(1.7rem, 4.2vw, 2.8rem);
         margin: 0 0 1rem;
+        max-width: 18ch;
       }
-      .lede { color: var(--mut); max-width: 42ch; line-height: 1.45; font-size: 1.05rem; }
-      ul { margin: 0; padding-left: 1.1rem; max-width: 50ch; line-height: 1.55; }
-      li { margin: 0.45rem 0; }
-      .mono {
-        white-space: pre-wrap;
-        border-left: 3px solid var(--signal);
-        padding: 0.75rem 1rem;
-        background: rgba(0,0,0,0.28);
-        max-width: 56ch;
-        font-size: 0.92rem;
-        line-height: 1.45;
+      .lede { color: var(--mut); max-width: 44ch; line-height: 1.45; font-size: 1.05rem; }
+      ul { margin: 0; padding-left: 1.1rem; max-width: 52ch; line-height: 1.55; }
+      li { margin: 0.4rem 0; }
+      .fail { color: var(--warn); }
+      .grid2 {
+        display: grid;
+        gap: 1.25rem 2rem;
+        grid-template-columns: 1fr;
+        max-width: 70ch;
       }
+      @media (min-width: 900px) {
+        .grid2 { grid-template-columns: 1fr 1fr; }
+      }
+      .card h3 {
+        font-family: Syne, sans-serif;
+        margin: 0 0 0.5rem;
+        font-size: 1rem;
+        color: var(--signal);
+      }
+      .card p { margin: 0; color: var(--mut); font-size: 0.92rem; line-height: 1.4; }
       .ceil { margin-top: 1.25rem; color: var(--ok); font-size: 0.95rem; }
       .footer {
         position: fixed;
@@ -101,59 +110,78 @@
     <div class="deck" id="deck">
       <section class="slide on" data-i="0">
         <p class="brand">BRAINTONA</p>
-        <h1>Audit every agent byte.</h1>
-        <p class="lede">Reject on mismatch. Custody proves provenance — not that the model is right.</p>
+        <h1>We fill the handoff gap.</h1>
+        <p class="lede">
+          Agents already answer. What’s missing is a custody contract — so the next person
+          can trust the bytes without re-running your whole day.
+        </p>
       </section>
 
       <section class="slide" data-i="1">
-        <p class="brand">PROBLEM</p>
-        <h2>Handoff breaks trust.</h2>
+        <p class="brand">GAPS WE FILL</p>
+        <h2>Three holes in agent work.</h2>
         <ul>
-          <li>Agents move fast; humans re-check everything.</li>
-          <li>Same machine “verifies” itself.</li>
-          <li>Voice is unlabeled — human vs AI unclear.</li>
+          <li><strong>Same-box verify</strong> — the laptop that ran the agent “checks” itself.</li>
+          <li><strong>Unlabeled voice</strong> — customer vs agent audio looks the same in the log.</li>
+          <li><strong>Silent sponsor hops</strong> — model, eval, sandbox, review touch data with no contact point.</li>
         </ul>
+        <p class="ceil">We seal those hops. Second machine must match. Fail closed.</p>
       </section>
 
       <section class="slide" data-i="2">
-        <p class="brand">IDEA</p>
-        <h2>Custody as the agent contract.</h2>
+        <p class="brand">WHERE THIS FAILS</p>
+        <h2>Honest ceilings.</h2>
         <ul>
-          <li>Seal ops + content as Fractal Custody Objects.</li>
-          <li>Second machine (Daytona) must recompute the root.</li>
-          <li>Customer ↔ agent voice as two FCO trees; private vault holds the customer tip.</li>
+          <li class="fail">Does <strong>not</strong> prove the science is true — only that these bytes were recorded.</li>
+          <li class="fail">Does <strong>not</strong> biometrically ID a speaker or score deepfakes.</li>
+          <li class="fail">Does <strong>not</strong> stop a bad prompt — only rejects a tampered receipt.</li>
+          <li class="fail">Private root stays in the <strong>vault</strong>; if you lose the vault, you lose private authority.</li>
         </ul>
+        <p class="ceil">Judges can trust us because we say where we stop.</p>
       </section>
 
       <section class="slide" data-i="3">
-        <p class="brand">TECHNICAL</p>
-        <h2>Independent attest.</h2>
-        <div class="mono">Fireworks → Braintrust → FCO MMR
-→ Daytona recompute ✓ / tamper ✗
-Token trace: AI · human · sponsor
-signatures at each FCG point of contact</div>
-        <p class="ceil">Method: doi:10.5281/zenodo.21210575</p>
+        <p class="brand">VALUE FOR EVERYONE</p>
+        <h2>Who gains.</h2>
+        <div class="grid2">
+          <div class="card">
+            <h3>Operator / scientist</h3>
+            <p>Hand off a run with a receipt. Recompute elsewhere. Don’t re-audit every chat.</p>
+          </div>
+          <div class="card">
+            <h3>Customer on the call</h3>
+            <p>Their voice tip can stay vault-private; the agent tree is separately labeled.</p>
+          </div>
+          <div class="card">
+            <h3>Reviewer / compliance</h3>
+            <p>See AI vs human vs sponsor touches as signatures at each FCG point of contact.</p>
+          </div>
+          <div class="card">
+            <h3>Sponsors in the stack</h3>
+            <p>Fireworks, Braintrust, Daytona, ElevenLabs each leave a bound hop — not a black box.</p>
+          </div>
+        </div>
       </section>
 
       <section class="slide" data-i="4">
-        <p class="brand">SAFEGUARDS</p>
-        <h2>Fail closed. Stay honest.</h2>
+        <p class="brand">HOW</p>
+        <h2>Custody contract.</h2>
         <ul>
-          <li>Planted tamper must reject.</li>
-          <li>Claim ceilings on-screen — provenance ≠ correctness.</li>
-          <li>Vault keeps private Merkle tip; public graph is hashes only.</li>
-          <li>Voice leaves labeled human vs ai — not a deepfake detector.</li>
+          <li>Fireworks answers · Braintrust scores · FCO MMR seals.</li>
+          <li>Daytona recomputes on a second machine · planted tamper rejects.</li>
+          <li>Token trace + two-avatar call (Sarah ↔ Matilda) build the interaction graph.</li>
         </ul>
+        <p class="ceil">Provenance of recorded bytes — not correctness.</p>
       </section>
 
       <section class="slide" data-i="5">
-        <p class="brand">IMPACT</p>
-        <h2>Handoff-safe agents.</h2>
+        <p class="brand">LIVE</p>
+        <h1>Show the gap closing.</h1>
         <p class="lede">
-          Lab and ops teams can pass AI work forward with a recompute-verifiable receipt —
-          and labeled voice — without pretending the model is science truth.
+          Pipeline → independent attest → tamper fail → signed sponsor path →
+          customer/agent voice trees with vault tip.
         </p>
-        <p class="ceil">Live next → pipeline · token trace · two-avatar call</p>
+        <p class="ceil">We fill the gap. We name where we fail. Everyone gets a clearer handoff.</p>
       </section>
     </div>
     <div class="footer">

@@ -1,95 +1,89 @@
 # Braintona — 3-minute presentation
 
-**Format:** impactful slides (~90s) + live showcase (~90s)  
-**Solo:** Byron P. Lee · Repo: https://github.com/biobitworks/braintona  
-**Local demo:** http://127.0.0.1:8787 · Slides: http://127.0.0.1:8787/pitch.html
+**Spine:** Fill the gaps · name where we fail · value for everyone · live proof  
+**Solo:** Byron P. Lee · https://github.com/biobitworks/braintona  
+**Slides:** http://127.0.0.1:8787/pitch.html · **App:** http://127.0.0.1:8787
 
-## Judging map
+## Thesis (say this early)
 
-| Expectation | How we hit it |
+Agents already generate answers. The gap is **handoff trust**. Braintona fills it with a custody contract — and we tell you exactly where that contract **stops**.
+
+---
+
+## Slide deck (6 × ~15s)
+
+### 1 — Hook
+**We fill the handoff gap.**  
+Agents answer; the next person still re-checks everything. Custody closes that loop.
+
+### 2 — Gaps we fill
+1. **Same-box verify** — runner checks itself  
+2. **Unlabeled voice** — customer vs agent audio look identical in logs  
+3. **Silent sponsor hops** — model/eval/sandbox/review with no point of contact  
+
+*We seal hops. Second machine must match. Fail closed.*
+
+### 3 — Where this fails (safeguards / originality)
+| We do **not** claim | Instead |
 |---|---|
-| **Originality** | FCO/FCG custody as the agent contract: two voice trees + token trace with actor signatures at each FCG point of contact; private vault holds customer Merkle tip |
-| **Technical strength** | Fireworks → Braintrust → MMR seal → **Daytona independent recompute** → planted tamper fail-closed; live graph + signature chain |
-| **Real-world impact** | Hand off AI lab/ops work without re-trusting the same process twice; provenance for agent bytes + voice origin |
-| **Safeguards** | Honest ceilings on-screen; reject on mismatch; PHI/transcript hashes only; AI avatar TTS labeled `content_class=ai` |
+| Science / answer is true | Provenance of **recorded bytes** |
+| Biometric speaker ID / deepfake score | Explicit `human` vs `ai` labels on sealed audio |
+| Bad prompts are impossible | Tampered **receipts** reject |
+| Cloud holds your private root | **Vault** holds customer Merkle tip; lose vault ⇒ lose private authority |
+
+*Judges trust us because we say where we stop.*
+
+### 4 — Value for everyone
+| Who | Value |
+|---|---|
+| **Operator / scientist** | Hand off a run; recompute elsewhere; skip re-auditing the chat |
+| **Customer on the call** | Voice tip can stay vault-private; agent tree labeled separately |
+| **Reviewer / compliance** | AI / human / sponsor signatures at each FCG point of contact |
+| **Sponsors in the stack** | Fireworks, Braintrust, Daytona, ElevenLabs each leave a bound hop |
+
+### 5 — How (one breath)
+Fireworks → Braintrust → FCO MMR → Daytona ✓ / tamper ✗  
+Token trace + two-avatar (Sarah ↔ Matilda) interaction graph  
+*Provenance ≠ correctness.*
+
+### 6 — Live bridge
+Show the gap closing: pipeline · attest · tamper · signed path · voice trees + vault.
 
 ---
 
-## Slide deck (6 slides · ~15s each)
+## Spoken close (12s)
 
-### 1 — Hook / brand
-**BRAINTONA**  
-Audit every agent byte. Reject on mismatch.
-
-*One line:* Custody proves provenance — not that the model is right.
-
-### 2 — Problem
-Agents accelerate science & ops… until handoff.  
-You re-check everything. Same laptop “verifies” itself. Voice is unlabeled.
-
-### 3 — Idea / advantage
-**Fractal Custody Objects** (published method) as the agent contract:  
-seal ops + content leaves → MMR root → **second machine** (Daytona) must match.  
-Two-avatar call: customer tree ↔ agent tree → interaction MMR; customer tip in **vault**.
-
-### 4 — Technical spine (one diagram)
-```text
-Fireworks → Braintrust → FCO MMR → Daytona ✓ / tamper ✗
-         ↘ token trace: AI / human / sponsor sigs at each PoC
-ElevenLabs: Sarah (customer) + Matilda (agent) → dual FCO trees
-```
-
-### 5 — Safeguards
-- Reject iff root mismatch (planted tamper demo)  
-- Claim ceiling printed in UI  
-- Private vault for customer Merkle root; public graph = hashes only  
-- Voice leaves: explicit `human` vs `ai` — not a deepfake score
-
-### 6 — Impact + ask
-**Impact:** Safer AI handoff for lab/ops — auditability without slowing the agent.  
-**Live next:** pipeline + graph + two-avatar call.  
-**Lineage:** Glasswork · BioCustody · doi:10.5281/zenodo.21210575
+“We fill the handoff gap. We fail honestly — we don’t prove truth, only custody. Operators move faster, customers keep a private tip, reviewers see every touch, sponsors aren’t a black box. That’s value for everyone.”
 
 ---
 
-## Live showcase script (~90s)
+## Live showcase (~90s) — prove the gaps close
 
-**Prep (before you stand up):**
+| Time | Click | Line |
+|---|---|---|
+| 0:00 | `/` | “Gap one: same-box verify — watch a second machine.” |
+| 0:10 | **Run live pipeline** | Fireworks + Braintrust + FCO seal… |
+| 0:35 | Daytona + **tamper** | “Independent recompute. Tamper fails closed — where bad receipts die.” |
+| 0:50 | **Token trace** | “Gap three: silent hops — every sponsor touch gets a signature and point of contact.” |
+| 1:05 | **Two-avatar call** | “Gap two: unlabeled voice — customer Sarah vs agent Matilda; customer tip in the vault.” |
+| 1:25 | Ceiling | “We don’t claim truth. We claim custody. That’s the value.” |
+
+**If Daytona slow:** local verify green + tamper red still sell fail-closed.  
+**If eval F1 red:** “Eval scores quality; custody scores integrity — different jobs.”
+
+---
+
+## Prep
+
 ```bash
 cd /Users/byron/projects/active/braintona
 set -a && source .env && set +a
-fireconnect cursor off   # conserve Fireworks promo
-npm run start            # :8787
-# Browser: pitch.html on one window, / on another
-# Optional: pre-run pipeline once so graph isn’t empty
+fireconnect cursor off
+npm run start
+# windows: /pitch.html  and  /
 ```
 
-| Time | Action | Say |
-|---|---|---|
-| 0:00 | Open `/` | “This is Braintona — custody agent for AI handoff.” |
-| 0:10 | **Run live pipeline** | “Fireworks answers, Braintrust scores, we seal an FCO root…” |
-| 0:35 | Point steps green + **tamper** | “…Daytona recomputes independently. Planted tamper rejects.” |
-| 0:50 | **Live token trace** | “Same custody token through every sponsor touch — AI and human signatures combine at each FCG point of contact.” |
-| 1:05 | **Two-avatar call demo** | “Customer Sarah vs agent Matilda — two FCO trees, one interaction root; customer tip stays in the vault.” |
-| 1:25 | Graph / ceiling line | “Provenance of recorded bytes — not scientific correctness.” |
-| 1:30 | Stop | “Happy to take questions.” |
-
-**If Daytona is slow:** say “sandbox attest queued — local verify already green; tamper already red” and move to avatars.  
-**If eval F1 fails gold:** still show custody green/tamper red — eval ≠ custody.
-
----
-
-## Spoken close (10s)
-
-“We didn’t build another chatbot. We built a custody contract: second machine, fail closed, labeled voice, private root. That’s how agents become handoff-safe.”
-
----
-
-## Checklist before stage
-
-- [ ] `npm run start` healthy (`/api/health` keys: daytona, fireworks, braintrust, elevenlabs)  
-- [ ] `pitch.html` opens  
-- [ ] One warm pipeline run completed  
-- [ ] Two-avatar MP3s play once  
-- [ ] Claim ceiling visible (don’t overclaim)  
-- [ ] Devpost draft filled from `docs/DEVPOST_DESCRIPTION.md`
+- [ ] Warm pipeline once  
+- [ ] Two-avatar audio plays  
+- [ ] Practice saying **where we fail** without apology — it’s the safeguard slide  
+- [ ] Devpost mirrors this honesty

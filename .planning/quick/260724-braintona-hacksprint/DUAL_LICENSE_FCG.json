@@ -17,5 +17,8 @@
   },
   "llm_in_science_leaf": false,
   "signed": false,
-  "tip": "sha256:fe4626142b26dac79e129639c3ab43c80527c7ea23fdb95c5ceb93967aa72bb0"
+  "tip": "sha256:fe4626142b26dac79e129639c3ab43c80527c7ea23fdb95c5ceb93967aa72bb0",
+  "devpost_submitted": true,
+  "closeout_tip": "sha256:a11f303c878a9a912da9e2571813036b40242acc98fa48f8718ea630b0d46b00",
+  "updated_at_utc": "2026-07-24T21:54:15.605682+00:00"
 }

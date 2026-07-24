@@ -386,3 +386,61 @@ async function refreshWorkos() {
 refreshWorkos();
 refreshGraph();
 loadLatestTrace(false);
+
+
+const twoAvatarBtn = document.getElementById("twoAvatarBtn");
+const twoAvatarPanel = document.getElementById("twoAvatarPanel");
+const twoAvatarOut = document.getElementById("twoAvatarOut");
+const twoAvatarMeta = document.getElementById("twoAvatarMeta");
+const twoAvatarPlayers = document.getElementById("twoAvatarPlayers");
+if (twoAvatarBtn) {
+  twoAvatarBtn.addEventListener("click", async () => {
+    twoAvatarBtn.disabled = true;
+    statusEl.textContent = "Synthesizing Sarah (customer) + Matilda (agent) via ElevenLabs…";
+    try {
+      const res = await fetch("/api/demo/two-avatar-call", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({}),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "two-avatar demo failed");
+      if (twoAvatarMeta) {
+        twoAvatarMeta.textContent = `${data.interaction_id} · TreeA ${String(data.tree_a_tip).slice(0,12)}… · TreeB ${String(data.tree_b_tip).slice(0,12)}… · MMR ${String(data.interaction_mmr_root).slice(0,12)}… · vault root private`;
+      }
+      if (twoAvatarPlayers) {
+        twoAvatarPlayers.innerHTML = (data.turns || [])
+          .map(
+            (t) => `<figure>
+              <figcaption>${t.role === "customer" ? "Tree A · Customer" : "Tree B · Agent"} — ${t.avatar_name}</figcaption>
+              <audio controls src="/assets/voice/${t.audio_path.split("/").pop()}"></audio>
+              <div class="hop-bind">voice ${t.voice_id} · ${t.audio_bytes} B · leaf ${String(t.receipt?.leaf_hash || "").slice(0, 16)}…</div>
+            </figure>`,
+          )
+          .join("");
+      }
+      if (twoAvatarOut) {
+        twoAvatarOut.textContent = JSON.stringify(
+          {
+            interaction_id: data.interaction_id,
+            tree_a_tip: data.tree_a_tip,
+            tree_b_tip: data.tree_b_tip,
+            interaction_mmr_root: data.interaction_mmr_root,
+            customer_vault_root: data.customer_vault_root,
+            elevenlabs: data.elevenlabs,
+            claim_ceiling: data.claim_ceiling,
+            note: data.note,
+          },
+          null,
+          2,
+        );
+      }
+      if (twoAvatarPanel) twoAvatarPanel.hidden = false;
+      statusEl.textContent = data.note || "Two-avatar call sealed.";
+    } catch (err) {
+      statusEl.textContent = `Two-avatar error: ${err.message || err}`;
+    } finally {
+      twoAvatarBtn.disabled = false;
+    }
+  });
+}

@@ -395,3 +395,21 @@ a {
   color: var(--signal);
   margin: 0 0.2rem;
 }
+
+.avatar-players {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.75rem 0 1rem;
+}
+.avatar-players figure {
+  margin: 0;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid var(--line);
+}
+.avatar-players figcaption {
+  margin-bottom: 0.45rem;
+  font-family: Syne, sans-serif;
+  font-weight: 700;
+}
+.avatar-players audio { width: 100%; }

@@ -14,6 +14,7 @@ import {
   sealCursorConversationPrivate,
 } from "./conversation_custody.js";
 import { mountWorkosRoutes, workosEnabled } from "./workos.js";
+import { runTwoAvatarCallDemo } from "./two_avatar_call.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicDir = path.resolve(__dirname, "../../public");
@@ -147,6 +148,31 @@ app.post("/api/narrate", async (req, res) => {
 });
 
 /** Human vs AI voice-origin FCO/MMR contrast (preprint method). */
+
+/** Two ElevenLabs avatars: customer (Sarah) vs agent (Matilda) → dual FCO trees + vault root. */
+app.post("/api/demo/two-avatar-call", async (req, res) => {
+  try {
+    const demo = await runTwoAvatarCallDemo({
+      customer_text: typeof req.body?.customer_text === "string" ? req.body.customer_text : undefined,
+      agent_text: typeof req.body?.agent_text === "string" ? req.body.agent_text : undefined,
+    });
+    res.json(demo);
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) });
+  }
+});
+
+app.get("/api/demo/two-avatar-call/latest", async (_req, res) => {
+  try {
+    const { readFile } = await import("node:fs/promises");
+    const path = await import("node:path");
+    const raw = await readFile(path.resolve("data/two_avatar_call_latest.json"), "utf8");
+    res.type("json").send(raw);
+  } catch {
+    res.status(404).json({ error: "no two-avatar demo yet" });
+  }
+});
+
 app.post("/api/voice-origin", async (req, res) => {
   try {
     const text =

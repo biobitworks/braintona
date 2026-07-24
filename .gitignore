@@ -12,3 +12,5 @@ coverage/
 
 # Operator vault — private conversation custody (never commit plaintext)
 .planning/private/
+
+public/assets/voice/*.mp3

@@ -12,7 +12,8 @@
     "e2e": "bash scripts/e2e_main_app.sh",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit",
-    "seal:conversation": "tsx scripts/seal_private_conversation.ts"
+    "seal:conversation": "tsx scripts/seal_private_conversation.ts",
+    "demo:two-avatar": "tsx scripts/run_two_avatar_demo.ts"
   },
   "engines": {
     "node": ">=20"

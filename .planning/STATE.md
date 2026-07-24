@@ -1,6 +1,6 @@
 # STATE — Braintona (handoff)
 
-**Updated:** 2026-07-24 ~11:36 PDT  
+**Updated:** 2026-07-24 ~11:47 PDT
 **Deadline:** **15:30 PDT** Devpost  
 **Hosts:** magicPRObox (cockpit) · magicSTUDIObox (compute)  
 **Session:** cursor-6430eeef-1426-4566-a6fc-5d688723f05b  
@@ -68,3 +68,8 @@ npm run start
 **Growth:** voice human/AI MMR builds over time with other vault-private sensor leaves.
 
 **Sponsors:** each touched specially — CodeRabbit **featured** (`docs/SPONSOR_TOUCHES.md`). Seal observe + `@coderabbitai review` on PR #3.
+
+**CopilotKit (phone):** token NOT in `.env` yet. Drop to `.planning/private/copilotkit_license.token` — watcher running (`/tmp/braintona-ck-watch.log`). Do not paste token in chat.
+**Server:** http://127.0.0.1:8787 (restarted with sponsor routes).
+**CodeRabbit:** review in progress on PR #3.
+**Devpost phone paste:** `docs/DEVPOST_PHONE_PASTE.md`.

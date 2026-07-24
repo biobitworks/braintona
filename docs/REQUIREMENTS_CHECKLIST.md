@@ -40,7 +40,7 @@
 | **Braintrust** | YES | YES | Eval spans on gold task |
 | **Fireworks AI** | YES | YES | Claim extract (`glm-5p1`) |
 | **ElevenLabs** | YES | YES (two-avatar) | Sarah / Matilda call |
-| **CopilotKit** | DOC+FIT | NO | License login next |
+| **CopilotKit** | YES cockpit API/UI | Waiting token drop | Phone drop → `.planning/private/copilotkit_license.token` |
 | **CodeRabbit** *(featured)* | YES observe API + UI | Bot on PRs + seal-observe | Discord Path B when venue OK |
 | **WorkOS** | AuthKit path | Optional | Not demo-critical |
 
@@ -54,6 +54,6 @@
 
 ## Still optional (do not block submit)
 
-1. CopilotKit `login` + `license create`
-2. CodeRabbit Discord Path B interaction receipt
-3. Mark a PR ready for full CodeRabbit review
+1. CopilotKit: drop license token (watcher live) — do not paste in chat
+2. CodeRabbit Discord Path B when venue Wi‑Fi OK (GitHub review already requested)
+3. Demo video &lt;2m + Devpost submit

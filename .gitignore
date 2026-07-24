@@ -17,3 +17,6 @@ public/assets/voice/*.mp3
 
 # CopilotKit CLI local project bind (may hold keys)
 .copilotkit/
+
+.planning/private/copilotkit_license.token
+.planning/private/copilotkit_license_ingest.json

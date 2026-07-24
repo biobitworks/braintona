@@ -18,6 +18,18 @@ Daytona/Braintrust/Fireworks prove **custody**. CopilotKit is where a human **dr
 
 ## Operator gate (org → license) — do this now
 
+## Phone / remote token drop (no chat paste)
+
+Do **not** paste the license into Cursor chat.
+
+```bash
+# Termius / SSH from phone — one line token only:
+printf '%s' 'YOUR_COPILOTKIT_LICENSE_TOKEN' > /Users/byron/projects/active/braintona/.planning/private/copilotkit_license.token
+```
+
+A watcher (`scripts/watch_copilotkit_token_drop.sh`) auto-ingests into `.env`, clears the drop file, restarts the server, and seals a cockpit turn. Manual: `bash scripts/ingest_copilotkit_token.sh`.
+
+
 Dashboard: https://dashboard.operations.copilotkit.ai
 
 ```bash

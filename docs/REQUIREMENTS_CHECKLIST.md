@@ -36,7 +36,7 @@
 | **Braintrust** | Best Use + main | YES eval logger | YES | Show project dashboard in video |
 | **Fireworks AI** | Best Use + main | YES chat completions | YES (`glm-5p1`) | — |
 | **ElevenLabs** | Best Use | YES `/api/narrate` | NO (key 401) | Fix API key or bake web-UI MP3 |
-| **CopilotKit** | Best Use | DOC only | NO | `npx copilotkit@latest license --write` + UI chat |
+| **CopilotKit** | Best Use | DOC+FIT | NO | **Elevated** — login + `license create` then FCO turn chat (docs/COPILOTKIT_FCO_FIT.md) |
 | **CodeRabbit** | Best Use | DOC only | NO | Discord bot + public repo in builders org |
 | WorkOS | participation | N/A | N/A | Redeem later; not demo-critical |
 

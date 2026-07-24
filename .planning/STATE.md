@@ -37,7 +37,7 @@
 | Voice-origin API | Working (optional human .mp3 in `public/assets/voice/`) |
 | ElevenLabs TTS | Key present; fix voice_id if 404 |
 | CodeRabbit key | In `.env`; Path B queued — `docs/CODERABBIT_DISCORD_PATH_B.md` (on other PR) |
-| CopilotKit | Missing license |
+| CopilotKit | **Elevated for FCO fit** — license missing; see docs/COPILOTKIT_FCO_FIT.md |
 | **E2E** | **`npm run e2e` → 10/10 PASS** (graph 3→5, session root advanced) |
 | Demo video | TODO |
 
@@ -53,6 +53,8 @@ npm run e2e              # full API loop
 
 **Last E2E:** `npm run e2e` → 10/10 PASS.
 
-**Next (queued — “in a bit”):** CodeRabbit Discord Path B (browser/operator).
+**Next:** **CopilotKit FCO cockpit** — `npx copilotkit@latest login` → `license create` → seal chat turns as interaction FCO leaves (docs/COPILOTKIT_FCO_FIT.md).
+
+**Queued:** CodeRabbit Discord Path B (observe lane).
 
 **Other:** fix ElevenLabs voice_id · human voice sample · Devpost About · &lt;2m video · submit by 15:30.

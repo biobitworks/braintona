@@ -1,58 +1,59 @@
 # Devpost requirements checklist — Braintona
 
-**Hackathon:** Daytona HackSprint w/ Braintrust — SF, July 2026  
-**Devpost user:** byron940  
-**Submissions:** open soon (as of last check)  
-**Deadline:** 15:30 PDT
-
-## What to build (theme)
-
-| Expectation | Status | Notes |
-|---|---|---|
-| AI agent with reasoning | PARTIAL | Claim-extract agent + eval pass/fail decision |
-| Independent decision-making | YES | Cheapest/quality-bar style: eval floor gates “pass” |
-| Safe integration w/ industry tools | YES | FCO claim ceilings; reject-iff-mismatch; no science leaf LLM |
-| Originality / real-world impact | YES | Custody handoff for bio/AI research integrity (Glasswork lineage) |
+**Hackathon:** Daytona HackSprint SF · Jul 24, 2026  
+**Devpost:** https://daytona-hacksprint-sf-jul-2026.devpost.com/  
+**Draft:** https://devpost.com/software/1362706  
+**Deadline:** **15:30 PDT**  
+**Master pack:** `docs/PITCH_PACK.md`
 
 ## What to submit
 
 | Item | Status | Artifact |
 |---|---|---|
-| Team name | READY | **Braintona** |
+| Team name | READY | **Second Machine** |
 | Team members + email/socials | READY | Byron P. Lee · byron@biobitworks.com · github.com/biobitworks · linkedin.com/in/biobitworks |
-| Demo video (<2 min) | TODO | Need screen capture of live pipeline |
+| Demo video (&lt;2 min) | **TODO** | Storyboard: `docs/PITCH_PACK.md` §7 |
 | Summary (2–3 sentences) | READY | `docs/DEVPOST_SUBMISSION.md` |
 | Problem + impact | READY | same |
 | Technical architecture | READY | same |
-| Sponsor tools list + how used | READY draft | see matrix below |
-| Public GitHub URL | TODO | create + push |
-| Devpost project created/submitted | DRAFT | https://devpost.com/software/1362706 (private until login/publish) |
-
-## Sponsor / Best Use matrix (Notion + Devpost prizes)
-
-| Sponsor | Prize lane | Wired in code? | Live verified? | Gap |
-|---|---|---|---|---|
-| **Daytona** | Best Use + main | YES SDK sandbox recompute | YES | Keep in demo video |
-| **Braintrust** | Best Use + main | YES eval logger | YES | Show project dashboard in video |
-| **Fireworks AI** | Best Use + main | YES chat completions | YES (`glm-5p1`) | — |
-| **ElevenLabs** | Best Use | YES `/api/narrate` | NO (key 401) | Fix API key or bake web-UI MP3 |
-| **CopilotKit** | Best Use | DOC+FIT | NO | **Elevated** — login + `license create` then FCO turn chat (docs/COPILOTKIT_FCO_FIT.md) |
-| **CodeRabbit** | Best Use | DOC only | NO | Discord bot + public repo in builders org |
-| WorkOS | participation | N/A | N/A | Redeem later; not demo-critical |
+| Sponsor tools list + how used | READY | same + `DEVPOST_DESCRIPTION.md` |
+| Public GitHub URL | DONE | https://github.com/biobitworks/braintona |
+| Devpost project created/submitted | DRAFT → **submit before 15:30** | paste from submission doc |
 
 ## Judging criteria coverage
 
-| Criterion (25%) | How we hit it |
-|---|---|
-| Impact | Auditability for agent handoff in science/ops |
-| Technical | Daytona attest + Braintrust eval + FCO MMR + tamper reject |
-| Creativity | Custody-as-agent-contract (reject on mismatch) |
-| Presentation | Live UI + <2m video + 3m pitch deck (TODO) |
-| Sponsor bonus | Maximize Daytona + Braintrust + Fireworks; finish EL/CopilotKit/CodeRabbit |
+| Criterion (25%) | How we hit it | Artifact |
+|---|---|---|
+| Impact | Handoff gap → value for ops, customer, reviewer, sponsors | Devpost problem · slide 4 |
+| Technical | Daytona attest + tamper + FCO MMR + token trace + two-avatar | Live demo · architecture |
+| Creativity | Gaps filled + honest failure ceilings + private vault tip | Slides 2–3 · UI ceilings |
+| Presentation | Spine + `/pitch.html` + &lt;2m video + 3m stage | `PRESENTATION_3MIN.md` |
+| Sponsor bonus | Each sponsor is a signed hop (not logo wall) | Token trace · sponsor table |
 
-## Still need from operator (phone)
+**Rounds:** Devpost → top 8 · Final 3+2 min · Best Use from **all** teams.
 
-1. Working ElevenLabs **API** key (current `sk_` returns 401) **or** drop avatar + local voice files into `braintona/public/assets/`
-2. CopilotKit license token in `.env`
-3. CodeRabbit Discord/GitHub org steps when at venue Wi‑Fi/Slack
-4. Confirm when Devpost **Create Project** unlocks
+## Sponsor / Best Use matrix
+
+| Sponsor | Wired | Live | Demo beat |
+|---|---|---|---|
+| **Daytona** | YES | YES | Sandbox recompute + tamper |
+| **Braintrust** | YES | YES | Eval spans on gold task |
+| **Fireworks AI** | YES | YES | Claim extract (`glm-5p1`) |
+| **ElevenLabs** | YES | YES (two-avatar) | Sarah / Matilda call |
+| **CopilotKit** | DOC+FIT | NO | License login next |
+| **CodeRabbit** | Path B DOC | Partial (bot on PRs) | Discord receipt next |
+| **WorkOS** | AuthKit path | Optional | Not demo-critical |
+
+## Pre-submit gate
+
+- [ ] Paste `DEVPOST_SUBMISSION.md` into Devpost draft
+- [ ] Team **Second Machine** + contact fields
+- [ ] Record & upload demo video
+- [ ] Warm local demo once
+- [ ] Submit before **15:30 PDT**
+
+## Still optional (do not block submit)
+
+1. CopilotKit `login` + `license create`
+2. CodeRabbit Discord Path B interaction receipt
+3. Mark a PR ready for full CodeRabbit review

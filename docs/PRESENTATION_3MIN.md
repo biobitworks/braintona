@@ -1,8 +1,22 @@
 # Braintona — 3-minute presentation
 
+**Team:** Second Machine · **Solo:** Byron P. Lee  
 **Spine:** Fill the gaps · name where we fail · value for everyone · live proof  
-**Solo:** Byron P. Lee · https://github.com/biobitworks/braintona  
-**Slides:** http://127.0.0.1:8787/pitch.html · **App:** http://127.0.0.1:8787
+**Repo:** https://github.com/biobitworks/braintona  
+**Slides:** http://127.0.0.1:8787/pitch.html · **App:** http://127.0.0.1:8787  
+**Master pack:** `docs/PITCH_PACK.md`
+
+## Judging (keep in head)
+
+| Axis | How this deck scores it |
+|---|---|
+| Impact 25% | Who wins when the handoff gap closes |
+| Technical 25% | Live second-machine attest + fail closed |
+| Creativity 25% | Gaps + honest failure table + vault tip |
+| Presentation 25% | Spine + live + one close |
+| Sponsor bonus | Token-trace hops, not logo wall |
+
+**Final format:** 3 min pitch · 2 min Q&A · Best Use from **all** teams
 
 ## Thesis (say this early)
 
@@ -86,4 +100,5 @@ npm run start
 - [ ] Warm pipeline once  
 - [ ] Two-avatar audio plays  
 - [ ] Practice saying **where we fail** without apology — it’s the safeguard slide  
-- [ ] Devpost mirrors this honesty
+- [ ] Devpost mirrors this honesty (`docs/DEVPOST_SUBMISSION.md`)  
+- [ ] Demo video &lt;2m uploaded (storyboard: `docs/PITCH_PACK.md` §7)  

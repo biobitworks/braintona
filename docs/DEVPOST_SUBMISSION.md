@@ -4,50 +4,60 @@
 **Project draft:** https://devpost.com/software/1362706  
 **Team invite:** https://devpost.com/software/1362706/joins/6BtDrmZpMRVhGIIT_BT2Og  
 
-**Deadline:** 2026-07-24 15:30 PDT (strict)
+**Deadline:** 2026-07-24 **15:30 PDT** (strict)  
+**Master pack:** `docs/PITCH_PACK.md`
 
 ## Team name
-Braintona
+**Second Machine**
 
 ## Team members
 - Byron P. Lee — byron@biobitworks.com — https://github.com/biobitworks — https://www.linkedin.com/in/biobitworks/
+
+*(Agents / Cursor credited in description as tools — not Devpost teammates.)*
 
 ## Project name
 Braintona
 
 ## Tagline
-Audit every agent byte.
+Fill the handoff gap. Fail closed.
 
 ## Elevator (2–3 sentences)
-Braintona is an AI agent that extracts claims with Fireworks, scores them with Braintrust, and recomputes a Fractal Custody Object Merkle root inside a Daytona sandbox — rejecting on mismatch. It continues the Glasswork / BioCustody lineage so you can hand off agent work and still audit exact bytes. Custody proves provenance, not scientific correctness.
+Braintona fills the agent handoff gap: Fireworks extracts claims, Braintrust scores them, and a Daytona sandbox recomputes a Fractal Custody Object (FCO) Merkle root — rejecting on mismatch. Customer and agent voice turns become separately labeled trees with a private vault tip; every sponsor hop leaves a signed point of contact on a live token trace. Custody proves provenance of recorded bytes, not that the answer is scientifically true.
 
 ## Problem & impact
-Agents accelerate science and ops, but teams still cannot walk away: there is no independent, recompute-verifiable chain across inference → eval → sandbox attestation. Braintona makes “reject if it doesn’t match” a first-class demo for bio/AI research integrity and agent handoff.
+Agents accelerate science and ops, but teams still cannot walk away: the same box often “verifies” itself, call audio is unlabeled, and sponsor hops leave no point of contact. Braintona makes fail-closed, second-machine attestation first-class — so operators hand off runs, customers keep a private voice tip, reviewers see every touch, and sponsors stop being a black box. We do not claim scientific truth, biometrics, or deepfake scores; that ceiling is the safeguard.
 
 ## Technical architecture
-1. Operator UI posts source text to `/api/run`
-2. Fireworks (temp 0) returns claim JSON
-3. Local gold eval always runs; Braintrust logger used when API key present
-4. Two-leaf FCO receipt (ops + content) → MMR custody root
-5. Daytona ephemeral Python sandbox recomputes root from receipt bytes
-6. Planted tamper path must fail closed
-7. ElevenLabs / voice-origin FCO leaves (`content_class` human vs ai) via MMR
-8. WorkOS: local demo first; migrate to sponsored custom domain when redeemed
+1. Operator UI / CLI posts source text  
+2. Fireworks (`glm-5p1`, temp 0) returns claim JSON  
+3. Local gold eval + Braintrust logger when keyed  
+4. Two-leaf FCO receipt (ops + content) → MMR custody root  
+5. Daytona ephemeral Python sandbox recomputes root; planted tamper fails closed  
+6. Live token trace: each sponsor hop gets actor, local signature, and point-of-contact hash  
+7. Two-avatar ElevenLabs call (Sarah customer / Matilda agent) → two FCO trees → interaction MMR; customer tip in private vault  
+8. Session graph bags run custody roots into `bagged_session_root`  
+9. WorkOS AuthKit optional for multi-judge sessions  
 
 ## Sponsor tools used
-- **Daytona** — independent sandbox recompute of custody root
-- **Braintrust** — eval logging / experiment scores
-- **Fireworks AI** — inference
-- **ElevenLabs** — verify narration
-- **CopilotKit** — operator chat license path
-- **CodeRabbit** — public repo + Discord bot challenge
-- **WorkOS** — participation domain redeem
+- **Daytona** — independent sandbox recompute of custody root; tamper must fail closed  
+- **Braintrust** — eval logging / scores for the gold task  
+- **Fireworks AI** — claim-extraction inference  
+- **ElevenLabs** — two-avatar call + voice-origin FCO leaves  
+- **CodeRabbit** — public repo + Discord Path B review lane  
+- **CopilotKit** — operator chat / FCO UI fit (license path next)  
+- **WorkOS** — AuthKit / participation domain  
 
 ## Repo
 https://github.com/biobitworks/braintona
 
 ## Demo video
-(under 2 min — filled after capture)
+(under 2 min — storyboard in `docs/PITCH_PACK.md` §7; upload after capture)
 
 ## Built with
-Node/TypeScript, Express, Daytona SDK, Fireworks API, Braintrust SDK, FCO v3 / FCG MMR (Zenodo 10.5281/zenodo.21210575)
+Node/TypeScript, Express, Daytona SDK, Fireworks API, Braintrust SDK, ElevenLabs, FCO v3 / FCG MMR (Zenodo 10.5281/zenodo.21210575)
+
+## Judging reminders (internal)
+- Round 1 = Devpost quality → top 8  
+- Final = 3 min + 2 min Q&A  
+- Best Use can come from **any** team — keep sponsor hops demoable  
+- Criteria: Impact / Technical / Creativity / Presentation (25% each) + Sponsor Tool Usage bonus  

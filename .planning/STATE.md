@@ -40,6 +40,7 @@
 | CopilotKit | **Elevated for FCO fit** — license missing; see docs/COPILOTKIT_FCO_FIT.md |
 | **E2E** | **`npm run e2e` → 10/10 PASS** (graph 3→5, session root advanced) |
 | Demo video | TODO |
+| **3-min presentation** | Ready — `docs/PRESENTATION_3MIN.md` + `/pitch.html` |
 
 ## Resume
 

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Braintona — 3-minute pitch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0b1f24;
+        --foam: #e8f7f4;
+        --signal: #d9ff4a;
+        --ok: #3dffb5;
+        --mut: rgba(232, 247, 244, 0.72);
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        height: 100%;
+        background: #07161a;
+        color: var(--foam);
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+      }
+      body {
+        background:
+          radial-gradient(1000px 500px at 10% -10%, rgba(61, 255, 181, 0.16), transparent 60%),
+          radial-gradient(800px 400px at 90% 0%, rgba(217, 255, 74, 0.1), transparent 55%),
+          linear-gradient(165deg, #07161a 0%, #0b1f24 50%, #12353a 100%);
+      }
+      .deck { height: 100%; position: relative; }
+      .slide {
+        display: none;
+        height: 100%;
+        padding: clamp(2rem, 6vw, 4.5rem);
+        flex-direction: column;
+        justify-content: center;
+        animation: rise 0.45s ease-out both;
+      }
+      .slide.on { display: flex; }
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: none; }
+      }
+      .brand {
+        font-family: Syne, sans-serif;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        color: var(--signal);
+        font-size: 0.9rem;
+        margin: 0 0 1rem;
+      }
+      h1 {
+        font-family: Syne, sans-serif;
+        font-weight: 800;
+        font-size: clamp(2.4rem, 7vw, 4.6rem);
+        line-height: 0.95;
+        margin: 0 0 1rem;
+        max-width: 14ch;
+      }
+      h2 {
+        font-family: Syne, sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.8rem, 4.5vw, 3rem);
+        margin: 0 0 1rem;
+      }
+      .lede { color: var(--mut); max-width: 42ch; line-height: 1.45; font-size: 1.05rem; }
+      ul { margin: 0; padding-left: 1.1rem; max-width: 50ch; line-height: 1.55; }
+      li { margin: 0.45rem 0; }
+      .mono {
+        white-space: pre-wrap;
+        border-left: 3px solid var(--signal);
+        padding: 0.75rem 1rem;
+        background: rgba(0,0,0,0.28);
+        max-width: 56ch;
+        font-size: 0.92rem;
+        line-height: 1.45;
+      }
+      .ceil { margin-top: 1.25rem; color: var(--ok); font-size: 0.95rem; }
+      .footer {
+        position: fixed;
+        left: 1.25rem;
+        right: 1.25rem;
+        bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        color: rgba(232, 247, 244, 0.45);
+        font-size: 0.75rem;
+      }
+      kbd {
+        border: 1px solid rgba(232, 247, 244, 0.25);
+        padding: 0.1rem 0.35rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="deck" id="deck">
+      <section class="slide on" data-i="0">
+        <p class="brand">BRAINTONA</p>
+        <h1>Audit every agent byte.</h1>
+        <p class="lede">Reject on mismatch. Custody proves provenance — not that the model is right.</p>
+      </section>
+
+      <section class="slide" data-i="1">
+        <p class="brand">PROBLEM</p>
+        <h2>Handoff breaks trust.</h2>
+        <ul>
+          <li>Agents move fast; humans re-check everything.</li>
+          <li>Same machine “verifies” itself.</li>
+          <li>Voice is unlabeled — human vs AI unclear.</li>
+        </ul>
+      </section>
+
+      <section class="slide" data-i="2">
+        <p class="brand">IDEA</p>
+        <h2>Custody as the agent contract.</h2>
+        <ul>
+          <li>Seal ops + content as Fractal Custody Objects.</li>
+          <li>Second machine (Daytona) must recompute the root.</li>
+          <li>Customer ↔ agent voice as two FCO trees; private vault holds the customer tip.</li>
+        </ul>
+      </section>
+
+      <section class="slide" data-i="3">
+        <p class="brand">TECHNICAL</p>
+        <h2>Independent attest.</h2>
+        <div class="mono">Fireworks → Braintrust → FCO MMR
+→ Daytona recompute ✓ / tamper ✗
+Token trace: AI · human · sponsor
+signatures at each FCG point of contact</div>
+        <p class="ceil">Method: doi:10.5281/zenodo.21210575</p>
+      </section>
+
+      <section class="slide" data-i="4">
+        <p class="brand">SAFEGUARDS</p>
+        <h2>Fail closed. Stay honest.</h2>
+        <ul>
+          <li>Planted tamper must reject.</li>
+          <li>Claim ceilings on-screen — provenance ≠ correctness.</li>
+          <li>Vault keeps private Merkle tip; public graph is hashes only.</li>
+          <li>Voice leaves labeled human vs ai — not a deepfake detector.</li>
+        </ul>
+      </section>
+
+      <section class="slide" data-i="5">
+        <p class="brand">IMPACT</p>
+        <h2>Handoff-safe agents.</h2>
+        <p class="lede">
+          Lab and ops teams can pass AI work forward with a recompute-verifiable receipt —
+          and labeled voice — without pretending the model is science truth.
+        </p>
+        <p class="ceil">Live next → pipeline · token trace · two-avatar call</p>
+      </section>
+    </div>
+    <div class="footer">
+      <span>← → or space · <kbd>F</kbd> fullscreen</span>
+      <span id="count">1 / 6</span>
+    </div>
+    <script>
+      const slides = [...document.querySelectorAll(".slide")];
+      let i = 0;
+      const count = document.getElementById("count");
+      function show(n) {
+        i = (n + slides.length) % slides.length;
+        slides.forEach((s, idx) => s.classList.toggle("on", idx === i));
+        count.textContent = `${i + 1} / ${slides.length}`;
+      }
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
+          e.preventDefault();
+          show(i + 1);
+        } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+          e.preventDefault();
+          show(i - 1);
+        } else if (e.key === "f" || e.key === "F") {
+          if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+          else document.exitFullscreen?.();
+        } else if (e.key === "Home") show(0);
+        else if (e.key === "End") show(slides.length - 1);
+      });
+    </script>
+  </body>
+</html>

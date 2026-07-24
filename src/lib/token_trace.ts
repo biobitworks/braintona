@@ -180,9 +180,16 @@ export async function buildTokenTrace(input: {
   push({
     sponsor: "FCO/FCG",
     surface: "tamper_contrast",
-    status: input.tamper_verify && !input.tamper_verify.ok ? "reject" : "pending",
+    status:
+      input.tamper_verify == null
+        ? "pending"
+        : !input.tamper_verify.ok
+          ? "ok"
+          : "reject",
     binding: "planted wrong custody_root → verify must fail",
-    detail: "Same token path proves reject-on-mismatch (custody ≠ correctness)",
+    detail: !input.tamper_verify?.ok
+      ? "Tamper correctly rejected — same token path proves reject-on-mismatch"
+      : "Unexpected tamper pass — custody contrast failed",
     in_fcg: true,
     fcg_artifact: art("pipeline"),
   });

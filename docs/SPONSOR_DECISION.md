@@ -70,3 +70,7 @@ Lineage note: PhoneBio’s **tertiary** goal is to use **local sensors** to esti
 ### PB-G3a (2026-07-24T17:18:24Z)
 
 Tertiary path companions: **user custody vault** + **local quant models** (Ollama/ExecuTorch edge). WorkOS ≠ Merkle-root vault.
+
+## BioBridge expansion (BB-EXP-1 — 2026-07-24T17:19:27Z)
+
+**BioBridge** expanded PhoneBio’s tertiary vault+quant path into a GTM custody AI employee (tokenized vault, per-agent Merkle roots, Glasswork cheapest-that-passes scoring). Live: https://biobridge-pipeline.kylon.app/final-demo · Owner lock: `phonebio/.planning/BIOBRIDGE_EXPANSION_LINEAGE.md`.

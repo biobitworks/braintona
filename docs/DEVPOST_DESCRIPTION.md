@@ -6,7 +6,9 @@ Braintona is an AI agent that extracts claims with **Fireworks**, scores them wi
 
 > Custody proves **provenance of recorded bytes**, not scientific correctness.
 
-**Team:** Second Machine · **Submitter:** Byron P. Lee (byron@biobitworks.com)
+**Team:** Biobitworks · **Submitter:** Byron P. Lee (byron@biobitworks.com)
+
+**License:** Software **Apache-2.0** · Documentation & media **CC BY-ND 4.0** · See [`LICENSE.md`](https://github.com/biobitworks/braintona/blob/cursor/braintona-main-app-kg-e2e-cc88/LICENSE.md)
 
 ---
 
@@ -83,7 +85,7 @@ Independent attestation beats “trust the same process twice.” Putting custod
 
 | Sponsor | How integrated |
 |---|---|
-| **CodeRabbit** *(featured Best Use)* | Public repo + `coderabbitai[bot]` + Discord Path B; observe hop in token trace |
+| **CodeRabbit** *(featured Best Use)* | Public repo + live `coderabbitai[bot]` on [PR #3](https://github.com/biobitworks/braintona/pull/3); observe hop sealed in token trace. Discord Path B (`the-builders-burrow`) boarding — invite/webhook queued, in-channel receipt when org lands |
 | **Daytona** | Ephemeral sandbox recomputes custody root from receipt JSON; tamper fails closed |
 | **Braintrust** | Eval logging / scores for the gold task |
 | **Fireworks AI** | Claim-extraction inference |
@@ -108,6 +110,14 @@ npm run demo:two-avatar
 ```
 
 Slides: http://127.0.0.1:8787/pitch.html · Pitch pack: `docs/PITCH_PACK.md`
+
+## Licensing
+
+**Biobitworks** dual license — SPDX `(Apache-2.0 AND CC-BY-ND-4.0)`:
+
+- **Software** (runtime, `src/`, scripts): [Apache License 2.0](https://github.com/biobitworks/braintona/blob/cursor/braintona-main-app-kg-e2e-cc88/LICENSE)
+- **Documentation & media** (docs, pitch, Devpost story, demo video creative): [CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/) — full text in repo [`LICENSE-CC-BY-ND-4.0`](https://github.com/biobitworks/braintona/blob/cursor/braintona-main-app-kg-e2e-cc88/LICENSE-CC-BY-ND-4.0)
+- Umbrella: [`LICENSE.md`](https://github.com/biobitworks/braintona/blob/cursor/braintona-main-app-kg-e2e-cc88/LICENSE.md)
 
 ## Citations
 

@@ -1,0 +1,60 @@
+{
+  "schema": "portfolio.build_option_lock.v1",
+  "lane": "260724-cloudmer-pitch-live-cellico",
+  "decision_id": "D17.4",
+  "ts_utc": "2026-07-24T17:16:29Z",
+  "operator_lock": "We may need to build a new app from scratch; WorkOS might provide a free URL.",
+  "status": "candidate_needs_operator_go",
+  "greenfield_app": {
+    "why": [
+      "D17 stack (multi-sponsor FCO/FCG, PHI-private BYOM Pythia, user-vault Merkle root like Bitcoin wallet, GTM-viable) may outgrow bolting onto bioviz-tech /cellico companion alone",
+      "Clean AuthKit + vault UX without collapsing into cellico.bio pitch/facade constraints"
+    ],
+    "not_yet": [
+      "No new repo created in this step",
+      "No Vercel/DNS/WorkOS production flip",
+      "bioviz-tech remains the public pitch surface until OPERATOR chooses greenfield"
+    ]
+  },
+  "workos": {
+    "role": "optional identity / AuthKit for the greenfield app \u2014 not custody SoT; not Merkle-root vault",
+    "free_url_fact": {
+      "what": "Staging AuthKit hosts on a WorkOS-generated subdomain of authkit.app (e.g. youthful-ginger-43.authkit.app)",
+      "sources": [
+        "https://workos.com/docs/custom-domains/authkit",
+        "https://workos.com/docs/custom-domains"
+      ],
+      "caveat": "This is the AuthKit/login host URL, not a free custom product domain for the whole app. Custom domains are a paid production feature (~$99/mo per WorkOS pricing page)."
+    },
+    "pricing_notes_verify_live": [
+      "AuthKit User Management: first 1M MAUs free (per workos.com/pricing \u2014 re-verify before commit)",
+      "Staging environments: free for testing",
+      "Custom domain: paid, production-only"
+    ],
+    "pattern_reuse": "braintona optional AuthKit (non-gating) \u2014 identity chip only; do not gate demo behind WorkOS",
+    "forbidden": [
+      "Treat WorkOS as Merkle-root / Bitcoin-wallet vault SoT",
+      "Claim WorkOS gives a free branded product domain equivalent to cellico.bio",
+      "Put private Merkle root or ed25519 PI key in WorkOS"
+    ]
+  },
+  "boundary": {
+    "custody": "FCO/FCG + user vault Merkle root remain SoT",
+    "identity": "WorkOS AuthKit optional",
+    "pitch_site": "bioviz-tech / cellico.bio until greenfield GO",
+    "gtm_router": "gtm-cellico GTM_GOVERNANCE_ONLY"
+  },
+  "next_if_operator_go": [
+    "Name greenfield repo + host lane (magicpro/magicstudio)",
+    "Scaffold AuthKit (Next.js or Node) with staging *.authkit.app redirects",
+    "Wire FCO turn/bag emit + user-vault root UX; PHI non-ingest",
+    "Keep BYOM Pythia + multi-sponsor story; do not collapse into sponsor security SoT"
+  ],
+  "llm_in_science_leaf": false,
+  "authority": {
+    "pi_sign": false,
+    "claim_promotion": false,
+    "writeback": false,
+    "deploy": "operator_go_required"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "schema": "portfolio.operator_goal_lock.v1",
+  "decision_id": "braintona.demo_edit.three_path.v1",
+  "ts_utc": "2026-07-24T20:45:00Z",
+  "operator_lock": "Devpost demo video is compiled by merging three custody paths into one timeline. ElevenLabs fills only labeled gaps. When and how each fill happens is visible in the demo-edit FCG (human vs ai leaves under one MMR tip).",
+  "paths": [
+    {
+      "path_id": "P1_ui_silent",
+      "role": "picture",
+      "source": "Studio screen capture of demo-guide walkthrough",
+      "content_class": "other",
+      "drop": "braintona-studio-ui.mov",
+      "claim": "Ground truth for clicks and on-screen state. No spoken claim."
+    },
+    {
+      "path_id": "P2_human_vo",
+      "role": "primary_voice",
+      "source": "Operator reads sealed script seeds (Pass B)",
+      "content_class": "human",
+      "drop": "braintona-vo-script.m4a|.mov",
+      "claim": "Human-recorded narration of sealed seed.say bytes. Pauses mark cut points."
+    },
+    {
+      "path_id": "P3_elevenlabs_gaps",
+      "role": "gap_fill_voice",
+      "source": "ElevenLabs TTS (prefer ELEVENLABS_VOICE_ID_CLONE)",
+      "content_class": "ai",
+      "drop": "braintona-vo-gap-*.mp3 + voice_origin FCO per fill",
+      "claim": "AI stand-in only where human VO has a gap, fluff, or missing beat. Never unlabeled as human."
+    }
+  ],
+  "merge": {
+    "picture": "P1_ui_silent full-frame",
+    "audio_priority": ["P2_human_vo", "P3_elevenlabs_gaps"],
+    "sync": "Cut UI to [pause] beats in P2; insert P3 only into pause/gap windows",
+    "export": "braintona-demo-<date>.mp4 <2m H.264 for Devpost"
+  },
+  "fcg_visibility": {
+    "rule": "Each path and each ElevenLabs gap fill is an FCO leaf before merge. Final tip bags P1 hash + P2 leaf + P3 leaves.",
+    "show_in_app": [
+      "content_class on each voice leaf",
+      "parent_mmr_tip → mmr_tip growth when a gap fill appends",
+      "clone registry leaf if Byron clone used",
+      "edit ledger .planning/private/demo-record/edit_fcg.jsonl"
+    ],
+    "when": "Seal gap-fill leaf at the moment TTS bytes are generated (before timeline insert)",
+    "how": "POST voice-origin / scripts that append to ElevenLabs voice FCG; record gap_id, seed_id covered, t_in/t_out intent"
+  },
+  "claim_ceiling": {
+    "allowed": [
+      "three-path merge into one Devpost file",
+      "ElevenLabs fills labeled gaps with content_class=ai",
+      "FCG shows when/how AI audio was introduced",
+      "human VO remains content_class=human"
+    ],
+    "forbidden": [
+      "pass AI gap fill as live human mic",
+      "unlabeled mix of human and AI in one leaf",
+      "claim merge proves science truth of narration",
+      "deepfake / biometric identity claims"
+    ]
+  },
+  "parents": [
+    "VOICE_HUMAN_AI_MMR_COMPONENT_LOCK.json",
+    "DEMO_SCRIPT_FCG.json",
+    "docs/DEMO_RECORD_DUAL_HOST.md §F"
+  ],
+  "llm_in_science_leaf": false,
+  "authority": {
+    "pi_sign": false,
+    "claim_promotion": false,
+    "writeback": false,
+    "elevenlabs_edit": "operator_go_2026_07_24"
+  }
+}

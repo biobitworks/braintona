@@ -1,6 +1,6 @@
 # Braintona — 3-minute presentation
 
-**Team:** Second Machine · **Solo:** Byron P. Lee  
+**Team:** Biobitworks · **Solo:** Byron P. Lee · **License:** Apache-2.0 + CC BY-ND 4.0  
 **Spine:** Fill the gaps · name where we fail · value for everyone · live proof  
 **Repo:** https://github.com/biobitworks/braintona  
 **Slides:** http://127.0.0.1:8787/pitch.html · **App:** http://127.0.0.1:8787  

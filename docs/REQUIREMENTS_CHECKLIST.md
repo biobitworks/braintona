@@ -10,7 +10,8 @@
 
 | Item | Status | Artifact |
 |---|---|---|
-| Team name | READY | **Second Machine** |
+| Team name | READY | **Biobitworks** |
+| License | READY | Apache-2.0 + CC BY-ND 4.0 (`LICENSE.md`) |
 | Team members + email/socials | READY | Byron P. Lee · byron@biobitworks.com · github.com/biobitworks · linkedin.com/in/biobitworks |
 | Demo video (&lt;2 min) | **TODO** | Storyboard: `docs/PITCH_PACK.md` §7 |
 | Summary (2–3 sentences) | READY | `docs/DEVPOST_SUBMISSION.md` |
@@ -47,7 +48,8 @@
 ## Pre-submit gate
 
 - [ ] Paste `DEVPOST_SUBMISSION.md` into Devpost draft
-- [ ] Team **Second Machine** + contact fields
+- [x] Team **Biobitworks** + contact fields
+- [x] Dual license Apache-2.0 + CC BY-ND 4.0
 - [ ] Record & upload demo video
 - [ ] Warm local demo once
 - [ ] Submit before **15:30 PDT**

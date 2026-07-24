@@ -8,12 +8,17 @@
 **Master pack:** `docs/PITCH_PACK.md`
 
 ## Team name
-**Second Machine**
+**Biobitworks**
 
 ## Team members
 - Byron P. Lee — byron@biobitworks.com — https://github.com/biobitworks — https://www.linkedin.com/in/biobitworks/
 
 *(Agents / Cursor credited in description as tools — not Devpost teammates.)*
+
+## Licensing
+- **Software:** Apache License 2.0 (`LICENSE`)
+- **Docs / pitch / demo media / Devpost story:** CC BY-ND 4.0 (`LICENSE-CC-BY-ND-4.0`)
+- **Umbrella:** `LICENSE.md` · SPDX `(Apache-2.0 AND CC-BY-ND-4.0)`
 
 ## Project name
 Braintona

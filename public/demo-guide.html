@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Braintona — demo guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css?v=20260724c" />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true"></div>
+    <main>
+      <header class="hero" id="guideHero">
+        <p class="brand">BRAINTONA · DEMO GUIDE</p>
+        <h1 id="guideH1">Guided demo.</h1>
+        <p class="lede" id="guideLede">
+          <strong>Next page →</strong> only changes pages. Buttons like
+          <em>Run live pipeline</em> are actions <strong>on that page</strong> — do them before Next.
+        </p>
+        <div class="cta-row">
+          <a class="link-btn" href="/pitch.html" style="background: var(--gild-strong); color: var(--background)"
+            >Start → Pitch</a
+          >
+          <a class="ghost link-btn" href="/demo-voice-star.html">Jump to star chart</a>
+          <a class="ghost link-btn" href="/">Main app</a>
+        </div>
+      </header>
+      <section class="panel">
+        <h2>Steps</h2>
+        <ol class="steps">
+          <li>Pitch — gaps / fail closed</li>
+          <li>Pipeline — Run → Daytona → tamper</li>
+          <li>Star chart — Play traverse</li>
+          <li>Two-turn — hear both leaves</li>
+          <li>Close — repo URL</li>
+        </ol>
+        <p class="ceiling">
+          Mic off on Studio. Face + voice on Pro (QuickTime). Save UI to Desktop as
+          <code>braintona-studio-ui.mov</code>.
+        </p>
+      </section>
+    </main>
+    <footer style="padding:1rem 1.25rem 2rem;font-size:0.8rem;opacity:0.75">
+      Biobitworks · Apache-2.0 + CC BY-ND 4.0 · github.com/biobitworks/braintona
+    </footer>
+    <script>
+      const done = new URLSearchParams(location.search).get("done") === "1";
+      if (done) {
+        document.getElementById("guideH1").textContent = "Demo complete.";
+        document.getElementById("guideLede").innerHTML =
+          "Show <strong>github.com/biobitworks/braintona</strong> · stop Studio screen record · stop Pro QuickTime.";
+      }
+    </script>
+    <script src="/demo-guide.js"></script>
+  </body>
+</html>

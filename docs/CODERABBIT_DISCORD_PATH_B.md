@@ -2,7 +2,9 @@
 
 **Source:** https://coderabbit.notion.site/coderabbit-discord-bot-challenge  
 **Prize:** $1,000 Best Use (+ extra $1,000 if judges call it impressive)  
-**Status:** Blocked on GitHub org invite (step 3) — `biobitworks` not yet in `the-builders-burrow`  
+**Status (2026-07-24 ~14:05 PDT):** Boarding slowly — GitHub bot **live** (PR #3 review green) · observe hop sealed · **Path B Discord webhook USED** (GitHub access request posted; msg `1530319994888392915`, channel `1530318027164487831`) · email to Hendrik with repo URL · org invite `the-builders-burrow` still **not** in memberships (404)  
+
+
 **Locked decision:** Path B = use CodeRabbit’s Discord Agent (not a custom Discord bot MVP)  
 **Personal public repo (already live):** https://github.com/biobitworks/braintona  
 **Key:** `CODERABBIT_API_KEY` in `.env` (do not print)
@@ -64,7 +66,7 @@ gh api user/memberships/orgs/the-builders-burrow
 
 # Create public team repo (adjust org if CodeRabbit specifies otherwise)
 gh repo create the-builders-burrow/braintona --public \
-  --description "Braintona — Daytona HackSprint SF Jul 2026 (Second Machine)" \
+  --description "Braintona — Daytona HackSprint SF Jul 2026 (Biobitworks; Apache-2.0 + CC BY-ND 4.0)" \
   --source . --remote builders-burrow --push
 
 # Then: Discord channel → OAuth connect → smoke @CodeRabbit turn → bank receipt

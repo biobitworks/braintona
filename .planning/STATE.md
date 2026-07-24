@@ -1,18 +1,25 @@
 # STATE — Braintona (handoff)
 
-**Updated:** 2026-07-24 ~11:49 PDT
+**Updated:** 2026-07-24 ~12:59 PDT
 **Deadline:** **15:30 PDT** Devpost  
 **Hosts:** magicPRObox (cockpit) · magicSTUDIObox (compute)  
 **Session:** cursor-6430eeef-1426-4566-a6fc-5d688723f05b  
 **Branch:** `cursor/braintona-main-app-kg-e2e-cc88` · PR https://github.com/biobitworks/braintona/pull/3
 
+**Conversation FCO/FCG:** **LIVE** — re-sealed transcript (`312284` B) as private FCO; node `conversation_private` in session graph; turn leaves under `.planning/conversation_turns/`; emit scripts vendored (`scripts/emit_conversation_turn_fco.py`, `emit_mmr_memory_event.py`). Plaintext stays vault-only.
+
+**Presentation vs review:** Technical custody graph on `/` stays for review. Stage/demo figure = **voice star chart** `/demo-voice-star.html` (Cellico/Cloudmer traverse; customer atom gold glint). Lock: `docs/VOICE_STAR_CHART_PRESENTATION.md`.
+
+**Demo record:** **Pro QuickTime** = face+mic · **Studio ⌘⌃⇧5** = app UI · Byron will paste links when done · **agent may edit with ElevenLabs** (clone/TTS OK; label AI; see `DEMO_RECORD_DUAL_HOST.md` §F).
+
 ## Pitch / Devpost (live)
 
 | Field | Value |
 |---|---|
-| Team name | **Second Machine** |
+| Team name | **Biobitworks** |
 | Project | Braintona |
 | Tagline | Fill the handoff gap. Fail closed. |
+| License | **Apache-2.0** (code) + **CC BY-ND 4.0** (docs/media) — `LICENSE.md` |
 | Member | Byron P. Lee · byron@biobitworks.com · github / linkedin biobitworks |
 | Repo | https://github.com/biobitworks/braintona |
 | Draft | https://devpost.com/software/1362706 |
@@ -44,7 +51,7 @@
 | Pitch pack / Devpost paste | **Updated this turn** |
 | Demo video | TODO (blocks polished submit) |
 | CopilotKit license | **Org exists** — CLI login + `license create --write` still needed; FCO cockpit API/UI scaffolded |
-| CodeRabbit Discord Path B | Blocked — accept the-builders-burrow invite (Notion steps) |
+| CodeRabbit Discord Path B | Webhook notify posted (GitHub access ask) · org invite still blocked |
 
 ## Resume
 
@@ -71,7 +78,7 @@ npm run start
 
 **CopilotKit (phone):** token NOT in `.env` yet. Drop to `.planning/private/copilotkit_license.token` — watcher running (`/tmp/braintona-ck-watch.log`). Do not paste token in chat.
 **Server:** http://127.0.0.1:8787 (restarted with sponsor routes).
-**CodeRabbit:** review in progress on PR #3.
+**CodeRabbit:** PR #3 review green. Path B Discord webhook posted GitHub-access request (receipt `data/coderabbit_discord_path_b_notify_latest.json`). Still need `the-builders-burrow` invite.
 **Devpost phone paste:** `docs/DEVPOST_PHONE_PASTE.md`.
 
 **CopilotKit license LIVE** (OPERATOR authorized ingest; token in `.env` only; sha256 banked in receipts). Cockpit seals with `license_present=true`.

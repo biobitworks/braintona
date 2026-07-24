@@ -1,0 +1,80 @@
+{
+  "schema": "portfolio.operator_goal_lock.v1",
+  "lane": "260724-cloudmer-pitch-live-cellico",
+  "decision_id": "D17.7a",
+  "ts_utc": "2026-07-24T18:41:00Z",
+  "extends": "D17.7",
+  "operator_lock": "Pythia is a worked example of Anticube SS + MSM that can act as a digital twin across multiple sponsors that accept models, rules, governance, and related portable packages \u2014 under FCO/FCG custody, not under each sponsor's security SoT.",
+  "expansions": {
+    "SS_plus_MSM": "Anticube SS (self \u00d7 safe) admission disposition composed with Mechanical Scientific Method (MSM) scoring/governance \u2014 the twin is admitted as self-and-safe and scored under MSM gates",
+    "digital_twin_role": "Portable sealed stand-in for the subject's custody/governance state (model weights/fixture + rules + governance bindings + Merkle tip) that sponsors can host/run without becoming the private-root SoT",
+    "multi_sponsor_intake": "Sponsors that take in models, rules, governance (and related artifacts) via BYOM / bring-your-own-policy style lanes",
+    "Pythia": "FCO Vitalogy\u2192Pythia-14M fixture as the concrete example twin payload \u2014 not CLAI clinical Pythia, not a living patient twin"
+  },
+  "means": [
+    "One twin package can move across multiple BYOM-capable sponsors: model (Pythia) + rules + governance bindings + public verify surfaces",
+    "Private Merkle root / vault tip stays user-side (D17.3); sponsors verify commits and run admitted SS+MSM workloads",
+    "FCO/FCG remains the portable custody grammar independent of each sponsor security protocol (D17)",
+    "MSM scores/gates the twin's interactions; Anticube SS is the admission quadrant for the subject's lane",
+    "Public pitch may say: self-and-safe twin example under mechanical scientific method across sponsors that accept models/rules/governance \u2014 Anticube optional (D15)"
+  ],
+  "sponsor_intake_surface": [
+    "models (e.g. FCO-custodied Pythia)",
+    "rules (policy / claim ceilings / eval floors)",
+    "governance (MSM / Antigence admission + scoring)",
+    "related portable packages (receipts, public FCG peaks, tool bindings) \u2014 not PHI, not private root"
+  ],
+  "layering": {
+    "admission": "Anticube SS",
+    "method_gate": "MSM",
+    "custody": "FCO/FCG + user vault",
+    "example_payload": "Pythia",
+    "distribution": "multi-sponsor BYOM / bring-your-own rules+governance"
+  },
+  "claim_ceiling": {
+    "allowed": [
+      "Pythia as worked example of SS + MSM digital-twin role (custody/governance twin)",
+      "same twin package across multiple sponsors that accept models, rules, governance",
+      "sponsors run/host admitted twin payloads without holding private Merkle root",
+      "architecture goal: portable twin = model + rules + governance under FCO/FCG",
+      "MMR of actual voice vs AI as load-bearing twin voice component (D17.7b)"
+    ],
+    "forbidden": [
+      "clinically validated / living patient digital twin",
+      "twin delivers diagnosis, treatment, or care",
+      "MSM or Anticube SS as regulatory/clinical certification",
+      "sponsor security stack becomes custody SoT for the twin",
+      "PHI or private root shipped inside the twin package to sponsors",
+      "SMS conflated with Anticube SS",
+      "claim every sponsor already accepts BYOM/rules/governance (only as architecture goal / worked example)"
+    ]
+  },
+  "distinct_from": [
+    "clinical digital twin products",
+    "sponsor-native model as sole SoT",
+    "SMS (Self-Match Score)",
+    "CLAI clinical Pythia"
+  ],
+  "parents": [
+    "D17",
+    "D17.1",
+    "D17.3",
+    "D17.7",
+    "D15"
+  ],
+  "receipts": {
+    "parent_lock": "PYTHIA_DIGITAL_TWIN_PRECURSOR_SS_LOCK.json",
+    "this_lock": "PYTHIA_SS_MSM_MULTI_SPONSOR_TWIN_LOCK.json"
+  },
+  "llm_in_science_leaf": false,
+  "authority": {
+    "pi_sign": false,
+    "claim_promotion": false,
+    "writeback": false
+  },
+  "voice_component": {
+    "decision": "D17.7b",
+    "lock": "VOICE_HUMAN_AI_MMR_COMPONENT_LOCK.json",
+    "text": "MMR of actual voice vs AI voice is the load-bearing twin component"
+  }
+}

@@ -1,6 +1,6 @@
 # Sponsor touches — each one special (CodeRabbit featured)
 
-**Team:** Second Machine · **Repo:** https://github.com/biobitworks/braintona  
+**Team:** Biobitworks · **Repo:** https://github.com/biobitworks/braintona · **License:** Apache-2.0 + CC BY-ND 4.0 (`LICENSE.md`)  
 **Rule:** No logo wall. Every sponsor gets a **named hop**, a **demo beat**, and a **custody job**.  
 **Featured Best Use lane:** **CodeRabbit** (review / Discord Path B + live PR bot).
 

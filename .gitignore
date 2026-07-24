@@ -20,3 +20,6 @@ public/assets/voice/*.mp3
 
 .planning/private/copilotkit_license.token
 .planning/private/copilotkit_license_ingest.json
+
+# Local demo captures (use .planning/private/demo-record/)
+*.mov

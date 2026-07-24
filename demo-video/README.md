@@ -1,6 +1,7 @@
 # Braintona demo video (FCO-atomized)
 
-HackSprint SF · under 2 minutes · picture-in-picture
+HackSprint SF · under 2 minutes · picture-in-picture  
+**Team:** Biobitworks · **License:** creative export under **CC BY-ND 4.0** (software stack **Apache-2.0**) — see `../LICENSE.md`
 
 ## Play
 [braintona-demo.mp4](./braintona-demo.mp4)

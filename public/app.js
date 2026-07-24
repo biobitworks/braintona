@@ -9,13 +9,22 @@ const graphMeta = document.getElementById("graphMeta");
 const graphSvg = document.getElementById("graphSvg");
 const steps = [...document.querySelectorAll("#steps li")];
 
+/** Demo voice lock — must match .env / Studio */
+const DEMO_VOICES = {
+  customer_voice_id: "5niL0Wu395iXN1uc4zne",
+  agent_voice_id: "IQjnnInWsKbdAesop75D",
+  customer_name: "Byron",
+  agent_name: "Library",
+  clone_voice_id: "5niL0Wu395iXN1uc4zne",
+};
+
 let lastNarrate = "";
 let lastAudio = null;
 
 const DEFAULT_SOURCE =
   "Fractal Custody Objects bind sha256 of recorded bytes with domain separation (leaf 0x00, node 0x01). Custody proves provenance of a run, not scientific correctness. Glasswork selected the cheapest open model that cleared a pre-set quality bar on a gold claim-extraction task.";
 
-sourceEl.value = DEFAULT_SOURCE;
+if (sourceEl) sourceEl.value = DEFAULT_SOURCE;
 
 const KIND_COLOR = {
   session: "#d9ff4a",
@@ -41,10 +50,41 @@ function resetSteps() {
   for (const name of ["infer", "eval", "local", "daytona", "tamper", "graph"]) setStep(name, null);
 }
 
+/** Keep graph readable: session + last 2 runs (+ private tip). Full history stays in API. */
+function focusGraph(graph) {
+  const nodes = graph.nodes || [];
+  const edges = graph.edges || [];
+  const runs = nodes.filter((n) => n.kind === "run");
+  const keepRuns = new Set(runs.slice(-2).map((n) => n.id));
+  const keep = new Set();
+  for (const n of nodes) {
+    if (n.kind === "session" || n.kind === "conversation_private" || n.kind === "voice_origin") {
+      keep.add(n.id);
+    }
+  }
+  for (const id of keepRuns) keep.add(id);
+  // Walk edges from kept runs to their leaves / eval / daytona / tamper
+  let grew = true;
+  while (grew) {
+    grew = false;
+    for (const e of edges) {
+      if (keep.has(e.from) && !keep.has(e.to)) {
+        keep.add(e.to);
+        grew = true;
+      }
+    }
+  }
+  return {
+    ...graph,
+    nodes: nodes.filter((n) => keep.has(n.id)),
+    edges: edges.filter((e) => keep.has(e.from) && keep.has(e.to)),
+    _focus: { shown_runs: keepRuns.size, total_runs: graph.run_count },
+  };
+}
+
 function layoutGraph(graph) {
   const nodes = graph.nodes || [];
   const width = 920;
-  const height = 320;
   const byKind = {};
   for (const n of nodes) {
     (byKind[n.kind] ||= []).push(n);
@@ -58,31 +98,38 @@ function layoutGraph(graph) {
     "eval",
     "daytona",
     "tamper",
+    "voice_origin",
+    "conversation_private",
   ];
   const pos = new Map();
+  let maxY = 40;
   lanes.forEach((kind, row) => {
     const list = byKind[kind] || [];
     list.forEach((n, i) => {
       const x = list.length === 1 ? width / 2 : 60 + (i * (width - 120)) / Math.max(1, list.length - 1);
-      const y = 36 + row * 36;
+      const y = 40 + row * 42;
+      maxY = Math.max(maxY, y + 28);
       pos.set(n.id, { x, y, n });
     });
   });
-  // Place any leftover kinds
   let extraRow = lanes.length;
   for (const n of nodes) {
     if (pos.has(n.id)) continue;
-    pos.set(n.id, { x: 80 + (extraRow % 8) * 100, y: 36 + extraRow * 36, n });
+    const y = 40 + extraRow * 42;
+    maxY = Math.max(maxY, y + 28);
+    pos.set(n.id, { x: 80 + (extraRow % 8) * 100, y, n });
     extraRow += 1;
   }
-  return { pos, width, height };
+  return { pos, width, height: Math.max(280, maxY + 24) };
 }
 
 function renderGraph(graph) {
   if (!graphSvg || !graphMeta) return;
-  const { pos, width, height } = layoutGraph(graph);
+  const focused = focusGraph(graph);
+  const { pos, width, height } = layoutGraph(focused);
   graphSvg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-  const lines = (graph.edges || [])
+  graphSvg.style.minHeight = `${Math.min(520, height)}px`;
+  const lines = (focused.edges || [])
     .map((e) => {
       const a = pos.get(e.from);
       const b = pos.get(e.to);
@@ -103,7 +150,8 @@ function renderGraph(graph) {
     })
     .join("");
   graphSvg.innerHTML = `${lines}${dots}`;
-  graphMeta.textContent = `${graph.run_count} runs · ${graph.nodes.length} nodes · ${graph.edges.length} edges · session root ${String(graph.bagged_session_root || "").slice(0, 16)}…`;
+  const fr = focused._focus || {};
+  graphMeta.textContent = `${graph.run_count} runs total · showing last ${fr.shown_runs || 0} · ${focused.nodes.length} nodes · ${focused.edges.length} edges · root ${String(graph.bagged_session_root || "").slice(0, 16)}…`;
   graphMeta.classList.add("pulse");
   setTimeout(() => graphMeta.classList.remove("pulse"), 700);
 }
@@ -128,10 +176,10 @@ async function refreshGraph(preferred) {
   }
 }
 
-runBtn.addEventListener("click", async () => {
+if (runBtn) runBtn.addEventListener("click", async () => {
   resetSteps();
   runBtn.disabled = true;
-  speakBtn.disabled = true;
+  if (speakBtn) speakBtn.disabled = true;
   statusEl.textContent = "Running Fireworks → Braintrust/local eval → Daytona → graph…";
   setStep("infer", "active");
 
@@ -207,7 +255,7 @@ runBtn.addEventListener("click", async () => {
   }
 });
 
-speakBtn.addEventListener("click", async () => {
+if (speakBtn) speakBtn.addEventListener("click", async () => {
   if (!lastNarrate) return;
   speakBtn.disabled = true;
   statusEl.textContent = "Requesting ElevenLabs narration…";
@@ -396,12 +444,12 @@ const twoAvatarPlayers = document.getElementById("twoAvatarPlayers");
 if (twoAvatarBtn) {
   twoAvatarBtn.addEventListener("click", async () => {
     twoAvatarBtn.disabled = true;
-    statusEl.textContent = "Synthesizing Sarah (customer) + Matilda (agent) via ElevenLabs…";
+    statusEl.textContent = "Synthesizing Byron (customer) + Library (agent) via ElevenLabs…";
     try {
       const res = await fetch("/api/demo/two-avatar-call", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({}),
+        body: JSON.stringify(DEMO_VOICES),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "two-avatar demo failed");
@@ -438,9 +486,79 @@ if (twoAvatarBtn) {
       if (twoAvatarPanel) twoAvatarPanel.hidden = false;
       statusEl.textContent = data.note || "Two-avatar call sealed.";
     } catch (err) {
-      statusEl.textContent = `Two-avatar error: ${err.message || err}`;
+      const msg = err?.message || String(err);
+      const hint =
+        msg === "Load failed" || msg === "Failed to fetch"
+          ? " — server not reachable on :8787 (run: npm run start)"
+          : "";
+      statusEl.textContent = `Two-avatar error: ${msg}${hint}`;
     } finally {
       twoAvatarBtn.disabled = false;
+    }
+  });
+}
+
+const cloneBtn = document.getElementById("cloneBtn");
+const clonePanel = document.getElementById("clonePanel");
+const cloneOut = document.getElementById("cloneOut");
+const cloneMeta = document.getElementById("cloneMeta");
+const cloneStrip = document.getElementById("cloneStrip");
+const clonePlayer = document.getElementById("clonePlayer");
+if (cloneBtn) {
+  cloneBtn.addEventListener("click", async () => {
+    cloneBtn.disabled = true;
+    statusEl.textContent = "Sealing voice clone as FCO + AI utterance…";
+    try {
+      const res = await fetch("/api/demo/voice-clone", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ voice_id: DEMO_VOICES.clone_voice_id }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "voice-clone failed");
+      const hs = data.hash_strip || {};
+      if (cloneMeta) {
+        cloneMeta.textContent = `${hs.display_name || "clone"} · voice ${hs.voice_id} · class ${hs.content_class}`;
+      }
+      if (cloneStrip) {
+        cloneStrip.innerHTML = `
+          <span class="pill ai">AI clone</span>
+          <span>voice <code>${hs.voice_id || ""}</code></span>
+          <span>clone_leaf <code>${hs.clone_leaf || ""}…</code></span>
+          <span>utt_leaf <code>${hs.utterance_leaf || "—"}…</code></span>
+          <span>mmr <code>${hs.mmr_root || ""}…</code></span>
+        `;
+      }
+      if (clonePlayer && data.audio_path) {
+        const file = data.audio_path.split("/").pop();
+        clonePlayer.innerHTML = `<figure>
+          <figcaption>Clone utterance · content_class=ai</figcaption>
+          <audio controls src="/assets/voice/${file}"></audio>
+          <div class="hop-bind">${data.audio_bytes || 0} B · parent clone leaf</div>
+        </figure>`;
+      }
+      if (cloneOut) {
+        cloneOut.textContent = JSON.stringify(
+          {
+            clone_node: data.clone?.node_id,
+            clone_leaf: data.clone?.leaf_hash,
+            fco_root: data.clone?.fco_root,
+            utterance_leaf: data.utterance?.leaf_hash,
+            mmr_root: data.mmr_root,
+            elevenlabs_ok: data.elevenlabs_ok,
+            claim_ceiling: data.claim_ceiling,
+            note: data.note,
+          },
+          null,
+          2,
+        );
+      }
+      if (clonePanel) clonePanel.hidden = false;
+      statusEl.textContent = data.note || "Voice clone sealed.";
+    } catch (err) {
+      statusEl.textContent = `Voice clone error: ${err.message || err}`;
+    } finally {
+      cloneBtn.disabled = false;
     }
   });
 }

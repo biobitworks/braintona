@@ -1,12 +1,13 @@
-# Devpost — phone paste sheet (Second Machine)
+# Devpost — phone paste sheet (Biobitworks)
 
 **Deadline:** 15:30 PDT · https://daytona-hacksprint-sf-jul-2026.devpost.com/  
 **Draft:** https://devpost.com/software/1362706  
 **Repo:** https://github.com/biobitworks/braintona
 
 ## Team
-- Name: **Second Machine**
+- Name: **Biobitworks**
 - Member: Byron P. Lee · byron@biobitworks.com · github.com/biobitworks · linkedin.com/in/biobitworks
+- License: Apache-2.0 (code) + CC BY-ND 4.0 (docs/media) — `LICENSE.md`
 
 ## Tagline
 Fill the handoff gap. Fail closed.

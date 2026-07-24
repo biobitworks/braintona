@@ -17,21 +17,21 @@ const LEDGER = path.join(DATA, "two_avatar_call.jsonl");
 const LATEST = path.join(DATA, "two_avatar_call_latest.json");
 const VAULT = path.join(PRIVATE, "customer_voice_vault_latest.json");
 
-/** Customer avatar voice — override with your ElevenLabs avatar/voice id */
+/** Demo lock: Byron clone = customer; Library = agent */
 export const CUSTOMER_VOICE_ID =
   process.env.ELEVENLABS_VOICE_ID_CUSTOMER ||
   process.env.ELEVENLABS_AVATAR_VOICE_ID ||
-  "EXAVITQu4vr4xnSDxMaL";
+  "5niL0Wu395iXN1uc4zne";
 /** Agent avatar voice */
 export const AGENT_VOICE_ID =
   process.env.ELEVENLABS_VOICE_ID_AGENT ||
   process.env.ELEVENLABS_VOICE_ID ||
-  "XrExE9yKIg1WjnnlVkGX";
+  "IQjnnInWsKbdAesop75D";
 
 export const CUSTOMER_AVATAR_NAME =
-  process.env.ELEVENLABS_AVATAR_NAME_CUSTOMER || "Customer";
+  process.env.ELEVENLABS_AVATAR_NAME_CUSTOMER || "Byron";
 export const AGENT_AVATAR_NAME =
-  process.env.ELEVENLABS_AVATAR_NAME_AGENT || "Agent";
+  process.env.ELEVENLABS_AVATAR_NAME_AGENT || "Library";
 
 const DEFAULT_SCRIPT = {
   customer:

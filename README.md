@@ -66,11 +66,23 @@ Claim ceilings (printed in UI):
 
 ## Team
 
-Byron P. Lee — Founder, Cellico.Bio · [biobitworks](https://github.com/biobitworks)
+**Biobitworks** · Byron P. Lee — Founder, Cellico.Bio · [biobitworks](https://github.com/biobitworks)
+
+## Licensing
+
+Dual license — see [`LICENSE.md`](./LICENSE.md):
+
+| Scope | License |
+|---|---|
+| Software (`src/`, scripts, runtime) | **Apache-2.0** ([`LICENSE`](./LICENSE)) |
+| Docs, pitch, Devpost story, demo media | **CC BY-ND 4.0** ([`LICENSE-CC-BY-ND-4.0`](./LICENSE-CC-BY-ND-4.0)) |
+
+SPDX: `(Apache-2.0 AND CC-BY-ND-4.0)`
 
 ## Devpost
 
-https://daytona-hacksprint-sf-jul-2026.devpost.com/
+https://daytona-hacksprint-sf-jul-2026.devpost.com/  
+https://devpost.com/software/braintona
 
 ## WorkOS
 

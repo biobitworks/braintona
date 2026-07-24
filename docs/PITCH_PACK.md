@@ -13,7 +13,8 @@
 
 | Field | Status | Paste / action |
 |---|---|---|
-| **Team name** | Ready | **Second Machine** |
+| **Team name** | Ready | **Biobitworks** |
+| **License** | Ready | **Apache-2.0** (code) + **CC BY-ND 4.0** (docs/media) — `LICENSE.md` |
 | **Team members** | Ready | Byron P. Lee — byron@biobitworks.com — [GitHub](https://github.com/biobitworks) — [LinkedIn](https://www.linkedin.com/in/biobitworks/) |
 | **Project name** | Ready | Braintona |
 | **Tagline** | Ready | Fill the handoff gap. Fail closed. |
@@ -83,7 +84,7 @@ Leaf = `sha256(0x00 ‖ canonical_json)` · Node = `sha256(0x01 ‖ L ‖ R)` ·
 
 | Sponsor | Integration (meaningful, not checkbox) |
 |---|---|
-| **CodeRabbit** *(featured)* | Public repo review observer + Discord Path B; seal observe hop (`/api/coderabbit/seal-observe`) |
+| **CodeRabbit** *(featured)* | Live `coderabbitai[bot]` on PR #3 + seal observe hop; Discord Path B boarding (`the-builders-burrow` invite) |
 | **Daytona** | Independent sandbox recompute of custody root; planted tamper must fail closed |
 | **Braintrust** | Eval spans / scores for gold claim task (`braintona-hacksprint`) |
 | **Fireworks AI** | Claim extraction inference (`glm-5p1`) |
@@ -115,17 +116,30 @@ Lineage (not current Best Use hosts): Glasswork / Butterbase, BioCustody, voicew
 
 **File name:** `braintona-demo-<date>.mp4` · upload to Devpost + optional YouTube unlisted.
 
+### How to capture (any of these)
+
+| Kit | How |
+|---|---|
+| **Studio alone (preferred)** | `magicSTUDIObox` has **more screen room** than Pro — record there with **⌘⌃⇧5** / QuickTime. Run Braintona on Studio (`npm run start`) or open Pro’s `:8787` via tunnel; capture the wide browser + star chart. |
+| **Pro alone** | Fine if you’re already on cockpit — same shortcut; tighter display. |
+| **iPhone alone** | Control Center → Screen Recording; room + laptop, or Safari to the live demo URL. |
+| **Pro + Studio combo** | Studio = wide UI capture; Pro = narration / Cursor Remote Control. Daytona already proves “second machine” — don’t burn time wiring dual screens unless it looks better. |
+
+**Recommended:** **Record on Studio** (wider canvas for star chart + two-avatar). Voiceover live or later. Hide Dock/desktop clutter; do not show `.env` / Cursor secrets.
+
+### Shot list
+
 | Time | Screen | Voiceover |
 |---|---|---|
 | 0:00–0:12 | `/pitch.html` slide 1–2 | “Agents answer. The next person still re-checks. We fill three handoff gaps.” |
 | 0:12–0:35 | `/` Run live pipeline | “Fireworks extracts. Braintrust scores. We seal an FCO custody root.” |
 | 0:35–0:55 | Daytona green → tamper red | “Second machine recomputes. Tamper fails closed.” |
-| 0:55–1:15 | Token trace / Replay | “Every sponsor hop gets a signature and a point of contact.” |
-| 1:15–1:40 | Two-avatar call | “Customer Sarah vs agent Matilda — separate trees; customer tip stays in the vault.” |
-| 1:40–1:55 | Ceiling / graph | “We don’t claim truth. We claim custody. Value for everyone.” |
-| 1:55–2:00 | Repo URL on screen | “github.com/biobitworks/braintona” |
+| 0:55–1:10 | Token trace / Replay | “Every sponsor hop gets a signature and a point of contact.” |
+| 1:10–1:35 | `/demo-voice-star.html` traverse | “Presentation figure: customer voice atom glints; traverse clone → customer → agent → MMR.” |
+| 1:35–1:50 | Two-avatar / `/demo-two-turn.html` | “Hear the two leaves — customer vs agent; tip stays vault-private.” |
+| 1:50–2:00 | Repo URL (not technical graph) | “github.com/biobitworks/braintona — custody of bytes, not claimed truth.” |
 
-**Capture tips:** 1280×720+, mic clear, hide `.env`, zoom UI panels, no PI-seal / secrets.
+**Capture tips:** 1280×720+, mic clear, hide `.env`, use **star chart** for stage (technical graph is review-only).
 
 ---
 
@@ -152,7 +166,7 @@ Full lines: `docs/PRESENTATION_3MIN.md` · slides: `/pitch.html`.
 | Is this a deepfake detector? | No — explicit `human`/`ai` labels on sealed audio. |
 | Why Daytona? | Second machine must match; same-box verify is the gap. |
 | What’s in the vault? | Customer voice bytes + private Merkle tip; public graph gets hashes. |
-| CopilotKit / CodeRabbit? | Documented lanes; license/Discord Path B next — stack already live without them. |
+| CopilotKit / CodeRabbit? | CopilotKit license LIVE. CodeRabbit GitHub observe LIVE; Discord Path B when org invite lands. |
 | F1 red? | Eval = quality; custody = integrity — different jobs. |
 | Solo? | Byron P. Lee / BioBitWorks; agents as tools, credited in writeup. |
 
@@ -170,7 +184,8 @@ Full lines: `docs/PRESENTATION_3MIN.md` · slides: `/pitch.html`.
 ## 10. Pre-submit gate (do in order)
 
 - [ ] Paste elevator + problem + architecture + sponsor table into Devpost draft
-- [ ] Team name **Second Machine**; member email + socials filled
+- [x] Team name **Biobitworks**; member email + socials filled
+- [x] Dual license Apache-2.0 + CC BY-ND 4.0 locked in `LICENSE.md`
 - [ ] Repo public + README points to try-it
 - [ ] Record & upload &lt;2m demo video
 - [ ] Warm `npm run start` + one pipeline + two-avatar before any judging click

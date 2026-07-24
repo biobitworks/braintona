@@ -1,0 +1,36 @@
+{
+  "schema": "braintona.demo_script_seed.v1",
+  "seed_id": "S10_ceiling_close",
+  "ordinal": 10,
+  "kind": "seed_of_truth",
+  "created_before": "compiled_teleprompter",
+  "content_class": "human",
+  "statement": "Claim ceiling and close: custody of recorded bytes, not claimed truth. Repo github.com/biobitworks/braintona. Fill handoff gap. Fail closed.",
+  "say": "We don't claim the answer is true. [pause] We claim custody of the recorded bytes. [pause] github.com/biobitworks/braintona. [pause] Fill the handoff gap. Fail closed.",
+  "ui": {
+    "path": "/demo-guide.html?done=1",
+    "action": "finish_stop_record"
+  },
+  "proves": "ceiling_and_close",
+  "claim_ceiling": {
+    "allowed": [
+      "provenance \u2260 correctness",
+      "public repo pointer"
+    ],
+    "forbidden": [
+      "science truth claim",
+      "biometric / deepfake claim"
+    ]
+  },
+  "parents": [
+    "S02_custody_contract",
+    "S06_daytona_fail_closed",
+    "S09_two_leaves_vault"
+  ],
+  "llm_in_science_leaf": false,
+  "authority": {
+    "claim_promotion": false,
+    "writeback": false,
+    "pi_sign": false
+  }
+}

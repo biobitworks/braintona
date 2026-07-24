@@ -7,32 +7,50 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --foam: #e8f7f4;
-        --signal: #d9ff4a;
-        --ok: #3dffb5;
-        --warn: #ff6b4a;
-        --mut: rgba(232, 247, 244, 0.72);
+        --foam: #f2e7c4;
+        --signal: #f6d36a;
+        --old-gold: #b58a36;
+        --ok: #2bc6be;
+        --warn: #d18864;
+        --mut: #a89983;
+        --bg: #080510;
+        --jewel: #9260d4;
       }
       * { box-sizing: border-box; }
       html, body {
         margin: 0;
         height: 100%;
-        background: #07161a;
+        background: var(--bg);
         color: var(--foam);
-        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
       }
       body {
         background:
-          radial-gradient(1000px 500px at 10% -10%, rgba(61, 255, 181, 0.16), transparent 60%),
-          radial-gradient(800px 400px at 90% 0%, rgba(217, 255, 74, 0.1), transparent 55%),
-          linear-gradient(165deg, #07161a 0%, #0b1f24 50%, #12353a 100%);
+          radial-gradient(circle at 78% 16%, rgba(246, 211, 106, 0.12), transparent 22rem),
+          linear-gradient(
+            180deg,
+            rgba(8, 5, 16, 0.45) 0%,
+            rgba(8, 5, 16, 0.72) 55%,
+            rgba(6, 4, 10, 0.9) 100%
+          ),
+          url("/assets/bioviz/ship-of-theseus-atlas-bg.png") center / cover no-repeat;
       }
-      .deck { height: 100%; position: relative; }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background: url("/assets/voyager/bioviz-voyager-border.svg") center / 100% 100% no-repeat;
+        opacity: 0.38;
+        mix-blend-mode: screen;
+        z-index: 0;
+      }
+      .deck { height: 100%; position: relative; z-index: 1; }
       .slide {
         display: none;
         height: 100%;
@@ -169,7 +187,7 @@
         <ul>
           <li>Fireworks answers · Braintrust scores · FCO MMR seals.</li>
           <li>Daytona recomputes on a second machine · planted tamper rejects.</li>
-          <li>Token trace + two-avatar call (Sarah ↔ Matilda) build the interaction graph.</li>
+          <li>Token trace + two-avatar call (Byron ↔ Library) build the interaction graph.</li>
           <li><strong>Component:</strong> MMR of actual voice vs AI — grows over time with other private sensors.</li>
         </ul>
         <p class="ceil">Provenance of recorded bytes — not correctness.</p>
@@ -198,7 +216,7 @@
       </section>
     </div>
     <div class="footer">
-      <span>← → or space · <kbd>F</kbd> fullscreen · github.com/biobitworks/braintona</span>
+      <span>← → or space · <kbd>F</kbd> fullscreen · Biobitworks · Apache-2.0 + CC BY-ND 4.0 · github.com/biobitworks/braintona</span>
       <span id="count">1 / 7</span>
     </div>
     <script>
@@ -224,5 +242,6 @@
         else if (e.key === "End") show(slides.length - 1);
       });
     </script>
+      <script src="/demo-guide.js"></script>
   </body>
 </html>

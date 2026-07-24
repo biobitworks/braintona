@@ -15,6 +15,11 @@ export type GraphNodeKind =
   | "daytona"
   | "tamper"
   | "voice_origin"
+  | "voice_atom"
+  | "voice_tree"
+  | "voice_interaction"
+  | "voice_vault"
+  | "voice_clone"
   | "conversation_private";
 
 export interface GraphNode {
@@ -69,9 +74,42 @@ export interface PrivateConversationGraphLink {
   visibility: "private";
 }
 
+/** Two-avatar / customer↔agent voice interaction (fractal atom + twin trees). */
+export interface VoiceInteractionGraphLink {
+  interaction_id: string;
+  interaction_mmr_root: string;
+  tree_a_tip: string;
+  tree_b_tip: string;
+  customer_vault_root: string;
+  turns: Array<{
+    role: "customer" | "agent" | string;
+    avatar_name: string;
+    voice_id: string;
+    audio_sha256: string;
+    audio_bytes: number;
+    leaf_hash: string;
+    content_leaf: string;
+    fco_root: string;
+    tree: string;
+  }>;
+}
+
+export interface VoiceCloneGraphLink {
+  voice_id: string;
+  display_name?: string;
+  clone_leaf: string;
+  utterance_leaf?: string;
+  mmr_root: string;
+}
+
 export async function buildCustodyGraph(
   events: RunGraphEvent[],
-  opts: { session_id?: string; privateConversation?: PrivateConversationGraphLink | null } = {},
+  opts: {
+    session_id?: string;
+    privateConversation?: PrivateConversationGraphLink | null;
+    voiceInteraction?: VoiceInteractionGraphLink | null;
+    voiceClone?: VoiceCloneGraphLink | null;
+  } = {},
 ): Promise<CustodyGraph> {
   const session_id = opts.session_id || "braintona-demo";
   const nodes: GraphNode[] = [

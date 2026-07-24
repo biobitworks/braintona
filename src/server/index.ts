@@ -17,13 +17,26 @@ import { mountWorkosRoutes, workosEnabled } from "./workos.js";
 import { mountCopilotKitRoutes, copilotkitLicensePresent } from "./copilotkit.js";
 import { mountCodeRabbitRoutes, coderabbitKeyPresent } from "./coderabbit.js";
 import { runTwoAvatarCallDemo } from "./two_avatar_call.js";
+import { runVoiceCloneDemo } from "./voice_clone.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicDir = path.resolve(__dirname, "../../public");
 const app = express();
 const PORT = Number(process.env.PORT || 8787);
 
-app.use(cors({ origin: true, credentials: true }));
+const ALLOWED_ORIGINS = (process.env.CORS_ORIGINS || "http://127.0.0.1:8787,http://localhost:8787")
+  .split(",")
+  .map((o) => o.trim())
+  .filter(Boolean);
+app.use(
+  cors({
+    origin(origin, cb) {
+      if (!origin || ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
+      return cb(null, false);
+    },
+    credentials: true,
+  }),
+);
 app.use(cookieParser());
 app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: false }));
@@ -143,7 +156,15 @@ app.post("/api/conversation/seal-private", async (req, res) => {
 app.get("/api/conversation/private-pointer", async (_req, res) => {
   const pointer = await loadLatestPrivateConversationPointer();
   if (!pointer) return res.status(404).json({ error: "no private conversation sealed yet" });
-  res.json(pointer);
+  // Public surface: hashes only — never leak local filesystem paths
+  const { transcript_path_local: _path, ...publicPointer } = pointer as typeof pointer & {
+    transcript_path_local?: string;
+  };
+  res.json({
+    ...publicPointer,
+    transcript_path_sha256: pointer.transcript_sha256 ? undefined : undefined,
+    path_redacted: true,
+  });
 });
 
 app.post("/api/verify", async (req, res) => {
@@ -192,6 +213,31 @@ app.get("/api/demo/two-avatar-call/latest", async (_req, res) => {
     res.type("json").send(raw);
   } catch {
     res.status(404).json({ error: "no two-avatar demo yet" });
+  }
+});
+
+/** Register ElevenLabs voice clone as FCO + seal one AI utterance under it. */
+app.post("/api/demo/voice-clone", async (req, res) => {
+  try {
+    const demo = await runVoiceCloneDemo({
+      voice_id: typeof req.body?.voice_id === "string" ? req.body.voice_id : undefined,
+      text: typeof req.body?.text === "string" ? req.body.text : undefined,
+      display_name: typeof req.body?.display_name === "string" ? req.body.display_name : undefined,
+    });
+    res.json(demo);
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) });
+  }
+});
+
+app.get("/api/demo/voice-clone/latest", async (_req, res) => {
+  try {
+    const { readFile } = await import("node:fs/promises");
+    const pathMod = await import("node:path");
+    const raw = await readFile(pathMod.resolve("data/voice_clone_latest.json"), "utf8");
+    res.type("json").send(raw);
+  } catch {
+    res.status(404).json({ error: "no voice-clone demo yet" });
   }
 });
 

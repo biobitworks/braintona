@@ -1,0 +1,34 @@
+{
+  "schema": "braintona.demo_script_seed.v1",
+  "seed_id": "S04_gap_unlabeled_voice",
+  "ordinal": 4,
+  "kind": "seed_of_truth",
+  "created_before": "compiled_teleprompter",
+  "content_class": "human",
+  "statement": "Gap two: unlabeled voice. Customer and agent audio look the same in logs without explicit content_class labels.",
+  "say": "Second. Unlabeled voice. [pause] When customer and agent audio look the same in the logs.",
+  "ui": {
+    "path": "/pitch.html",
+    "action": "talk_only"
+  },
+  "proves": "gap_2_named",
+  "claim_ceiling": {
+    "allowed": [
+      "unlabeled voice as custody/logging gap",
+      "need explicit human vs ai labels"
+    ],
+    "forbidden": [
+      "deepfake detector claim",
+      "biometric speaker ID"
+    ]
+  },
+  "parents": [
+    "S03_gap_same_box"
+  ],
+  "llm_in_science_leaf": false,
+  "authority": {
+    "claim_promotion": false,
+    "writeback": false,
+    "pi_sign": false
+  }
+}

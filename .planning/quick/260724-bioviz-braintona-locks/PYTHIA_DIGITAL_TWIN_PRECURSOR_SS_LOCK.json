@@ -1,0 +1,68 @@
+{
+  "schema": "portfolio.operator_goal_lock.v1",
+  "lane": "260724-cloudmer-pitch-live-cellico",
+  "decision_id": "D17.7",
+  "ts_utc": "2026-07-24T18:38:00Z",
+  "operator_lock": "Our FCO-custodied Pythia model can be framed as a digital-twin precursor that is Anticube SS (self \u00d7 safe).",
+  "expansions": {
+    "Pythia": "FCO Vitalogy\u2192Pythia-14M / EleutherAI Pythia-family from-scratch custody train template (D17.1) \u2014 not CLAI clinical Pythia",
+    "digital_twin_precursor": "Architecture step toward a private, recompute-verifiable model of a person's sealed interaction/custody state \u2014 not a living clinical twin, not a patient simulator, not care delivery",
+    "Anticube": "self/non-self \u00d7 safe/unsafe admission 2\u00d72 (SS/SN/NS/NN); governance disposition under MSM/Antigence",
+    "SS": "self \u00d7 safe \u2014 admitted as belonging to the subject's sealed custody lane and passing the safe gate for that interaction class"
+  },
+  "means": [
+    "BYOM Pythia (D17.1) remains the fixture brought into a BYOM-capable sponsor under FCO/FCG custody",
+    "Admission posture for that fixture is Anticube SS: self (subject/vault lane) \u00d7 safe (MSM admit)",
+    "Digital-twin language stays at precursor / architecture goal \u2014 sealed bytes + private vault tip + labeled hops precede any twin claim",
+    "Public surfaces may say self-and-safe without requiring the word Anticube (D15: Anticube optional publicly)"
+  ],
+  "layering": {
+    "custody": "FCO/FCG + user-vault Merkle root (D17.3)",
+    "admission": "Anticube SS under MSM/Antigence",
+    "model_fixture": "Pythia-family train template",
+    "product_horizon": "digital-twin precursor (not twin product yet)"
+  },
+  "claim_ceiling": {
+    "allowed": [
+      "Pythia as digital-twin precursor (architecture / custody framing)",
+      "Anticube SS (self \u00d7 safe) as admission disposition for that precursor lane",
+      "public paraphrase: self-and-safe sealed model lane without naming Anticube",
+      "BYOM + private vault tip as the twin-precursor substrate",
+      "Pythia as SS+MSM example twin across multi-sponsor model/rules/governance intake (D17.7a)",
+      "MMR of actual voice vs AI as load-bearing twin voice component (D17.7b)"
+    ],
+    "forbidden": [
+      "living / clinically validated digital twin of a patient",
+      "Pythia provides clinical care, diagnosis, or treatment via twin",
+      "Anticube SS as clinical immunology or safety certification",
+      "SMS (Self-Match Score) conflated with Anticube SS",
+      "CLAI clinical Pythia conflated with FCO Pythia",
+      "PHI processed inside the twin precursor on public cellico.bio"
+    ]
+  },
+  "distinct_from": [
+    "SMS (Self-Match Score \u2014 Cloudmer per-residue field)",
+    "clinical digital twin products",
+    "CLAI-group clinical Pythia prompt optimizer",
+    "Anticube SN/NS/NN dispositions (not claimed for this precursor lane)"
+  ],
+  "parents": [
+    "D17",
+    "D17.1",
+    "D17.3",
+    "D15"
+  ],
+  "llm_in_science_leaf": false,
+  "authority": {
+    "pi_sign": false,
+    "claim_promotion": false,
+    "writeback": false
+  },
+  "extended_by": "D17.7a",
+  "extension_lock": "PYTHIA_SS_MSM_MULTI_SPONSOR_TWIN_LOCK.json",
+  "voice_component": {
+    "decision": "D17.7b",
+    "lock": "VOICE_HUMAN_AI_MMR_COMPONENT_LOCK.json",
+    "text": "MMR of actual voice vs AI voice is the load-bearing twin component"
+  }
+}

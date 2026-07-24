@@ -14,7 +14,8 @@ export type GraphNodeKind =
   | "eval"
   | "daytona"
   | "tamper"
-  | "voice_origin";
+  | "voice_origin"
+  | "conversation_private";
 
 export interface GraphNode {
   id: string;
@@ -57,9 +58,20 @@ function shortHash(h: string, n = 10): string {
   return (h || "").slice(0, n);
 }
 
+export interface PrivateConversationGraphLink {
+  continuous_session_id: string;
+  content_leaf: string;
+  fco_root: string;
+  mmr_tip: string;
+  transcript_sha256: string;
+  transcript_bytes: number;
+  cloud_agent_bc_id?: string;
+  visibility: "private";
+}
+
 export async function buildCustodyGraph(
   events: RunGraphEvent[],
-  opts: { session_id?: string } = {},
+  opts: { session_id?: string; privateConversation?: PrivateConversationGraphLink | null } = {},
 ): Promise<CustodyGraph> {
   const session_id = opts.session_id || "braintona-demo";
   const nodes: GraphNode[] = [
@@ -164,6 +176,36 @@ export async function buildCustodyGraph(
       edges.push({ id: `e-${rootId}-tamper`, from: rootId, to: tId, rel: "CONTRAST" });
     }
   });
+
+  if (opts.privateConversation) {
+    const pc = opts.privateConversation;
+    const convId = `conversation_private:${pc.content_leaf.slice(0, 12)}`;
+    nodes.push({
+      id: convId,
+      kind: "conversation_private",
+      label: "Private Cursor conversation",
+      short: pc.transcript_sha256.slice(0, 12),
+      meta: {
+        visibility: "private",
+        continuous_session_id: pc.continuous_session_id,
+        cloud_agent_bc_id: pc.cloud_agent_bc_id || null,
+        transcript_sha256: pc.transcript_sha256,
+        transcript_bytes: pc.transcript_bytes,
+        content_leaf: pc.content_leaf,
+        fco_root: pc.fco_root,
+        mmr_tip: pc.mmr_tip,
+        plaintext_in_public_graph: false,
+      },
+    });
+    edges.push({
+      id: `e-session-${convId}`,
+      from: `session:${session_id}`,
+      to: convId,
+      rel: "INCLUDES_PRIVATE",
+    });
+    // Bind conversation leaf into bagged session commitment (hash only).
+    rootLeaves.push(pc.content_leaf);
+  }
 
   const bagged_session_root = await mmr(rootLeaves.length ? rootLeaves : []);
 

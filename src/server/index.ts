@@ -9,6 +9,10 @@ import { narrateElevenLabs } from "./elevenlabs.js";
 import { loadLatestGraph, refreshCustodyGraph } from "./graph.js";
 import { loadLatestReceipt, runPipeline } from "./pipeline.js";
 import { buildContrastDemo } from "./voice_origin.js";
+import {
+  loadLatestPrivateConversationPointer,
+  sealCursorConversationPrivate,
+} from "./conversation_custody.js";
 import { mountWorkosRoutes, workosEnabled } from "./workos.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -84,6 +88,38 @@ app.post("/api/graph/refresh", async (_req, res) => {
   } catch (err) {
     res.status(500).json({ error: err instanceof Error ? err.message : String(err) });
   }
+});
+
+
+/** Seal Cursor conversation as private custody object (hashes only in public graph). */
+app.post("/api/conversation/seal-private", async (req, res) => {
+  try {
+    const result = await sealCursorConversationPrivate({
+      transcript_path: typeof req.body?.transcript_path === "string" ? req.body.transcript_path : undefined,
+      continuous_session_id:
+        typeof req.body?.continuous_session_id === "string" ? req.body.continuous_session_id : undefined,
+      cloud_agent_bc_id:
+        typeof req.body?.cloud_agent_bc_id === "string" ? req.body.cloud_agent_bc_id : undefined,
+      note: typeof req.body?.note === "string" ? req.body.note : undefined,
+    });
+    const { pointer, vault_path, graph_attached } = result;
+    res.json({
+      ok: true,
+      pointer,
+      vault_path,
+      graph_attached,
+      plaintext_included: false,
+      note: "Public response is hash-only; vault sidecar is gitignored",
+    });
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) });
+  }
+});
+
+app.get("/api/conversation/private-pointer", async (_req, res) => {
+  const pointer = await loadLatestPrivateConversationPointer();
+  if (!pointer) return res.status(404).json({ error: "no private conversation sealed yet" });
+  res.json(pointer);
 });
 
 app.post("/api/verify", async (req, res) => {

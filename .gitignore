@@ -9,3 +9,6 @@ data/*.jsonl
 *.log
 .turbo/
 coverage/
+
+# Operator vault — private conversation custody (never commit plaintext)
+.planning/private/

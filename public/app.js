@@ -27,6 +27,7 @@ const KIND_COLOR = {
   daytona: "#d9ff4a",
   tamper: "#ff6b4a",
   voice_origin: "#ff8ad8",
+  conversation_private: "#c4b5a0",
 };
 
 function setStep(name, state) {

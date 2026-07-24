@@ -5,3 +5,4 @@
 {"term":"Butterbase","expansion":"Prior substrate hosting Glasswork inference/data/deploy","locked":true,"source":"braintona-hacksprint","ts":"2026-07-24T16:12:00Z"}
 {"term":"Kylon","expansion":"BioBridge pipeline demo host (biobridge-pipeline.kylon.app)","locked":true,"source":"braintona-hacksprint","ts":"2026-07-24T16:12:00Z"}
 {"term":"Sauna","expansion":"sauna.ai / sauna.new deployment surface for voiceworks + BioCustody","locked":true,"source":"braintona-hacksprint","ts":"2026-07-24T16:12:00Z"}
+{"term":"private_conversation_custody","expansion":"Cursor/agent conversation sealed as an FCO custody object with visibility=private: transcript_sha256 + content_leaf in public graph; plaintext stays in operator vault / Cursor transcript path outside git","distinct_from":["public_pipeline_receipt","SeedGraph_writeback"],"locked_at":"2026-07-24T17:38:00Z","parent":"cursor-6430eeef-1426-4566-a6fc-5d688723f05b","llm_in_science_leaf":false}

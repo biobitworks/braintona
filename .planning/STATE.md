@@ -1,20 +1,56 @@
-# STATE — Braintona
+# STATE — Braintona (handoff)
 
-**Updated:** 2026-07-24 ~10:36 PDT
-**Host:** magicPRObox ↔ magicSTUDIObox  
-**Session:** cursor-6430eeef-1426-4566-a6fc-5d688723f05b
+**Updated:** 2026-07-24 ~10:39 PDT  
+**Deadline:** 15:30 PDT Devpost  
+**Hosts:** magicPRObox (cockpit) · magicSTUDIObox (compute)  
+**Session:** cursor-6430eeef-1426-4566-a6fc-5d688723f05b  
+**Branch:** `cursor/braintona-main-app-kg-e2e-cc88` · PR https://github.com/biobitworks/braintona/pull/3
 
-## Current position
+## MVP (what we ship)
 
-- Fireworks `glm-5p1` ✓
-- Braintrust eval logging ✓ (`backend: braintrust`)
-- Local custody verify ✓ + planted tamper reject ✓
-- Daytona sandbox recompute ✓ (`9a82644a-6bc0-440a-977a-ca9afe7cc9c2`)
-- Devpost: registered `byron940`; submissions still "open soon"
-- Still need: `ELEVENLABS_API_KEY`, `COPILOTKIT_LICENSE_TOKEN`
+**Braintona** — custody agent for AI handoff:
+
+1. **Fireworks** extracts claims (temp 0)  
+2. **Braintrust** scores vs gold (pass/fail)  
+3. **FCO/MMR** seals ops+content receipt  
+4. **Daytona** sandbox recomputes root (green) + planted tamper (red)  
+5. **Custody knowledge graph** grows per run (`/api/graph` + UI)  
+6. **Voice-origin FCO** labels human vs AI audio bytes  
+7. **WorkOS** optional local AuthKit (migrate URL later)
+
+**Pitch:** Audit every agent byte. Reject on mismatch. Custody = provenance, not correctness.
+
+**Devpost draft:** https://devpost.com/software/1362706  
+**Repo:** https://github.com/biobitworks/braintona  
+**Local demo:** http://127.0.0.1:8787
+
+## Status
+
+| Piece | State |
+|---|---|
+| Daytona / Braintrust / Fireworks / FCO | Working |
+| Custody knowledge graph | Live — `/api/graph` + UI; grows per pipeline run |
+| Private conversation custody | Sealed — graph node `conversation_private` (hashes only); vault gitignored |
+| WorkOS local AuthKit | Wired (set dashboard redirects) |
+| Voice-origin API | Working (optional human .mp3 in `public/assets/voice/`) |
+| ElevenLabs TTS | Key present; fix voice_id if 404 |
+| CodeRabbit key | In `.env`; Path B queued — `docs/CODERABBIT_DISCORD_PATH_B.md` (on other PR) |
+| CopilotKit | Missing license |
+| **E2E** | **`npm run e2e` → 10/10 PASS** (graph 3→5, session root advanced) |
+| Demo video | TODO |
 
 ## Resume
 
 ```bash
-cd /Users/byron/projects/active/braintona && set -a && source .env && set +a && npm run dev
+cd /Users/byron/projects/active/braintona
+set -a && source .env && set +a
+npm run start            # http://127.0.0.1:8787
+npm run e2e              # full API loop
+# UI: Run live pipeline twice — watch knowledge graph grow
 ```
+
+**Last E2E:** `npm run e2e` → 10/10 PASS.
+
+**Next (queued — “in a bit”):** CodeRabbit Discord Path B (browser/operator).
+
+**Other:** fix ElevenLabs voice_id · human voice sample · Devpost About · &lt;2m video · submit by 15:30.

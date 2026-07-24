@@ -22,6 +22,13 @@ The **twin / handoff voice unit** is whether the next person can see **which byt
 
 Two-avatar demo (Sarah customer / Matilda agent) is the live instance: two trees → interaction MMR; customer tip can stay vault-private.
 
+
+## Builds over time (private sensors)
+
+The tip is **append-only**: as other **sensor** leaves seal beside actual/AI voice, the MMR **grows**. Raw sensor and private voice preimages stay in the **vault**; public/sponsor surfaces get tips and labels only.
+
+Portfolio lock: bioviz-tech **D17.7c** `PRIVATE_SENSOR_MMR_GROWTH_LOCK.json` (PhoneBio sensor lineage feeds “other sensor data” without identity claims).
+
 ## Claim ceiling
 
 | We claim | We do **not** claim |

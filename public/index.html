@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Braintona — audit every agent byte</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true"></div>
+    <main>
+      <header class="hero">
+        <p class="brand">BRAINTONA</p>
+        <h1>Audit every agent byte.</h1>
+        <p class="lede">
+          Fireworks answers. Braintrust scores. Daytona recomputes custody. Voice-origin FCO/MMR
+          labels human vs AI audio — reject on mismatch.
+        </p>
+        <div class="cta-row">
+          <button id="runBtn" type="button">Run live pipeline</button>
+          <button id="voiceBtn" type="button" class="ghost">Seal voice origin</button>
+          <button id="speakBtn" type="button" class="ghost" disabled>Speak verify</button>
+        </div>
+      </header>
+
+      <section class="panel" aria-label="Pipeline">
+        <h2>Pipeline</h2>
+        <label for="source">Source text</label>
+        <textarea id="source" rows="5" placeholder="Paste a short scientific paragraph…"></textarea>
+        <div id="status" class="status">Ready · deadline 3:30 PM PDT</div>
+        <ol id="steps" class="steps">
+          <li data-step="infer">Inference</li>
+          <li data-step="eval">Eval</li>
+          <li data-step="local">Local custody</li>
+          <li data-step="daytona">Daytona recompute</li>
+          <li data-step="tamper">Planted tamper</li>
+        </ol>
+      </section>
+
+      <section class="panel results" id="results" hidden>
+        <h2>Result</h2>
+        <div class="grid">
+          <article>
+            <h3>Eval</h3>
+            <pre id="evalOut"></pre>
+          </article>
+          <article>
+            <h3>Custody</h3>
+            <pre id="custodyOut"></pre>
+          </article>
+        </div>
+        <p class="ceiling">
+          Ceilings: custody = provenance of recorded bytes, not correctness. LLM = signal. Eval =
+          this gold task only.
+        </p>
+        <p class="cite">
+          Method: Fractal Custody Objects —
+          <a href="https://doi.org/10.5281/zenodo.21210575" target="_blank" rel="noreferrer"
+            >doi:10.5281/zenodo.21210575</a
+          >
+          · Lineage: Glasswork / BioCustody / Sauna
+        </p>
+      </section>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "name": "braintona",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Daytona × Braintrust × FCO custody agent — HackSprint SF Jul 2026",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server/index.ts",
+    "start": "tsx src/server/index.ts",
+    "pipeline": "tsx src/cli/run_pipeline.ts",
+    "daytona:verify": "tsx src/cli/daytona_verify.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.json"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@daytona/sdk": "^0.200.1",
+    "braintrust": "^0.4.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.15.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.3"
+  }
+}

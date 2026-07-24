@@ -1,0 +1,7 @@
+{"term":"FCO","expansion":"Fractal Custody Object","locked":true,"note":"Published Zenodo DOI 10.5281/zenodo.21210575; leaf prefix 0x00","distinct_from":["SMS","MSM"],"source":"braintona-hacksprint","ts":"2026-07-24T16:12:00Z"}
+{"term":"FCG","expansion":"Fractal Custody Graph","locked":true,"note":"MMR over FCO leaves; bagged right-to-left; node prefix 0x01","source":"braintona-hacksprint","ts":"2026-07-24T16:12:00Z"}
+{"term":"Braintona","expansion":"Braintrust × Daytona FCO custody agent (HackSprint SF Jul 2026)","locked":true,"source":"braintona-hacksprint","ts":"2026-07-24T16:12:00Z"}
+{"term":"Glasswork","expansion":"Prior Butterbase hack demo: cheapest-passing-model + custody verify","locked":true,"url":"https://glasswork.butterbase.dev","source":"braintona-hacksprint","ts":"2026-07-24T16:12:00Z"}
+{"term":"Butterbase","expansion":"Prior substrate hosting Glasswork inference/data/deploy","locked":true,"source":"braintona-hacksprint","ts":"2026-07-24T16:12:00Z"}
+{"term":"Kylon","expansion":"BioBridge pipeline demo host (biobridge-pipeline.kylon.app)","locked":true,"source":"braintona-hacksprint","ts":"2026-07-24T16:12:00Z"}
+{"term":"Sauna","expansion":"sauna.ai / sauna.new deployment surface for voiceworks + BioCustody","locked":true,"source":"braintona-hacksprint","ts":"2026-07-24T16:12:00Z"}

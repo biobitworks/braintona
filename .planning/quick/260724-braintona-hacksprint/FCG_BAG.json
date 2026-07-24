@@ -1,0 +1,108 @@
+{
+  "schema": "portfolio.fcg_bag.v1",
+  "project": "braintona",
+  "title": "Daytona HackSprint SF Jul 2026 \u2014 Braintona",
+  "updated_at_utc": "2026-07-24T16:30:46.308618+00:00",
+  "signed": false,
+  "pi_seal": false,
+  "llm_in_science_leaf": false,
+  "goal": "Ship Braintona (Daytona\u00d7Braintrust\u00d7FCO) and submit Devpost by 15:30 PDT",
+  "artifacts": [
+    {
+      "path": "IDEA.md",
+      "bytes": 2812,
+      "sha256_fco_style": "sha256:c2f48de9e86fd463f024dfe2c7febb1ff68fe329866ca43b927659461cc48d0e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2499,
+      "sha256_fco_style": "sha256:2edec6d701726f4338faf89414eb3c7cbfc5f75109489e280f9d2e96974d0024"
+    },
+    {
+      "path": "package.json",
+      "bytes": 814,
+      "sha256_fco_style": "sha256:c0dbeed1f1c769e6ad9d23b15bf146877a9e69616d149ab7a15978c6392be808"
+    },
+    {
+      "path": "src/lib/fco.ts",
+      "bytes": 6106,
+      "sha256_fco_style": "sha256:a201eae576011dce781a61633a3b280e3ca928cfb4e16e354a309be60128e5d9"
+    },
+    {
+      "path": "src/lib/receipts.ts",
+      "bytes": 2670,
+      "sha256_fco_style": "sha256:9866b20ff3e5fd15a59674e79f4d27dd5537393050714e7a5336e10386dd9e16"
+    },
+    {
+      "path": "src/server/pipeline.ts",
+      "bytes": 4172,
+      "sha256_fco_style": "sha256:dc84b626ff51ab78406bee0fbf9c785622682761b47f9b55b5a869f2dbcedb60"
+    },
+    {
+      "path": "src/server/daytona.ts",
+      "bytes": 3600,
+      "sha256_fco_style": "sha256:7f43d8e1bb65814f42a4da9b01564dd740375dfad52b48cfe5a46b31eb8c7e35"
+    },
+    {
+      "path": "src/server/fireworks.ts",
+      "bytes": 2121,
+      "sha256_fco_style": "sha256:19968e54da3a8aaead10648b377032a0cfed25269c0c80ff40530fcbbd93fb71"
+    },
+    {
+      "path": "src/server/eval.ts",
+      "bytes": 4631,
+      "sha256_fco_style": "sha256:bd76d9ef5a2f6a179ad64085b855be89a4c6aadda1ca9fbdd1bef4a4065559fb"
+    },
+    {
+      "path": "src/server/index.ts",
+      "bytes": 3432,
+      "sha256_fco_style": "sha256:be1f2ec0334d9d53eaf4a8afa83c4b605cffcf7644a104ae292e3574e3d8906f"
+    },
+    {
+      "path": "public/index.html",
+      "bytes": 2767,
+      "sha256_fco_style": "sha256:f7c83a443b1b2f2229a91fb8fc0c44cee6f3a102b7a6efe2f3e859f2b638fa24"
+    },
+    {
+      "path": "public/app.js",
+      "bytes": 5858,
+      "sha256_fco_style": "sha256:615b157b7ca9c739402d9a1708ede962efb0698eca5537d646bb967fe8c3c171"
+    },
+    {
+      "path": "public/styles.css",
+      "bytes": 3666,
+      "sha256_fco_style": "sha256:c1bb8427f3714dc283b21fab0ca26270fc803c90472a63cf9e9a00d1b267aa04"
+    },
+    {
+      "path": "docs/link_capture.jsonl",
+      "bytes": 9321,
+      "sha256_fco_style": "sha256:3ae0e60393d81cd5d5bbe54faed0f94bd2cf032e757121f59448fefd9bbcbd7b"
+    },
+    {
+      "path": ".planning/PROJECT.md",
+      "bytes": 1885,
+      "sha256_fco_style": "sha256:db141dbe554b5fb583af742a1c32cffb2238a9ab20916a0ba0ff5af98368c1d5"
+    },
+    {
+      "path": ".planning/REQUIREMENTS.md",
+      "bytes": 1487,
+      "sha256_fco_style": "sha256:c4b8b95d9fac83e54cd43e1113bdebc8f34595ac85005c874cd438d16c3e4aff"
+    },
+    {
+      "path": ".planning/ROADMAP.md",
+      "bytes": 803,
+      "sha256_fco_style": "sha256:d7253caeda934e317a8cc54e2f52ed19ef2f8515742b28d695b4bae399c85c05"
+    },
+    {
+      "path": ".planning/STATE.md",
+      "bytes": 632,
+      "sha256_fco_style": "sha256:68ade0aba942352d2789da41c57eadea8a955727dee11ca186445a70aeac9751"
+    },
+    {
+      "path": ".planning/lexicon/TERMS.jsonl",
+      "bytes": 1318,
+      "sha256_fco_style": "sha256:253f934ff28de2ce484287976f7418c08390dd4911f69e56b76a3da0b28b7e93"
+    }
+  ],
+  "n_artifacts": 19
+}

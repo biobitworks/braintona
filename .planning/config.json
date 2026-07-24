@@ -1,0 +1,20 @@
+{
+  "mode": "yolo",
+  "granularity": "coarse",
+  "parallel_execution": true,
+  "commit_docs": true,
+  "research_before_phases": false,
+  "auto": true,
+  "text_mode": true,
+  "project_name": "braintona",
+  "hackathon": {
+    "name": "Daytona HackSprint w/ Braintrust - SF, July 2026",
+    "devpost": "https://daytona-hacksprint-sf-jul-2026.devpost.com/",
+    "deadline_local": "2026-07-24T15:30:00-07:00"
+  },
+  "hosts": {
+    "cockpit": "magicPRObox",
+    "compute": "magicSTUDIObox"
+  },
+  "llm_in_science_leaf": false
+}

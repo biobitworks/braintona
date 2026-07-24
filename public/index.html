@@ -19,13 +19,15 @@
         <p class="brand">BRAINTONA</p>
         <h1>Audit every agent byte.</h1>
         <p class="lede">
-          Fireworks answers. Braintrust scores. Daytona recomputes custody. Voice-origin FCO/MMR
-          labels human vs AI audio — reject on mismatch.
+          Fireworks answers. Braintrust scores. Daytona recomputes custody. Each run grows a local
+          FCO/MMR knowledge graph — reject on mismatch.
         </p>
         <div class="cta-row">
           <button id="runBtn" type="button">Run live pipeline</button>
           <button id="voiceBtn" type="button" class="ghost">Seal voice origin</button>
           <button id="speakBtn" type="button" class="ghost" disabled>Speak verify</button>
+          <a id="workosLogin" class="ghost link-btn" href="/login">WorkOS sign in</a>
+          <span id="workosUser" class="auth-chip" hidden></span>
         </div>
       </header>
 
@@ -40,7 +42,17 @@
           <li data-step="local">Local custody</li>
           <li data-step="daytona">Daytona recompute</li>
           <li data-step="tamper">Planted tamper</li>
+          <li data-step="graph">Knowledge graph</li>
         </ol>
+      </section>
+
+      <section class="panel" id="graphPanel" aria-label="Custody knowledge graph">
+        <div class="panel-head">
+          <h2>Custody knowledge graph</h2>
+          <p id="graphMeta" class="graph-meta">Loading session graph…</p>
+        </div>
+        <svg id="graphSvg" class="graph-svg" viewBox="0 0 920 320" role="img" aria-label="Custody graph"></svg>
+        <pre id="graphOut" class="graph-json" hidden></pre>
       </section>
 
       <section class="panel results" id="results" hidden>
@@ -57,7 +69,7 @@
         </div>
         <p class="ceiling">
           Ceilings: custody = provenance of recorded bytes, not correctness. LLM = signal. Eval =
-          this gold task only.
+          this gold task only. Graph = local session provenance, not SeedGraph writeback.
         </p>
         <p class="cite">
           Method: Fractal Custody Objects —
@@ -66,6 +78,11 @@
           >
           · Lineage: Glasswork / BioCustody / Sauna
         </p>
+      </section>
+
+      <section class="panel" id="voicePanel" hidden>
+        <h2>Voice-origin FCO</h2>
+        <pre id="voiceOut"></pre>
       </section>
     </main>
     <script type="module" src="/app.js"></script>

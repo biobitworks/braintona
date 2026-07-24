@@ -1,20 +1,29 @@
+import "dotenv/config";
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { verifyReceipt } from "../lib/receipts.js";
 import { narrateElevenLabs } from "./elevenlabs.js";
+import { loadLatestGraph, refreshCustodyGraph } from "./graph.js";
 import { loadLatestReceipt, runPipeline } from "./pipeline.js";
 import { buildContrastDemo } from "./voice_origin.js";
+import { mountWorkosRoutes, workosEnabled } from "./workos.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicDir = path.resolve(__dirname, "../../public");
 const app = express();
 const PORT = Number(process.env.PORT || 8787);
 
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
+app.use(cookieParser());
 app.use(express.json({ limit: "2mb" }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(publicDir));
+
+// AuthKit routes (/login /callback /logout /api/auth/status) — optional, non-gating
+mountWorkosRoutes(app);
 
 app.get("/api/health", (_req, res) => {
   res.json({
@@ -27,8 +36,16 @@ app.get("/api/health", (_req, res) => {
       fireworks: Boolean(process.env.FIREWORKS_API_KEY),
       braintrust: Boolean(process.env.BRAINTRUST_API_KEY),
       elevenlabs: Boolean(process.env.ELEVENLABS_API_KEY || process.env.ELEVEN_API_KEY),
+      workos: workosEnabled(),
+      copilotkit: Boolean(process.env.COPILOTKIT_LICENSE_TOKEN),
+      coderabbit: Boolean(process.env.CODERABBIT_API_KEY),
     },
     claim_ceiling: "custody = provenance, not correctness",
+    workos: {
+      enabled: workosEnabled(),
+      redirect_uri: process.env.WORKOS_REDIRECT_URI || "http://127.0.0.1:8787/callback",
+      mode: "local_first_optional_auth",
+    },
   });
 });
 
@@ -48,6 +65,25 @@ app.get("/api/latest", async (_req, res) => {
   if (!receipt) return res.status(404).json({ error: "no receipt yet" });
   const verify = await verifyReceipt(receipt);
   res.json({ receipt, verify });
+});
+
+/** Session-local custody knowledge graph (grows with each pipeline run). */
+app.get("/api/graph", async (_req, res) => {
+  try {
+    const graph = (await loadLatestGraph()) ?? (await refreshCustodyGraph());
+    res.json(graph);
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) });
+  }
+});
+
+app.post("/api/graph/refresh", async (_req, res) => {
+  try {
+    const graph = await refreshCustodyGraph();
+    res.json(graph);
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : String(err) });
+  }
 });
 
 app.post("/api/verify", async (req, res) => {
@@ -76,7 +112,6 @@ app.post("/api/voice-origin", async (req, res) => {
         ? req.body.text.trim()
         : "Braintona custody verified. This leaf is AI-origin speech.";
     const result = await buildContrastDemo(text);
-    // Don't dump huge audio into JSON unless requested
     const { audio_base64, ...rest } = result;
     res.json({
       ...rest,
@@ -94,4 +129,5 @@ app.get("/{*path}", (_req, res) => {
 
 app.listen(PORT, () => {
   console.log(`braintona listening on http://127.0.0.1:${PORT}`);
+  console.log(`workos ${workosEnabled() ? "enabled (optional AuthKit)" : "disabled"}`);
 });

@@ -7,7 +7,6 @@ import {
   verifyVoiceOriginGraph,
   type VoiceOriginReceipt,
 } from "../lib/voice_origin.js";
-import { hashText } from "../lib/receipts.js";
 import { narrateElevenLabs } from "./elevenlabs.js";
 
 const DATA = path.resolve("data");

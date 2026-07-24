@@ -9,20 +9,25 @@
     "start": "tsx src/server/index.ts",
     "pipeline": "tsx src/cli/run_pipeline.ts",
     "daytona:verify": "tsx src/cli/daytona_verify.ts",
+    "e2e": "bash scripts/e2e_main_app.sh",
     "typecheck": "tsc --noEmit",
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc --noEmit"
   },
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
     "@daytona/sdk": "^0.200.1",
+    "@workos-inc/node": "^10.8.0",
     "braintrust": "^0.4.0",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
     "express": "^5.1.0",
     "zod": "^3.25.0"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/node": "^22.15.0",

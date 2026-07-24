@@ -1,9 +1,11 @@
 import { mkdir, appendFile, writeFile, readFile } from "node:fs/promises";
 import path from "node:path";
 import { buildReceipt, hashText, verifyReceipt, type CustodyReceipt } from "../lib/receipts.js";
+import type { CustodyGraph } from "../lib/custody_graph.js";
 import { evaluate, getDefaultTask } from "./eval.js";
 import { fireworksComplete } from "./fireworks.js";
 import { daytonaRecompute } from "./daytona.js";
+import { appendGraphEvent } from "./graph.js";
 
 const DATA = path.resolve("data");
 const RECEIPTS = path.join(DATA, "receipts.jsonl");
@@ -25,6 +27,7 @@ export interface PipelineResult {
   daytona?: Awaited<ReturnType<typeof daytonaRecompute>>;
   tamper_receipt?: CustodyReceipt;
   tamper_verify?: Awaited<ReturnType<typeof verifyReceipt>>;
+  graph?: CustodyGraph;
   narrate?: string;
 }
 
@@ -97,6 +100,16 @@ export async function runPipeline(opts: {
     tamper_verify = await verifyReceipt(tamper_receipt);
   }
 
+  const graph = await appendGraphEvent({
+    receipt,
+    verify_local_ok: verify_local.ok,
+    daytona_ok: daytona ? daytona.ok : null,
+    daytona_skipped: Boolean(daytona?.skipped),
+    tamper_rejected: tamper_verify ? !tamper_verify.ok : null,
+    eval_pass: evalResult.pass,
+    eval_f1: evalResult.f1,
+  });
+
   const narrate = [
     `Braintona eval ${evalResult.pass ? "PASS" : "FAIL"}`,
     `F1 ${(evalResult.f1 * 100).toFixed(0)} percent.`,
@@ -105,6 +118,7 @@ export async function runPipeline(opts: {
       ? `Daytona sandbox ${daytona.ok ? "recomputed match" : "mismatch or skipped"}.`
       : "Daytona skipped.",
     tamper_verify ? `Planted tamper ${tamper_verify.ok ? "unexpectedly passed" : "correctly rejected"}.` : "",
+    `Session graph ${graph.run_count} runs · root ${graph.bagged_session_root.slice(0, 12)}.`,
     "Custody proves provenance, not correctness.",
   ]
     .filter(Boolean)
@@ -127,6 +141,7 @@ export async function runPipeline(opts: {
     daytona,
     tamper_receipt,
     tamper_verify,
+    graph,
     narrate,
   };
 }

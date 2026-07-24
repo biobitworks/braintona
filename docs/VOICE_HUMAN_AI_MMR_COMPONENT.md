@@ -29,6 +29,11 @@ The tip is **append-only**: as other **sensor** leaves seal beside actual/AI voi
 
 Portfolio lock: bioviz-tech **D17.7c** `PRIVATE_SENSOR_MMR_GROWTH_LOCK.json` (PhoneBio sensor lineage feeds “other sensor data” without identity claims).
 
+
+## On-device (computers, phones)
+
+Private growth runs **on the device** — computers, phones, etc. Worked example: **Samsung phones** with **ExecuTorch** + **quantized models** for local triage next to the vault (portfolio **D17.7d**). Not a Samsung partnership claim; quant models are fail-soft, not safety SoT.
+
 ## Claim ceiling
 
 | We claim | We do **not** claim |

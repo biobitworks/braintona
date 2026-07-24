@@ -62,7 +62,7 @@ Operator UI / CLI
 
 **Components**
 
-**Load-bearing voice component:** MMR of **actual voice** vs **AI voice** (`content_class` human vs ai) — see `docs/VOICE_HUMAN_AI_MMR_COMPONENT.md`. **Builds over time** with other **sensor** leaves; raw stream stays **vault-private**.
+**Load-bearing voice component:** MMR of **actual voice** vs **AI voice** (`content_class` human vs ai) — see `docs/VOICE_HUMAN_AI_MMR_COMPONENT.md`. **Builds over time** with other **sensor** leaves; raw stream stays **vault-private**. On-device (computers/phones); Samsung **ExecuTorch** quant path as edge example.
 
 
 | Layer | What |

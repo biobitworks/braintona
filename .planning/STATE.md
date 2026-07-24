@@ -75,3 +75,5 @@ npm run start
 **Devpost phone paste:** `docs/DEVPOST_PHONE_PASTE.md`.
 
 **CopilotKit license LIVE** (OPERATOR authorized ingest; token in `.env` only; sha256 banked in receipts). Cockpit seals with `license_present=true`.
+
+**No-video fallback:** http://127.0.0.1:8787/demo-two-turn.html — live two-turn ElevenLabs custody demo.

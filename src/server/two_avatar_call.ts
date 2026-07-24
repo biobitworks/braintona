@@ -17,18 +17,27 @@ const LEDGER = path.join(DATA, "two_avatar_call.jsonl");
 const LATEST = path.join(DATA, "two_avatar_call_latest.json");
 const VAULT = path.join(PRIVATE, "customer_voice_vault_latest.json");
 
-/** Sarah — customer avatar */
+/** Customer avatar voice — override with your ElevenLabs avatar/voice id */
 export const CUSTOMER_VOICE_ID =
-  process.env.ELEVENLABS_VOICE_ID_CUSTOMER || "EXAVITQu4vr4xnSDxMaL";
-/** Matilda — agent avatar */
+  process.env.ELEVENLABS_VOICE_ID_CUSTOMER ||
+  process.env.ELEVENLABS_AVATAR_VOICE_ID ||
+  "EXAVITQu4vr4xnSDxMaL";
+/** Agent avatar voice */
 export const AGENT_VOICE_ID =
-  process.env.ELEVENLABS_VOICE_ID_AGENT || "XrExE9yKIg1WjnnlVkGX";
+  process.env.ELEVENLABS_VOICE_ID_AGENT ||
+  process.env.ELEVENLABS_VOICE_ID ||
+  "XrExE9yKIg1WjnnlVkGX";
+
+export const CUSTOMER_AVATAR_NAME =
+  process.env.ELEVENLABS_AVATAR_NAME_CUSTOMER || "Customer";
+export const AGENT_AVATAR_NAME =
+  process.env.ELEVENLABS_AVATAR_NAME_AGENT || "Agent";
 
 const DEFAULT_SCRIPT = {
   customer:
     "Hi — I need to hand off this lab run. Can you confirm the custody root matches before I leave?",
   agent:
-    "I verified the receipt. Local custody matches. Daytona recompute is next. Custody proves provenance, not correctness.",
+    "Turn two. I sealed your voice leaf and mine. Interaction MMR matches. Custody proves provenance, not correctness.",
 };
 
 export interface AvatarTurn {
@@ -123,16 +132,24 @@ async function synthAndSeal(opts: {
 export async function runTwoAvatarCallDemo(opts: {
   customer_text?: string;
   agent_text?: string;
+  customer_voice_id?: string;
+  agent_voice_id?: string;
+  customer_name?: string;
+  agent_name?: string;
 } = {}): Promise<TwoAvatarCallDemo> {
   await ensureDirs();
   const reasons: string[] = [];
   const customer_text = opts.customer_text?.trim() || DEFAULT_SCRIPT.customer;
   const agent_text = opts.agent_text?.trim() || DEFAULT_SCRIPT.agent;
+  const customer_voice = opts.customer_voice_id?.trim() || CUSTOMER_VOICE_ID;
+  const agent_voice = opts.agent_voice_id?.trim() || AGENT_VOICE_ID;
+  const customer_name = opts.customer_name?.trim() || CUSTOMER_AVATAR_NAME;
+  const agent_name = opts.agent_name?.trim() || AGENT_AVATAR_NAME;
 
   const c = await synthAndSeal({
     role: "customer",
-    avatar_name: "Sarah",
-    voice_id: CUSTOMER_VOICE_ID,
+    avatar_name: customer_name,
+    voice_id: customer_voice,
     text: customer_text,
     tree: "A_customer",
     node_prefix: "voice/avatar/customer",
@@ -141,8 +158,8 @@ export async function runTwoAvatarCallDemo(opts: {
 
   const a = await synthAndSeal({
     role: "agent",
-    avatar_name: "Matilda",
-    voice_id: AGENT_VOICE_ID,
+    avatar_name: agent_name,
+    voice_id: agent_voice,
     text: agent_text,
     tree: "B_agent",
     node_prefix: "voice/avatar/agent",
@@ -164,7 +181,7 @@ export async function runTwoAvatarCallDemo(opts: {
     merkle_root: tree_a_tip,
     fco_root: c.turn?.receipt.fco_root,
     audio_sha256: c.turn?.audio_sha256,
-    voice_id: CUSTOMER_VOICE_ID,
+    voice_id: customer_voice,
     note: "Private Merkle root for Tree A (customer). Real human mic would replace TTS stand-in; root stays in vault.",
     llm_in_science_leaf: false,
     sealed_at_utc: new Date().toISOString(),
@@ -186,8 +203,7 @@ export async function runTwoAvatarCallDemo(opts: {
     },
     claim_ceiling: "avatar_tts_is_ai_standin_not_real_human_mic",
     llm_in_science_leaf: false,
-    note:
-      "Tree A = customer avatar (Sarah). Tree B = agent avatar (Matilda). Interaction MMR combines both. Customer root stored in .planning/private/ vault.",
+    note: `Two-turn demo: Tree A = ${customer_name} · Tree B = ${agent_name}. Interaction MMR bags both leaves. Customer tip in vault. TTS stand-ins are content_class=ai.`,
     created_at_utc: new Date().toISOString(),
   };
 

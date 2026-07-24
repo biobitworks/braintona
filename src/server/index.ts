@@ -172,6 +172,11 @@ app.post("/api/demo/two-avatar-call", async (req, res) => {
     const demo = await runTwoAvatarCallDemo({
       customer_text: typeof req.body?.customer_text === "string" ? req.body.customer_text : undefined,
       agent_text: typeof req.body?.agent_text === "string" ? req.body.agent_text : undefined,
+      customer_voice_id:
+        typeof req.body?.customer_voice_id === "string" ? req.body.customer_voice_id : undefined,
+      agent_voice_id: typeof req.body?.agent_voice_id === "string" ? req.body.agent_voice_id : undefined,
+      customer_name: typeof req.body?.customer_name === "string" ? req.body.customer_name : undefined,
+      agent_name: typeof req.body?.agent_name === "string" ? req.body.agent_name : undefined,
     });
     res.json(demo);
   } catch (err) {

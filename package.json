@@ -16,7 +16,8 @@
     "demo:two-avatar": "tsx scripts/run_two_avatar_demo.ts",
     "copilotkit:bootstrap": "bash scripts/copilotkit_org_bootstrap.sh",
     "copilotkit:ingest": "bash scripts/ingest_copilotkit_token.sh",
-    "copilotkit:watch-token": "bash scripts/watch_copilotkit_token_drop.sh"
+    "copilotkit:watch-token": "bash scripts/watch_copilotkit_token_drop.sh",
+    "demo:two-turn": "tsx scripts/run_two_avatar_demo.ts"
   },
   "engines": {
     "node": ">=20"

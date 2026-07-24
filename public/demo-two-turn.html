@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Braintona — two-turn voice demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root { --foam:#e8f7f4; --signal:#d9ff4a; --ok:#3dffb5; --mut:rgba(232,247,244,.72); }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; color: var(--foam);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      background:
+        radial-gradient(900px 480px at 15% -10%, rgba(61,255,181,.18), transparent 60%),
+        linear-gradient(165deg, #07161a 0%, #0b1f24 50%, #12353a 100%);
+      padding: clamp(1.25rem, 4vw, 2.5rem);
+    }
+    .brand { font-family: Syne, sans-serif; letter-spacing: .18em; color: var(--signal); font-size: .85rem; }
+    h1 { font-family: Syne, sans-serif; font-size: clamp(1.8rem, 5vw, 3rem); margin: .4rem 0 1rem; max-width: 16ch; line-height: .95; }
+    .lede { color: var(--mut); max-width: 48ch; line-height: 1.45; }
+    .row { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.25rem 0; }
+    button, .link {
+      font: inherit; color: #07161a; background: var(--signal); border: 0; padding: .7rem 1rem; cursor: pointer;
+    }
+    button.ghost, .link.ghost { background: transparent; color: var(--foam); border: 1px solid rgba(232,247,244,.3); text-decoration: none; }
+    .turn {
+      border: 1px solid rgba(232,247,244,.14); padding: 1rem 1.1rem; margin: .8rem 0; max-width: 52rem;
+      opacity: .45; transition: opacity .3s ease, border-color .3s ease;
+    }
+    .turn.on { opacity: 1; border-color: var(--signal); }
+    .turn h2 { font-family: Syne, sans-serif; margin: 0 0 .5rem; font-size: 1.1rem; color: var(--signal); }
+    .meta { color: var(--mut); font-size: .85rem; margin: .35rem 0; word-break: break-all; }
+    .ceil { color: var(--ok); margin-top: 1.25rem; max-width: 48ch; font-size: .92rem; }
+    #status { min-height: 1.4em; color: var(--mut); }
+    audio { width: min(100%, 28rem); margin-top: .5rem; }
+  </style>
+</head>
+<body>
+  <p class="brand">BRAINTONA · NO-VIDEO FALLBACK</p>
+  <h1>Two-turn voice custody.</h1>
+  <p class="lede">
+    ElevenLabs avatars · two FCO trees · one interaction MMR.
+    Use this live if you skip the Devpost video — judges hear the turns and see the roots.
+  </p>
+  <div class="row">
+    <button id="runBtn" type="button">Run two-turn demo</button>
+    <button id="replayBtn" type="button" class="ghost" disabled>Replay audio</button>
+    <a class="link ghost" href="/">Main app</a>
+    <a class="link ghost" href="/pitch.html">Pitch deck</a>
+  </div>
+  <p id="status">Ready — will mint Turn 1 (customer) then Turn 2 (agent).</p>
+  <section class="turn" id="turn1">
+    <h2>Turn 1 · Customer tree</h2>
+    <p class="meta" id="t1meta">Waiting…</p>
+    <p id="t1text"></p>
+    <audio id="a1" controls></audio>
+  </section>
+  <section class="turn" id="turn2">
+    <h2>Turn 2 · Agent tree</h2>
+    <p class="meta" id="t2meta">Waiting…</p>
+    <p id="t2text"></p>
+    <audio id="a2" controls></audio>
+  </section>
+  <p class="meta" id="mmr">Interaction MMR —</p>
+  <p class="ceil">Ceilings: avatar TTS = AI stand-in (content_class=ai). Provenance of recorded bytes — not biometrics, not science truth.</p>
+  <script type="module">
+    const status = document.getElementById("status");
+    const runBtn = document.getElementById("runBtn");
+    const replayBtn = document.getElementById("replayBtn");
+    let last = null;
+
+    function audioUrl(path) {
+      if (!path) return "";
+      const name = path.split("/").pop();
+      return `/assets/voice/${name}`;
+    }
+
+    function fill(demo) {
+      last = demo;
+      const [c, a] = demo.turns || [];
+      document.getElementById("turn1").classList.add("on");
+      document.getElementById("t1meta").textContent = c
+        ? `${c.avatar_name} · voice ${c.voice_id} · leaf ${String(c.receipt?.leaf_hash || "").slice(0, 16)}… · ${c.audio_bytes} B`
+        : "Customer turn failed";
+      document.getElementById("t1text").textContent = c?.text || "";
+      const a1 = document.getElementById("a1");
+      a1.src = c ? audioUrl(c.audio_path) : "";
+      document.getElementById("turn2").classList.add("on");
+      document.getElementById("t2meta").textContent = a
+        ? `${a.avatar_name} · voice ${a.voice_id} · leaf ${String(a.receipt?.leaf_hash || "").slice(0, 16)}… · ${a.audio_bytes} B`
+        : "Agent turn failed";
+      document.getElementById("t2text").textContent = a?.text || "";
+      const a2 = document.getElementById("a2");
+      a2.src = a ? audioUrl(a.audio_path) : "";
+      document.getElementById("mmr").textContent =
+        `Interaction MMR ${String(demo.interaction_mmr_root || "").slice(0, 24)}… · vault tip ${String(demo.customer_vault_root || "").slice(0, 16)}… · ${demo.interaction_id}`;
+      replayBtn.disabled = !(c && a);
+      return { a1, a2 };
+    }
+
+    async function playSeq(a1, a2) {
+      try {
+        await a1.play();
+        await new Promise((res) => a1.addEventListener("ended", res, { once: true }));
+        status.textContent = "Turn 2…";
+        await a2.play();
+        await new Promise((res) => a2.addEventListener("ended", res, { once: true }));
+        status.textContent = "Two-turn custody sealed. Show MMR + vault tip to judges.";
+      } catch {
+        status.textContent = "Autoplay blocked — tap Play on each turn (still valid demo).";
+      }
+    }
+
+    async function run() {
+      runBtn.disabled = true;
+      status.textContent = "Synthesizing ElevenLabs turns + sealing FCO leaves…";
+      document.getElementById("turn1").classList.remove("on");
+      document.getElementById("turn2").classList.remove("on");
+      try {
+        const res = await fetch("/api/demo/two-avatar-call", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({}),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "demo failed");
+        if (!data.elevenlabs?.customer_ok || !data.elevenlabs?.agent_ok) {
+          throw new Error((data.elevenlabs?.reasons || []).join("; ") || "ElevenLabs turn failed");
+        }
+        const { a1, a2 } = fill(data);
+        status.textContent = "Turn 1…";
+        await playSeq(a1, a2);
+      } catch (err) {
+        status.textContent = `Error: ${err.message || err}`;
+      } finally {
+        runBtn.disabled = false;
+      }
+    }
+
+    replayBtn.addEventListener("click", async () => {
+      if (!last) return;
+      const { a1, a2 } = fill(last);
+      status.textContent = "Replay Turn 1…";
+      await playSeq(a1, a2);
+    });
+    runBtn.addEventListener("click", run);
+
+    // Autoload latest if present, else wait for tap (autoplay policies)
+    try {
+      const res = await fetch("/api/demo/two-avatar-call/latest");
+      if (res.ok) {
+        const data = await res.json();
+        fill(data);
+        status.textContent = "Latest two-turn loaded — tap Run for a fresh seal, or Replay.";
+      }
+    } catch {}
+  </script>
+</body>
+</html>

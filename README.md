@@ -76,3 +76,4 @@ https://daytona-hacksprint-sf-jul-2026.devpost.com/
 
 Local demo first (no auth gate for judges). When the hackathon WorkOS custom domain offer is redeemed, migrate the public URL behind WorkOS AuthKit — same app, hosted entrypoint later.
 
+**License:** Unless otherwise explicitly licensed, original Biobitworks material in this repository is licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/); third-party components remain under their respective licenses.

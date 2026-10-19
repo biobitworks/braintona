@@ -7,7 +7,6 @@ import {
   verifyVoiceOriginGraph,
   type VoiceOriginReceipt,
 } from "../lib/voice_origin.js";
-import { hashText } from "../lib/receipts.js";
 import { narrateElevenLabs } from "./elevenlabs.js";
 
 const DATA = path.resolve("data");
@@ -89,7 +88,7 @@ export async function sealAiNarration(text: string): Promise<{
       kind: "elevenlabs_tts",
       provider: "elevenlabs",
       model_id: "eleven_monolingual_v1",
-      voice_id: process.env.ELEVENLABS_VOICE_ID || "RXIcu418WGXrG1TSbJx2",
+      voice_id: process.env.ELEVENLABS_VOICE_ID || "5niL0Wu395iXN1uc4zne",
       source_text_sha256: await hashText(text),
     },
     node_id: `voice/ai/${Date.now()}`,

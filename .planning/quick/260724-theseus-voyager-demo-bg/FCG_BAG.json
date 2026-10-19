@@ -1,0 +1,39 @@
+{
+  "schema": "portfolio.fcg_bag.v1",
+  "unsigned": true,
+  "llm_in_science_leaf": false,
+  "note": "Ship-of-Theseus atlas BG (cellico.bio) + IV Voyager gold balls on star chart / demo atmosphere",
+  "artifacts": [
+    {
+      "path": "public/styles.css",
+      "content_sha256": "sha256:3b22c5e737bb52de72beee27e8e29be67da9b2024fd29033fb74d45d2ea85d12",
+      "bytes": 9066
+    },
+    {
+      "path": "public/voice-star.js",
+      "content_sha256": "sha256:32d7b7448d8efb8fe769fa6dcfed26b0561e3d1ce6d9b10bbc58349c87494aa8",
+      "bytes": 14797
+    },
+    {
+      "path": "public/demo-voice-star.html",
+      "content_sha256": "sha256:e856e6c3193d2dbb4b61681f901437b0ac46631bf5bc53a737dc3cecd16e0717",
+      "bytes": 4301
+    },
+    {
+      "path": "public/pitch.html",
+      "content_sha256": "sha256:71594f977ef07080149b877a6c379112e03a98767471ac51b1ab5827d8f90355",
+      "bytes": 9497
+    },
+    {
+      "path": "public/assets/bioviz/ship-of-theseus-atlas-bg.png",
+      "content_sha256": "sha256:527f6092280c9093353219f582298b410c7d8c4f903bd4e8be5d2e272b7a2f84",
+      "bytes": 1976599
+    },
+    {
+      "path": "public/assets/voyager/bioviz-voyager-border.svg",
+      "content_sha256": "sha256:42926af8ab4ecf42616dc74a95fbab09d3a13dc621bed877bed9582f11be386b",
+      "bytes": 5259
+    }
+  ],
+  "ts": "2026-07-24T20:36:55Z"
+}

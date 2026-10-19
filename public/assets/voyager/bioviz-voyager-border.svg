@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <!--
+    BioViz / Infinite Velocity Voyager Border — site-tokenized.
+    Recolored from bioviz-voyager-border-original.svg to match
+    app/globals.css tokens: --gild #b3a369, --gild-strong #c9b87a,
+    --ivory #f5f0e4, ground #0f0716. Original kept alongside.
+  -->
+  <defs>
+    <linearGradient id="goldStroke" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f5f0e4" stop-opacity="0.9"/>
+      <stop offset="0.25" stop-color="#b3a369" stop-opacity="0.92"/>
+      <stop offset="0.55" stop-color="#c9b87a" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#857437" stop-opacity="0.86"/>
+    </linearGradient>
+    <linearGradient id="faintGold" x1="0" y1="0" x2="1600" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c9b87a" stop-opacity="0"/>
+      <stop offset="0.18" stop-color="#c9b87a" stop-opacity="0.66"/>
+      <stop offset="0.5" stop-color="#b3a369" stop-opacity="0.22"/>
+      <stop offset="0.82" stop-color="#c9b87a" stop-opacity="0.66"/>
+      <stop offset="1" stop-color="#c9b87a" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="softGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="1.15" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="microTicks" x="0" y="0" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M17 0 V8 M17 26 V34 M0 17 H8 M26 17 H34" stroke="#f5f0e4" stroke-opacity="0.24" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- outer technical frame -->
+  <rect x="38" y="38" width="1524" height="824" rx="30" stroke="url(#goldStroke)" stroke-width="2.4"/>
+  <rect x="64" y="64" width="1472" height="772" rx="22" stroke="#f5f0e4" stroke-opacity="0.32" stroke-width="1.2"/>
+  <rect x="86" y="86" width="1428" height="728" rx="16" stroke="url(#faintGold)" stroke-width="1" stroke-dasharray="22 14"/>
+
+  <!-- corner brackets -->
+  <g stroke="url(#goldStroke)" stroke-width="3" stroke-linecap="square" filter="url(#softGlow)">
+    <path d="M92 142 V92 H142"/>
+    <path d="M1508 142 V92 H1458"/>
+    <path d="M92 758 V808 H142"/>
+    <path d="M1508 758 V808 H1458"/>
+  </g>
+  <g stroke="#f5f0e4" stroke-opacity="0.5" stroke-width="1.5" stroke-linecap="square">
+    <path d="M112 172 V112 H172"/>
+    <path d="M1488 172 V112 H1428"/>
+    <path d="M112 728 V788 H172"/>
+    <path d="M1488 728 V788 H1428"/>
+  </g>
+
+  <!-- Voyager-style record glyph, top-left -->
+  <g transform="translate(144 118)" stroke="#f5f0e4" stroke-width="2" stroke-opacity="0.7">
+    <circle cx="76" cy="76" r="62"/>
+    <circle cx="76" cy="76" r="18"/>
+    <circle cx="76" cy="76" r="3" fill="#f5f0e4" fill-opacity="0.72"/>
+    <path d="M76 10 V0 M76 152 V142 M10 76 H0 M152 76 H142"/>
+    <path d="M43 23 l-8 -14 M109 129 l8 14 M23 109 l-14 8 M129 43 l14 -8" opacity="0.6"/>
+    <path d="M139 76 h25 m-8-14 v28 m-8-21 h16 m-16 14 h16"/>
+  </g>
+
+  <!-- DNA / base-pair rail, left -->
+  <g transform="translate(108 300)" stroke="#f5f0e4" stroke-opacity="0.54" stroke-width="1.7" stroke-linecap="round">
+    <path d="M0 0 C48 40 48 112 0 152 C-48 192 -48 264 0 304"/>
+    <path d="M74 0 C26 40 26 112 74 152 C122 192 122 264 74 304"/>
+    <path d="M18 29 H56 M4 60 H70 M12 92 H62 M30 126 H44 M18 181 H56 M4 213 H70 M12 246 H62 M30 278 H44"/>
+  </g>
+
+  <!-- top-right signal / waveform glyph -->
+  <g transform="translate(1030 126)" stroke="#f5f0e4" stroke-width="2" stroke-opacity="0.66" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M0 54 h42 v-34 h10 v34 h10 v-34 h10 v34 h10 v-34 h10 v34 h10 v-34 h10 v34 h44"/>
+    <path d="M166 54 l20 -24 l28 47 l27 -61 l32 69 l28 -52 l30 37 l22 -42"/>
+    <path d="M166 100 h92 M170 112 h18 m12 0 h18 m12 0 h18 m12 0 h42" stroke-dasharray="13 8"/>
+    <path d="M230 12 v-28 M318 20 v-26 M386 30 v-22 M444 6 v-26" opacity="0.62"/>
+  </g>
+
+  <!-- lower-left radial burst -->
+  <g transform="translate(382 676)" stroke="#f5f0e4" stroke-width="1.6" stroke-opacity="0.4" stroke-linecap="round">
+    <circle cx="0" cy="0" r="3" fill="#f5f0e4" fill-opacity="0.52"/>
+    <path d="M0 0 L-200 6 M0 0 L-152 -74 M0 0 L-84 -168 M0 0 L0 -214 M0 0 L82 -160 M0 0 L180 -84 M0 0 L286 8 M0 0 L140 150 M0 0 L0 126 M0 0 L-68 104 M0 0 L-190 92"/>
+    <path d="M0 0 L-122 -8 M0 0 L-24 -98 M0 0 L110 -126 M0 0 L210 58" stroke-dasharray="10 8" opacity="0.9"/>
+  </g>
+
+  <!-- bottom-right paired nodes -->
+  <g transform="translate(1232 706)" stroke="#f5f0e4" stroke-opacity="0.54" stroke-width="1.8">
+    <circle cx="0" cy="0" r="28"/>
+    <circle cx="114" cy="0" r="28"/>
+    <path d="M28 0 H86 M0 -40 V-22 M114 -40 V-22 M0 -7 V7 M114 -7 V7"/>
+  </g>
+
+  <!-- short data blocks along edges -->
+  <g stroke="#f5f0e4" stroke-width="1.2" stroke-opacity="0.36">
+    <path d="M286 84 h120 M286 96 h34 m12 0 h34 m12 0 h28 M1194 816 h124 M1194 804 h38 m13 0 h24 m13 0 h36"/>
+    <path d="M66 520 h54 M66 536 h30 m12 0 h28 M1480 344 h54 M1492 360 h42"/>
+  </g>
+
+  <!-- faint interior pattern -->
+  <rect x="104" y="104" width="1392" height="692" rx="10" fill="url(#microTicks)" opacity="0.08"/>
+</svg>

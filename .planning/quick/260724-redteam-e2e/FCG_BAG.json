@@ -1,0 +1,25 @@
+{
+  "schema": "portfolio.fcg_bag.v1",
+  "unsigned": true,
+  "llm_in_science_leaf": false,
+  "note": "red-team E2E: voice lock Studio, CTA dedupe, graph focus, CORS allowlist, pointer path redact",
+  "artifacts": [
+    {
+      "path": "public/index.html",
+      "content_sha256": "sha256:3287f4a7d5e088595febac1caafcb97d449de0de8a84c722c2260f3eba3a554e"
+    },
+    {
+      "path": "public/app.js",
+      "content_sha256": "sha256:42b1a87e8baf0d060283cb09e6a36ec3e7f9009da614f2b1fade7aefedccf6d7"
+    },
+    {
+      "path": "public/demo-two-turn.html",
+      "content_sha256": "sha256:a04c975d0f6226f587bdc9c8f2a2eb61e940297512da045c2c535191b6c14110"
+    },
+    {
+      "path": "src/server/index.ts",
+      "content_sha256": "sha256:fa1b224916a35b8503a466b45d5c03c8222d1b0821cb372675558bfdeb37164a"
+    }
+  ],
+  "ts": "2026-07-24T20:56:48Z"
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "portfolio.fcg_bag.v1",
+  "unsigned": true,
+  "llm_in_science_leaf": false,
+  "note": "star chart: Theseus star field + Cellico soft disks; HTML label rail (no cartoon balls / no squished canvas text)",
+  "artifacts": [
+    {
+      "path": "public/voice-star.js",
+      "content_sha256": "sha256:287bffd7afd30d2700fe956215a9e362a6e5076e58ae93e86d025049e8bdb119"
+    },
+    {
+      "path": "public/demo-voice-star.html",
+      "content_sha256": "sha256:19c37e7a1d12a5d5dc16e6869d0322a04d9aeab3e05b1f1f723a7629b731a223"
+    }
+  ],
+  "ts": "2026-07-24T20:43:43Z"
+}

@@ -1,12 +1,34 @@
+/* Braintona UI — bioviz-tech / Cellico visual tokens (portfolio reuse).
+   Structure unchanged; presentation surfaces restyled for Studio record. */
 :root {
-  --ink: #0b1f24;
-  --foam: #e8f7f4;
-  --sea: #0f6b63;
-  --signal: #d9ff4a;
-  --warn: #ff6b4a;
-  --ok: #3dffb5;
-  --panel: rgba(8, 28, 32, 0.72);
-  --line: rgba(232, 247, 244, 0.14);
+  /* IV / Voyager gold + Cellico ink (infinite-velocity design brief) */
+  --background: #080510;
+  --foreground: #f2e7c4;
+  --surface: #171024;
+  --surface-2: #231532;
+  --border: #2a1b35;
+  --gild: #b58a36;
+  --gild-strong: #f6d36a;
+  --old-gold: #b58a36;
+  --bright-gold: #f6d36a;
+  --jewel: #9260d4;
+  --wood: #4a2b18;
+  --wood-light: #d18864;
+  --ivory: #f2e7c4;
+  --muted: #a89983;
+  --ok: #2bc6be;
+  --warn: #d18864;
+  --ink: var(--background);
+  --foam: var(--foreground);
+  --signal: var(--gild-strong);
+  --sea: #006b62;
+  --panel: color-mix(in srgb, var(--surface) 72%, transparent);
+  --line: color-mix(in srgb, var(--ivory) 14%, transparent);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --theseus-bg: url("/assets/bioviz/ship-of-theseus-atlas-bg.png");
+  --voyager-border: url("/assets/voyager/bioviz-voyager-border.svg");
 }
 
 * {
@@ -19,27 +41,50 @@ body {
   min-height: 100%;
   color: var(--foam);
   background: var(--ink);
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-family: var(--font-mono);
 }
 
+/* Cellico.bio lineage: Ship-of-Theseus atlas full-bleed under copy + figures */
 .atmosphere {
   position: fixed;
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(61, 255, 181, 0.18), transparent 60%),
-    radial-gradient(900px 500px at 90% 0%, rgba(217, 255, 74, 0.12), transparent 55%),
-    linear-gradient(165deg, #07161a 0%, #0b1f24 45%, #12353a 100%);
-  animation: drift 18s ease-in-out infinite alternate;
+    radial-gradient(circle at 78% 16%, rgba(246, 211, 106, 0.1), transparent 22rem),
+    radial-gradient(circle at 18% 84%, rgba(181, 138, 54, 0.09), transparent 24rem),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--background) 42%, transparent) 0%,
+      color-mix(in srgb, var(--background) 68%, transparent) 48%,
+      color-mix(in srgb, var(--background) 88%, #06040a) 100%
+    ),
+    var(--theseus-bg) center / cover no-repeat;
+  opacity: 1;
 }
 
-@keyframes drift {
-  from {
-    filter: hue-rotate(0deg) saturate(1);
-  }
-  to {
-    filter: hue-rotate(12deg) saturate(1.15);
-  }
+.atmosphere::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: var(--voyager-border);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  opacity: 0.42;
+  mix-blend-mode: screen;
+}
+
+.atmosphere::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 0%, rgba(246, 211, 106, 0.06) 38%, transparent 43%),
+    repeating-linear-gradient(105deg, rgba(242, 231, 196, 0.02) 0 1px, transparent 1px 7px),
+    url("/assets/bioviz/signal-grid.png") center / 720px repeat;
+  opacity: 0.28;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
 }
 
 main {
@@ -51,6 +96,77 @@ main {
 .hero {
   margin-bottom: 2.5rem;
   animation: rise 0.7s ease-out both;
+}
+
+.demo-stage { display:grid; gap:1rem; margin-bottom:1rem; align-items:start; }
+@media (min-width:960px){ .demo-stage { grid-template-columns: minmax(0,1fr) minmax(0,1.15fr); } }
+.demo-stage > .panel { margin-bottom:0; }
+.graph-empty { margin:0 0 0.75rem; padding:0.85rem 0.95rem; border:1px dashed color-mix(in srgb, var(--gild) 35%, var(--border)); color: var(--muted); font-size:0.85rem; font-family:var(--font-body); background: color-mix(in srgb, var(--background) 55%, transparent); }
+.graph-empty[hidden]{display:none;}
+.cta-primary button:first-child { font-size:1.05rem; padding:0.95rem 1.35rem; }
+
+/* Devpost / gallery stills: ?shot=1 — brand + stage only, no operator clutter.
+   Disable mix-blend layers — they often rasterize to black in capture tools. */
+html.shot-mode body,
+body.shot-mode {
+  background: #120a18;
+}
+html.shot-mode .atmosphere,
+body.shot-mode .atmosphere {
+  opacity: 0.55;
+  background:
+    radial-gradient(circle at 78% 16%, rgba(246, 211, 106, 0.14), transparent 22rem),
+    linear-gradient(180deg, #1a1024 0%, #0c0812 100%),
+    var(--theseus-bg) center / cover no-repeat;
+}
+html.shot-mode .atmosphere::before,
+html.shot-mode .atmosphere::after,
+body.shot-mode .atmosphere::before,
+body.shot-mode .atmosphere::after {
+  mix-blend-mode: normal !important;
+  opacity: 0.18 !important;
+}
+html.shot-mode main,
+body.shot-mode main {
+  width: min(1120px, calc(100% - 2.5rem));
+  padding: 2.25rem 0 2.5rem;
+}
+html.shot-mode .lede-sm,
+html.shot-mode #tracePanel,
+html.shot-mode #results,
+html.shot-mode #twoAvatarPanel,
+html.shot-mode #clonePanel,
+html.shot-mode #voicePanel,
+html.shot-mode #sponsorPanel,
+html.shot-mode #copilotPanel,
+html.shot-mode #demoGuideBar,
+body.shot-mode .lede-sm,
+body.shot-mode #tracePanel,
+body.shot-mode #results,
+body.shot-mode #twoAvatarPanel,
+body.shot-mode #clonePanel,
+body.shot-mode #voicePanel,
+body.shot-mode #sponsorPanel,
+body.shot-mode #copilotPanel,
+body.shot-mode #demoGuideBar {
+  display: none !important;
+}
+html.shot-mode .cta-row.cta-primary a[href="/demo-guide.html"],
+body.shot-mode .cta-row.cta-primary a[href="/demo-guide.html"] {
+  display: none !important;
+}
+html.shot-mode .hero,
+body.shot-mode .hero {
+  margin-bottom: 1.35rem;
+}
+html.shot-mode .demo-stage,
+body.shot-mode .demo-stage {
+  min-height: 420px;
+}
+html.shot-mode .panel-graph .graph-svg,
+body.shot-mode .panel-graph .graph-svg {
+  min-height: 320px;
+  background: color-mix(in srgb, var(--background) 40%, transparent);
 }
 
 @keyframes rise {
@@ -66,27 +182,41 @@ main {
 
 .brand {
   margin: 0 0 0.75rem;
-  font-family: Syne, sans-serif;
-  font-weight: 800;
+  font-family: var(--font-mono);
+  font-weight: 600;
   letter-spacing: 0.18em;
-  font-size: 0.85rem;
-  color: var(--signal);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: var(--gild-strong);
 }
 
 h1 {
   margin: 0;
-  font-family: Syne, sans-serif;
-  font-weight: 800;
-  font-size: clamp(2.2rem, 6vw, 4rem);
-  line-height: 0.95;
-  max-width: 12ch;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  line-height: 0.98;
+  max-width: 14ch;
+  color: var(--ivory);
 }
 
 .lede {
   margin: 1rem 0 1.5rem;
   max-width: 46ch;
-  color: rgba(232, 247, 244, 0.78);
+  color: var(--muted);
+  line-height: 1.5;
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+}
+
+.lede-sm {
+  color: var(--muted);
+  opacity: 0.95;
+  max-width: 52ch;
   line-height: 1.45;
+  font-size: 0.92rem;
+  margin: 0 0 1rem;
+  font-family: var(--font-body);
 }
 
 .cta-row {
@@ -100,56 +230,84 @@ button {
   border: 0;
   border-radius: 0;
   padding: 0.85rem 1.15rem;
-  background: var(--signal);
-  color: var(--ink);
+  background: var(--gild-strong);
+  color: var(--background);
   font: inherit;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 
 button:hover {
   transform: translateY(-1px);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--gild) 50%, transparent);
 }
 
 button:disabled {
   opacity: 0.45;
   cursor: not-allowed;
   transform: none;
+  box-shadow: none;
 }
 
-button.ghost {
+button.ghost,
+a.link-btn {
   background: transparent;
   color: var(--foam);
   outline: 1px solid var(--line);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.15rem;
+  font: inherit;
+  font-weight: 600;
+}
+
+button.ghost:hover,
+a.link-btn:hover {
+  outline-color: var(--gild);
+  color: var(--gild-strong);
+}
+
+.auth-chip {
+  font-size: 0.78rem;
+  color: var(--ok);
+  align-self: center;
 }
 
 .panel {
-  background: var(--panel);
-  border: 1px solid var(--line);
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--surface) 88%, var(--ivory)) 0%,
+    color-mix(in srgb, var(--surface-2) 92%, transparent) 100%
+  );
+  border: 1px solid color-mix(in srgb, var(--gild) 22%, var(--border));
   padding: 1.25rem;
   margin-bottom: 1rem;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(18px);
   animation: rise 0.8s ease-out 0.1s both;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
 }
 
 .panel h2 {
   margin: 0 0 1rem;
-  font-family: Syne, sans-serif;
-  font-size: 1.1rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--ivory);
+  font-weight: 650;
 }
 
 label {
   display: block;
   margin-bottom: 0.4rem;
   font-size: 0.8rem;
-  color: rgba(232, 247, 244, 0.65);
+  color: var(--muted);
 }
 
 textarea {
   width: 100%;
   resize: vertical;
-  background: rgba(0, 0, 0, 0.28);
+  background: color-mix(in srgb, var(--background) 70%, black);
   color: var(--foam);
   border: 1px solid var(--line);
   padding: 0.85rem;
@@ -159,7 +317,7 @@ textarea {
 
 .status {
   margin: 0.85rem 0;
-  color: rgba(232, 247, 244, 0.7);
+  color: var(--muted);
   font-size: 0.85rem;
 }
 
@@ -174,11 +332,11 @@ textarea {
 .steps li {
   padding: 0.55rem 0.7rem;
   border-left: 3px solid var(--line);
-  color: rgba(232, 247, 244, 0.55);
+  color: color-mix(in srgb, var(--foam) 55%, transparent);
 }
 
 .steps li.active {
-  border-color: var(--signal);
+  border-color: var(--gild-strong);
   color: var(--foam);
 }
 
@@ -209,16 +367,164 @@ pre {
   word-break: break-word;
   font-size: 0.78rem;
   line-height: 1.45;
-  color: rgba(232, 247, 244, 0.9);
+  color: color-mix(in srgb, var(--foam) 92%, transparent);
 }
 
 .ceiling,
 .cite {
   margin: 1rem 0 0;
   font-size: 0.78rem;
-  color: rgba(232, 247, 244, 0.6);
+  color: var(--muted);
+  font-family: var(--font-body);
 }
 
 a {
-  color: var(--signal);
+  color: var(--gild-strong);
+}
+
+.panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.panel-head h2 {
+  margin: 0;
+}
+
+.graph-meta {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+
+.graph-meta.pulse {
+  color: var(--gild-strong);
+}
+
+.graph-svg {
+  width: 100%;
+  height: auto;
+  min-height: 280px;
+  background: color-mix(in srgb, var(--background) 80%, black);
+  border: 1px solid var(--line);
+}
+
+.g-edge {
+  stroke: color-mix(in srgb, var(--ivory) 22%, transparent);
+  stroke-width: 1.2;
+}
+
+.g-label {
+  fill: color-mix(in srgb, var(--ivory) 90%, transparent);
+  font-size: 10px;
+}
+
+.g-short {
+  fill: color-mix(in srgb, var(--ivory) 50%, transparent);
+  font-size: 9px;
+}
+
+.g-node circle {
+  stroke: rgba(0, 0, 0, 0.35);
+  stroke-width: 1;
+}
+
+.graph-json {
+  margin-top: 0.75rem;
+}
+
+.trace-token {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--gild-strong);
+}
+
+.trace-hops {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.trace-hops .hop-bind {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
+
+.avatar-players {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0.75rem 0 1rem;
+}
+.avatar-players figure {
+  margin: 0;
+  padding: 0.75rem;
+  background: color-mix(in srgb, var(--background) 55%, transparent);
+  border: 1px solid var(--line);
+}
+.avatar-players figcaption {
+  margin-bottom: 0.45rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--gild-strong);
+}
+.avatar-players audio {
+  width: 100%;
+}
+
+.hash-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.9rem;
+  align-items: center;
+  margin: 0.65rem 0 0.9rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--gild) 35%, var(--border));
+  background: color-mix(in srgb, var(--background) 70%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+.hash-strip .pill {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid var(--gild-strong);
+  color: var(--gild-strong);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+}
+.hash-strip .pill.ai {
+  border-color: var(--jewel);
+  color: #d4b4ff;
+}
+.hash-strip code {
+  color: var(--foam);
+}
+
+.sponsor-strip {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: 1fr;
+  margin: 0.75rem 0 1rem;
+}
+@media (min-width: 720px) {
+  .sponsor-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sig-summary {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--muted);
 }

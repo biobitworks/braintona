@@ -1,0 +1,35 @@
+{
+  "schema": "braintona.demo_script_seed.v1",
+  "seed_id": "S08_voice_star_traverse",
+  "ordinal": 8,
+  "kind": "seed_of_truth",
+  "created_before": "compiled_teleprompter",
+  "content_class": "human",
+  "statement": "Voice star chart: customer atom glints gold; traverse clone \u2192 customer \u2192 agent \u2192 interaction tip; two trees before bagging.",
+  "say": "Gap two. Voice. [pause] The customer atom glints gold. [pause] We walk clone. To customer. To agent. To the interaction tip. [pause] Two trees before they bag. Customer stays distinct.",
+  "ui": {
+    "path": "/demo-voice-star.html",
+    "action": "play_traverse"
+  },
+  "proves": "gap_2_visual",
+  "claim_ceiling": {
+    "allowed": [
+      "schematic labeled voice custody atoms",
+      "customer distinct from agent tree"
+    ],
+    "forbidden": [
+      "biometric identity",
+      "deepfake score",
+      "science truth of spoken content"
+    ]
+  },
+  "parents": [
+    "S04_gap_unlabeled_voice"
+  ],
+  "llm_in_science_leaf": false,
+  "authority": {
+    "claim_promotion": false,
+    "writeback": false,
+    "pi_sign": false
+  }
+}

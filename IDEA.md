@@ -54,7 +54,11 @@ Copilot-facing agent that:
 
 ## Team
 
-Solo: Byron P. Lee (biobitworks) — phone-available operator; agent loop on magicPRObox with magicSTUDIO compute assist.
+**Biobitworks** · Solo: Byron P. Lee — phone-available operator; agent loop on magicPRObox with magicSTUDIO compute assist.
+
+## Licensing
+
+Dual: **Apache-2.0** (software) + **CC BY-ND 4.0** (docs/media). See `LICENSE.md`.
 
 ## Deadline spine
 

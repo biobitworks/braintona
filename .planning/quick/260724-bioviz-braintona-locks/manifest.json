@@ -1,0 +1,77 @@
+{
+  "schema": "braintona.bioviz_locks_import.v1",
+  "imported_at_utc": "2026-07-24T19:58:10Z",
+  "source_repo": "biobitworks/bioviz-tech",
+  "source_branch": "cursor/cloudmer-pitch-stage-b-cc88",
+  "source_quick": "260724-cloudmer-pitch-live-cellico",
+  "scope": "braintona-related locks only \u2014 no Next.js app, no public assets, no Cellico UI",
+  "files": [
+    {
+      "path": "BIOBRIDGE_EXPANSION_LINEAGE.json",
+      "bytes": 2853,
+      "sha256_fco": "sha256:d1f9acd1df5b8042b40b3749098907b60f029cd273e26734f9a20225a4b7c260",
+      "source": "bioviz-tech:260724-cloudmer-pitch-live-cellico/BIOBRIDGE_EXPANSION_LINEAGE.json"
+    },
+    {
+      "path": "CLAIM_CEILING.json",
+      "bytes": 7100,
+      "sha256_fco": "sha256:88dfe30d5997587386a769d9afcb1a65f16f2d97db44c68e60a5fe0a2a94e0df",
+      "source": "bioviz-tech:260724-cloudmer-pitch-live-cellico/CLAIM_CEILING.json"
+    },
+    {
+      "path": "NEW_APP_WORKOS_OPTION.json",
+      "bytes": 2773,
+      "sha256_fco": "sha256:9ccc09c0b4b9b142b42332692544a669e3573b04886288a17e5565c5ccebe027",
+      "source": "bioviz-tech:260724-cloudmer-pitch-live-cellico/NEW_APP_WORKOS_OPTION.json"
+    },
+    {
+      "path": "NEW_APP_WORKOS_OPTION.md",
+      "bytes": 1687,
+      "sha256_fco": "sha256:354195df6cf860e874cd32a9878508466a2699626bb929c73f691684f4606a78",
+      "source": "bioviz-tech:260724-cloudmer-pitch-live-cellico/NEW_APP_WORKOS_OPTION.md"
+    },
+    {
+      "path": "ON_DEVICE_EXECUTORCH_QUANT_EDGE_LOCK.json",
+      "bytes": 2984,
+      "sha256_fco": "sha256:fa3b3e6dce64f72c96738ffcfdfa0de6e78737837b1efaf411fe882449b1c517",
+      "source": "bioviz-tech:260724-cloudmer-pitch-live-cellico/ON_DEVICE_EXECUTORCH_QUANT_EDGE_LOCK.json"
+    },
+    {
+      "path": "PHONEBIO_TERTIARY_GOAL_LINEAGE.json",
+      "bytes": 1309,
+      "sha256_fco": "sha256:803389b2f85e3ca6924f84edb85ece733f7ed7e6c714cb4e0d34825e6d3a7e44",
+      "source": "bioviz-tech:260724-cloudmer-pitch-live-cellico/PHONEBIO_TERTIARY_GOAL_LINEAGE.json"
+    },
+    {
+      "path": "PRIVATE_SENSOR_MMR_GROWTH_LOCK.json",
+      "bytes": 3163,
+      "sha256_fco": "sha256:1539d2f2fd8c0140cb77cfc51bb6f59e4f479e0fb4c799ec17a8732c2d697be2",
+      "source": "bioviz-tech:260724-cloudmer-pitch-live-cellico/PRIVATE_SENSOR_MMR_GROWTH_LOCK.json"
+    },
+    {
+      "path": "PYTHIA_DIGITAL_TWIN_PRECURSOR_SS_LOCK.json",
+      "bytes": 3403,
+      "sha256_fco": "sha256:b57960f3347645ea6832c257752115f2af9dab3e5a2b1086d87b2e067826ef8c",
+      "source": "bioviz-tech:260724-cloudmer-pitch-live-cellico/PYTHIA_DIGITAL_TWIN_PRECURSOR_SS_LOCK.json"
+    },
+    {
+      "path": "PYTHIA_SS_MSM_MULTI_SPONSOR_TWIN_LOCK.json",
+      "bytes": 4080,
+      "sha256_fco": "sha256:f18c12cc3bf6efd888777a281111b4f0faefb90147081596f800475a2ab59afa",
+      "source": "bioviz-tech:260724-cloudmer-pitch-live-cellico/PYTHIA_SS_MSM_MULTI_SPONSOR_TWIN_LOCK.json"
+    },
+    {
+      "path": "SPONSOR_FCO_FCG_PHI_GOAL_LOCK.json",
+      "bytes": 11636,
+      "sha256_fco": "sha256:c781e8c99ba06f23bd0f1f7fbdd9a2f74d567803055d3a97c9dcb98af187feab",
+      "source": "bioviz-tech:260724-cloudmer-pitch-live-cellico/SPONSOR_FCO_FCG_PHI_GOAL_LOCK.json"
+    },
+    {
+      "path": "VOICE_HUMAN_AI_MMR_COMPONENT_LOCK.json",
+      "bytes": 3178,
+      "sha256_fco": "sha256:02b4dac103229737ad10dee5705f3d4b449cc17666eecc79e7a3ee9ed29994ed",
+      "source": "bioviz-tech:260724-cloudmer-pitch-live-cellico/VOICE_HUMAN_AI_MMR_COMPONENT_LOCK.json"
+    }
+  ],
+  "llm_in_science_leaf": false
+}

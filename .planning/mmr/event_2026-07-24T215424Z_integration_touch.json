@@ -1,0 +1,56 @@
+{
+  "schema": "fco.mmr.memory_event.v1",
+  "kind": "memory_event",
+  "event_subtype": "integration_touch",
+  "session_continuity": "continuous_variant",
+  "continuous_session_id": "cursor-6430eeef-1426-4566-a6fc-5d688723f05b",
+  "parent_mmr_tip": "sha256:2038df5a5b025800ddf0b4eb1438fd61250b72c9dbf23fa39db35d16e7091d27",
+  "ts_utc": "2026-07-24T215424Z",
+  "host_id": "cursor-cloud",
+  "git_branch": "cursor/braintona-main-app-kg-e2e-cc88",
+  "git_head": "c810b26c32aa96bd0f43a4cdec814805c42312ee",
+  "established_bindings": [],
+  "note": "Devpost Braintona SUBMITTED Biobitworks; closeout tip sha256:a11f303c878a9a912da9e2571813036b40242acc98fa48f8718ea630b0d46b00; llm_in_science_leaf=false",
+  "scoring_mode": "mix",
+  "anticube": {
+    "label": "SS",
+    "poison_ne_sn": true
+  },
+  "msm_admit": {
+    "gate": "SAFE",
+    "channel": "MSM_ADMIT"
+  },
+  "scores": {
+    "H_info": null,
+    "H_stick": null,
+    "H_bind": null
+  },
+  "graph_update": {
+    "mmr": "appended",
+    "seedgraph_pointer": "queued",
+    "watchtower_receipt": "written"
+  },
+  "authority": {
+    "claim_promotion": false,
+    "writeback_authorized": false,
+    "push_authorized": false,
+    "commit_authorized": false
+  },
+  "role_header": {
+    "execution_role": "SWE",
+    "approval_role": "none",
+    "runtime": "cursor",
+    "model_or_agent": "cursor"
+  },
+  "llm_in_science_leaf": false,
+  "writeback": false,
+  "pi_signed": false,
+  "fco_style_leaf": "sha256:c70228d98df3c6ee462d40f4e655d70ebd842becd57bbaf7fa1af6893626bf38",
+  "mmr_tip": "sha256:99c62ea0a7600fb46b4a1fbcb2a9c63d8753891c55a8285997f44796cccab7d0",
+  "signature": {
+    "signature_id": "SIG-2026-07-24T215424Z-cursor-c70228d9",
+    "signature_hash": "sha256:84bc6b760b22321ee4758731ead17b409bd9026903bd030bcca5e6b2146ad83d",
+    "signer": "cursor",
+    "note": "local custody signature (not PI ed25519); advisory chain link only"
+  }
+}

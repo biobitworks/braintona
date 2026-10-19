@@ -1,0 +1,171 @@
+{
+  "schema": "braintona.demo_script_fcg.v1",
+  "project": "braintona",
+  "title": "Demo video script \u2014 seeds of truth before teleprompter",
+  "updated_at_utc": "2026-07-24T20:59:09.751332+00:00",
+  "rule": "Seeds sealed first; teleprompter is compile-only from seed.say",
+  "n_seeds": 10,
+  "seeds": [
+    {
+      "seed_id": "S01_handoff_gap",
+      "ordinal": 1,
+      "path": ".planning/quick/260724-braintona-hacksprint/demo_script_seeds/S01_handoff_gap.json",
+      "content_leaf": "sha256:81b0831fb2a632d791a93642324d262f2a231366ee1a0a4a080bcebda5a3db70",
+      "proves": "problem",
+      "ui": {
+        "path": "/pitch.html",
+        "action": "talk_only"
+      },
+      "parents": [],
+      "llm_in_science_leaf": false
+    },
+    {
+      "seed_id": "S02_custody_contract",
+      "ordinal": 2,
+      "path": ".planning/quick/260724-braintona-hacksprint/demo_script_seeds/S02_custody_contract.json",
+      "content_leaf": "sha256:edf980543d5bc10d8b1f5832db3874b72bceebce767068541fbe8ec157b56686",
+      "proves": "thesis",
+      "ui": {
+        "path": "/pitch.html",
+        "action": "talk_only"
+      },
+      "parents": [
+        "S01_handoff_gap"
+      ],
+      "llm_in_science_leaf": false
+    },
+    {
+      "seed_id": "S03_gap_same_box",
+      "ordinal": 3,
+      "path": ".planning/quick/260724-braintona-hacksprint/demo_script_seeds/S03_gap_same_box.json",
+      "content_leaf": "sha256:02a656b6ac931f533573b891cb77d3f0d333e67a4e6d9563786fd9b42d848ffc",
+      "proves": "gap_1_named",
+      "ui": {
+        "path": "/pitch.html",
+        "action": "talk_only"
+      },
+      "parents": [
+        "S02_custody_contract"
+      ],
+      "llm_in_science_leaf": false
+    },
+    {
+      "seed_id": "S04_gap_unlabeled_voice",
+      "ordinal": 4,
+      "path": ".planning/quick/260724-braintona-hacksprint/demo_script_seeds/S04_gap_unlabeled_voice.json",
+      "content_leaf": "sha256:a88c27c490119986b560ded670bab85018013c47e68f9bd18992aa72597af9e6",
+      "proves": "gap_2_named",
+      "ui": {
+        "path": "/pitch.html",
+        "action": "talk_only"
+      },
+      "parents": [
+        "S03_gap_same_box"
+      ],
+      "llm_in_science_leaf": false
+    },
+    {
+      "seed_id": "S05_pipeline_stack",
+      "ordinal": 5,
+      "path": ".planning/quick/260724-braintona-hacksprint/demo_script_seeds/S05_pipeline_stack.json",
+      "content_leaf": "sha256:8bf68f43eb49281f89b4e676a8d728b81b5510a8d4923d6878384d78de07ec74",
+      "proves": "live_pipeline",
+      "ui": {
+        "path": "/",
+        "action": "run_live_pipeline"
+      },
+      "parents": [
+        "S03_gap_same_box"
+      ],
+      "llm_in_science_leaf": false
+    },
+    {
+      "seed_id": "S06_daytona_fail_closed",
+      "ordinal": 6,
+      "path": ".planning/quick/260724-braintona-hacksprint/demo_script_seeds/S06_daytona_fail_closed.json",
+      "content_leaf": "sha256:c2ff2058e0f314fd722bebc2de21fcab920c0ef33afc7f9d39ecee2ae341b5c0",
+      "proves": "gap_1_closed",
+      "ui": {
+        "path": "/",
+        "action": "show_daytona_ok_then_tamper_reject"
+      },
+      "parents": [
+        "S05_pipeline_stack",
+        "S03_gap_same_box"
+      ],
+      "llm_in_science_leaf": false
+    },
+    {
+      "seed_id": "S07_sponsor_fingerprints",
+      "ordinal": 7,
+      "path": ".planning/quick/260724-braintona-hacksprint/demo_script_seeds/S07_sponsor_fingerprints.json",
+      "content_leaf": "sha256:204b518e5004eb66d32ad8223aa161c5cb3716ab40e232ebccc094a6eedd63af",
+      "proves": "sponsor_points_of_contact",
+      "ui": {
+        "path": "/",
+        "action": "pipeline_wait_narration_only"
+      },
+      "parents": [
+        "S05_pipeline_stack"
+      ],
+      "llm_in_science_leaf": false
+    },
+    {
+      "seed_id": "S08_voice_star_traverse",
+      "ordinal": 8,
+      "path": ".planning/quick/260724-braintona-hacksprint/demo_script_seeds/S08_voice_star_traverse.json",
+      "content_leaf": "sha256:4575a552b6c9a377be3f143666e9c3669d5feab964f302efc899e783ac769f5c",
+      "proves": "gap_2_visual",
+      "ui": {
+        "path": "/demo-voice-star.html",
+        "action": "play_traverse"
+      },
+      "parents": [
+        "S04_gap_unlabeled_voice"
+      ],
+      "llm_in_science_leaf": false
+    },
+    {
+      "seed_id": "S09_two_leaves_vault",
+      "ordinal": 9,
+      "path": ".planning/quick/260724-braintona-hacksprint/demo_script_seeds/S09_two_leaves_vault.json",
+      "content_leaf": "sha256:6cf67a288dfc48bf4e12bff64fede933102b111fc3bc6068ef90ef81cf295d49",
+      "proves": "gap_2_closed",
+      "ui": {
+        "path": "/demo-two-turn.html",
+        "action": "run_two_turn_demo"
+      },
+      "parents": [
+        "S08_voice_star_traverse",
+        "S04_gap_unlabeled_voice"
+      ],
+      "llm_in_science_leaf": false
+    },
+    {
+      "seed_id": "S10_ceiling_close",
+      "ordinal": 10,
+      "path": ".planning/quick/260724-braintona-hacksprint/demo_script_seeds/S10_ceiling_close.json",
+      "content_leaf": "sha256:5e5c7a34553b325728b5174ea0002a836ec10bec7f6ba40935db4628284164e3",
+      "proves": "ceiling_and_close",
+      "ui": {
+        "path": "/demo-guide.html?done=1",
+        "action": "finish_stop_record"
+      },
+      "parents": [
+        "S02_custody_contract",
+        "S06_daytona_fail_closed",
+        "S09_two_leaves_vault"
+      ],
+      "llm_in_science_leaf": false
+    }
+  ],
+  "mmr_tip": "sha256:bc4e148b655eb15ae53a477c75eef4cbd10e8257cd18af1646667a693a2d87da",
+  "signed": false,
+  "pi_seal": false,
+  "llm_in_science_leaf": false,
+  "authority": {
+    "claim_promotion": false,
+    "writeback": false,
+    "pi_sign": false
+  }
+}

@@ -1,9 +1,15 @@
 import { mkdir, appendFile, writeFile, readFile } from "node:fs/promises";
 import path from "node:path";
 import { buildReceipt, hashText, verifyReceipt, type CustodyReceipt } from "../lib/receipts.js";
+import type { CustodyGraph } from "../lib/custody_graph.js";
 import { evaluate, getDefaultTask } from "./eval.js";
 import { fireworksComplete } from "./fireworks.js";
 import { daytonaRecompute } from "./daytona.js";
+import { appendGraphEvent } from "./graph.js";
+import { buildTokenTrace, type TokenTrace } from "../lib/token_trace.js";
+import { loadLatestPrivateConversationPointer } from "./conversation_custody.js";
+import { workosEnabled } from "./workos.js";
+import { loadLatestCodeRabbitObserve } from "../lib/coderabbit_observe.js";
 
 const DATA = path.resolve("data");
 const RECEIPTS = path.join(DATA, "receipts.jsonl");
@@ -25,6 +31,8 @@ export interface PipelineResult {
   daytona?: Awaited<ReturnType<typeof daytonaRecompute>>;
   tamper_receipt?: CustodyReceipt;
   tamper_verify?: Awaited<ReturnType<typeof verifyReceipt>>;
+  graph?: CustodyGraph;
+  token_trace?: TokenTrace;
   narrate?: string;
 }
 
@@ -97,7 +105,41 @@ export async function runPipeline(opts: {
     tamper_verify = await verifyReceipt(tamper_receipt);
   }
 
+  const graph = await appendGraphEvent({
+    receipt,
+    verify_local_ok: verify_local.ok,
+    daytona_ok: daytona ? daytona.ok : null,
+    daytona_skipped: Boolean(daytona?.skipped),
+    tamper_rejected: tamper_verify ? !tamper_verify.ok : null,
+    eval_pass: evalResult.pass,
+    eval_f1: evalResult.f1,
+  });
+
+  const privateConversation = await loadLatestPrivateConversationPointer();
+  const token_trace = await buildTokenTrace({
+    receipt,
+    model: {
+      id: fw.model_id,
+      provider: fw.provider,
+      tokens_in: fw.tokens_in,
+      tokens_out: fw.tokens_out,
+      mock: fw.mock,
+    },
+    eval: evalResult,
+    verify_local,
+    daytona,
+    tamper_verify,
+    graph,
+    privateConversation,
+    workos_enabled: workosEnabled(),
+    coderabbit_key: Boolean(process.env.CODERABBIT_API_KEY),
+    coderabbit_observe: await loadLatestCodeRabbitObserve(),
+    copilotkit_license: Boolean(process.env.COPILOTKIT_LICENSE_TOKEN),
+  });
+  await writeFile(path.join(DATA, "token_trace_latest.json"), JSON.stringify(token_trace, null, 2));
+
   const narrate = [
+    `Token ${token_trace.token_id} traced across ${token_trace.hops.length} hops.`,
     `Braintona eval ${evalResult.pass ? "PASS" : "FAIL"}`,
     `F1 ${(evalResult.f1 * 100).toFixed(0)} percent.`,
     `Local custody ${verify_local.ok ? "verified" : "rejected"}.`,
@@ -105,6 +147,7 @@ export async function runPipeline(opts: {
       ? `Daytona sandbox ${daytona.ok ? "recomputed match" : "mismatch or skipped"}.`
       : "Daytona skipped.",
     tamper_verify ? `Planted tamper ${tamper_verify.ok ? "unexpectedly passed" : "correctly rejected"}.` : "",
+    `Session graph ${graph.run_count} runs · root ${graph.bagged_session_root.slice(0, 12)}.`,
     "Custody proves provenance, not correctness.",
   ]
     .filter(Boolean)
@@ -127,6 +170,8 @@ export async function runPipeline(opts: {
     daytona,
     tamper_receipt,
     tamper_verify,
+    graph,
+    token_trace,
     narrate,
   };
 }
@@ -135,6 +180,15 @@ export async function loadLatestReceipt(): Promise<CustodyReceipt | null> {
   try {
     const raw = await readFile(path.join(DATA, "latest_receipt.json"), "utf8");
     return JSON.parse(raw) as CustodyReceipt;
+  } catch {
+    return null;
+  }
+}
+
+export async function loadLatestTokenTrace(): Promise<TokenTrace | null> {
+  try {
+    const raw = await readFile(path.join(DATA, "token_trace_latest.json"), "utf8");
+    return JSON.parse(raw) as TokenTrace;
   } catch {
     return null;
   }

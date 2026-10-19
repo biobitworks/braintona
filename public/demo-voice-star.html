@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Braintona — voice star chart (presentation)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css?v=20260724g" />
+    <style>
+      body { margin: 0; }
+      body.shot-mode #demoGuideBar { display: none !important; }
+      body.shot-mode { padding-bottom: 0 !important; }
+      .star-stage {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        padding: 1.25rem clamp(1rem, 3vw, 2.5rem) 1.75rem;
+        gap: 1rem;
+      }
+      .star-compose {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+        gap: 1.5rem 2rem;
+        align-items: stretch;
+        min-height: min(72vh, 780px);
+      }
+      @media (max-width: 960px) {
+        .star-compose { grid-template-columns: 1fr; }
+      }
+      /* Theseus carries the star field; canvas only adds soft Cellico nodes */
+      .star-frame {
+        position: relative;
+        border: 1px solid color-mix(in srgb, var(--gild) 28%, var(--border));
+        background:
+          linear-gradient(180deg, rgba(8, 5, 16, 0.28), rgba(8, 5, 16, 0.48)),
+          url("/assets/bioviz/ship-of-theseus-atlas-bg.png") center / cover no-repeat;
+        min-height: min(68vh, 720px);
+        overflow: hidden;
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
+      }
+      .star-frame canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: min(68vh, 720px);
+      }
+      /* HTML labels — never baked onto nodes (Cellico outdoor-readable rule) */
+      .leaf-rail {
+        display: flex;
+        flex-direction: column;
+        gap: 1.15rem;
+        padding: 0.25rem 0;
+      }
+      .leaf-card {
+        padding: 1rem 1.15rem 1.1rem;
+        border: 1px solid color-mix(in srgb, var(--ivory) 12%, transparent);
+        background: color-mix(in srgb, var(--background) 62%, transparent);
+        backdrop-filter: blur(8px);
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+      .leaf-card.on {
+        border-color: color-mix(in srgb, var(--bright-gold, #f6d36a) 55%, transparent);
+        background: color-mix(in srgb, var(--background) 48%, rgba(181, 138, 54, 0.18));
+      }
+      .leaf-card .role {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--gild-strong);
+        margin: 0 0 0.45rem;
+      }
+      .leaf-card .name {
+        font-family: Fraunces, Georgia, serif;
+        font-size: 1.35rem;
+        line-height: 1.25;
+        margin: 0 0 0.55rem;
+        color: var(--ivory);
+      }
+      .leaf-card .meta {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 0.78rem;
+        line-height: 1.65;
+        color: var(--muted);
+        margin: 0;
+      }
+      .leaf-card .meta code {
+        color: color-mix(in srgb, var(--ivory) 85%, var(--gild));
+        font-size: 0.76rem;
+      }
+      .star-hud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem 1.5rem;
+        align-items: baseline;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 0.78rem;
+        color: var(--foam);
+        opacity: 0.9;
+      }
+      .star-hud strong { color: var(--gild-strong); font-weight: 600; }
+      .star-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+      .star-caption {
+        max-width: 68ch;
+        color: var(--muted);
+        line-height: 1.55;
+        font-family: Inter, system-ui, sans-serif;
+      }
+      .star-stage h1 {
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        margin: 0.2rem 0 0.45rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true"></div>
+    <main class="star-stage">
+      <header>
+        <p class="brand">BRAINTONA · PRESENTATION</p>
+        <h1>Voice star chart</h1>
+        <p class="star-caption">
+          Ship of Theseus carries the star field (cellico.bio atlas). Soft teal nodes = sealed
+          voice FCOs; gold glint = active / customer leaf. Labels live in the rail — not on the
+          balls. <strong>Play traverse</strong>: clone → customer → agent → MMR tip.
+        </p>
+        <div class="star-actions" style="margin-top: 0.85rem">
+          <button id="playBtn" type="button">Play traverse</button>
+          <button id="refreshBtn" type="button" class="ghost">Load latest voice leaves</button>
+          <a class="ghost link-btn" href="/">Technical graph</a>
+          <a class="ghost link-btn" href="/demo-two-turn.html">Two-turn audio</a>
+        </div>
+      </header>
+
+      <div class="star-compose">
+        <div class="star-frame">
+          <canvas
+            id="starCanvas"
+            width="1600"
+            height="900"
+            aria-label="Voice custody star chart over Ship of Theseus"
+          ></canvas>
+        </div>
+        <aside class="leaf-rail" id="leafRail" aria-label="Voice leaf labels">
+          <article class="leaf-card" data-role="clone" id="card-clone">
+            <p class="role">Voice clone registry</p>
+            <p class="name" data-f="name">—</p>
+            <p class="meta">
+              leaf <code data-f="leaf">—</code><br />
+              voice <code data-f="voice">—</code>
+            </p>
+          </article>
+          <article class="leaf-card" data-role="customer" id="card-customer">
+            <p class="role">Customer voice leaf</p>
+            <p class="name" data-f="name">—</p>
+            <p class="meta">
+              leaf <code data-f="leaf">—</code><br />
+              voice <code data-f="voice">—</code>
+            </p>
+          </article>
+          <article class="leaf-card" data-role="agent" id="card-agent">
+            <p class="role">Agent voice leaf</p>
+            <p class="name" data-f="name">—</p>
+            <p class="meta">
+              leaf <code data-f="leaf">—</code><br />
+              voice <code data-f="voice">—</code>
+            </p>
+          </article>
+          <article class="leaf-card" data-role="mmr" id="card-mmr">
+            <p class="role">Interaction MMR tip</p>
+            <p class="name" data-f="name">MMR tip</p>
+            <p class="meta">
+              root <code data-f="leaf">—</code>
+            </p>
+          </article>
+        </aside>
+      </div>
+
+      <div class="star-hud" id="hud">
+        <span>status <strong id="hudStatus">idle</strong></span>
+        <span>highlight <strong id="hudHighlight">—</strong></span>
+        <span>mmr <strong id="hudMmr">—</strong></span>
+        <span>leaves <strong id="hudLeaves">0</strong></span>
+      </div>
+      <p class="ceiling star-caption">
+        Ceilings: schematic presentation of labeled AI voice custody atoms — not biometrics, not
+        deepfake score. Lineage: cellico.bio Ship-of-Theseus + Cellico signal-layer traverse.
+      </p>
+      <p class="ceiling star-caption" style="opacity:0.75">
+        Biobitworks · Apache-2.0 (software) · CC BY-ND 4.0 (docs/media)
+      </p>
+    </main>
+    <script type="module" src="/voice-star.js?v=20260724c"></script>
+    <script src="/demo-guide.js?v=20260724g"></script>
+    <script>
+      if (new URLSearchParams(location.search).get("shot") === "1") {
+        document.documentElement.classList.add("shot-mode");
+        document.body.classList.add("shot-mode");
+      }
+    </script>
+  </body>
+</html>

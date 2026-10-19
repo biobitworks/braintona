@@ -1,0 +1,161 @@
+{
+  "schema": "braintona.submission_closeout.v1",
+  "project": "braintona",
+  "team": "Biobitworks",
+  "status": "devpost_submitted",
+  "sealed_at_utc": "2026-07-24T21:54:15.605682+00:00",
+  "signed": false,
+  "pi_seal": false,
+  "llm_in_science_leaf": false,
+  "devpost": {
+    "public": "https://devpost.com/software/braintona",
+    "submission_id": "1114676-braintona",
+    "hackathon": "daytona-hacksprint-w-braintrust-sf-july-2026",
+    "button_state": "Project submitted!",
+    "video": "https://youtu.be/40_MbcBrLHI",
+    "tagline": "Fill the handoff gap. Fail closed.",
+    "license_spdx": "(Apache-2.0 AND CC-BY-ND-4.0)"
+  },
+  "git": {
+    "branch": "cursor/braintona-main-app-kg-e2e-cc88",
+    "tip_at_seal_prepush": "c810b26",
+    "pr": "https://github.com/biobitworks/braintona/pull/3",
+    "repo": "https://github.com/biobitworks/braintona"
+  },
+  "session_id": "cursor-6430eeef-1426-4566-a6fc-5d688723f05b",
+  "claim_ceiling": "Closeout seals submission provenance (URLs, hashes, license, team). Not award outcome. Not science truth.",
+  "atoms": [
+    {
+      "path": "LICENSE",
+      "bytes": 641,
+      "content_leaf": "sha256:59c236a6a05f398d069f378d4eb3c9b904d15c4ffb3ff276d1cbc986b03f72f5",
+      "file_sha256": "sha256:c729ed732814ab3a1bf4969fb705e12067592cc560ed79eed5407dada896dffc",
+      "node_id": "LICENSE",
+      "parent_mmr_tip": null,
+      "mmr_tip": "sha256:ef0018d5e306f550ef7ed245b943add92cbdd9a5ab6074edb4ab1288f7e84d10",
+      "llm_in_science_leaf": false
+    },
+    {
+      "path": "LICENSE.md",
+      "bytes": 1835,
+      "content_leaf": "sha256:66384f5e3674deb5c8f1ae2cc804fbac3abb7fb6ff9d44cd93e54764a9233bbe",
+      "file_sha256": "sha256:b58dcf3c92f8a691dd668fc4548636562e05d505619620eb68a8c549470812cc",
+      "node_id": "LICENSE_md",
+      "parent_mmr_tip": "sha256:ef0018d5e306f550ef7ed245b943add92cbdd9a5ab6074edb4ab1288f7e84d10",
+      "mmr_tip": "sha256:d90ab4c10dfaea0a39a5d3aa248bc00188c351c89886bdcb1d56f5d209827f3f",
+      "llm_in_science_leaf": false
+    },
+    {
+      "path": "LICENSE-CC-BY-ND-4.0",
+      "bytes": 18438,
+      "content_leaf": "sha256:979e844b81db24abe7bd1ccabdbaa43545deeb4a552952537070fa8cbf3723fc",
+      "file_sha256": "sha256:9cc97638cf0185884ac800144b6246c7772f94ff2cc70686afa9574aaea4fa2b",
+      "node_id": "LICENSE-CC-BY-ND-4_0",
+      "parent_mmr_tip": "sha256:d90ab4c10dfaea0a39a5d3aa248bc00188c351c89886bdcb1d56f5d209827f3f",
+      "mmr_tip": "sha256:66b147f55312de864a7f87e63f1a5fc42afc1c19cfa4306bedef93df92ee1e55",
+      "llm_in_science_leaf": false
+    },
+    {
+      "path": "package.json",
+      "bytes": 1508,
+      "content_leaf": "sha256:9cdae5ddd54798d5064123e62578bc2d049adc9e46df918106e746fb0f73c639",
+      "file_sha256": "sha256:3fbd08217d5e38041a39edb2466f7fe987ad7bf79a86dfccbe94337d222aa78b",
+      "node_id": "package_json",
+      "parent_mmr_tip": "sha256:66b147f55312de864a7f87e63f1a5fc42afc1c19cfa4306bedef93df92ee1e55",
+      "mmr_tip": "sha256:49a2b447929ee0340b712329fde40b593b481af42ea5e4a95ddcdabeb8711934",
+      "llm_in_science_leaf": false
+    },
+    {
+      "path": "README.md",
+      "bytes": 2890,
+      "content_leaf": "sha256:221c059d8434845ca2cee6e30fc327b4fc6917fb2907215d54f53a4c67c55a80",
+      "file_sha256": "sha256:db8b6dd1daf626f57ead6e7bd6bbfefd316ab29b87a51b4abc4af1014b9215d3",
+      "node_id": "README_md",
+      "parent_mmr_tip": "sha256:49a2b447929ee0340b712329fde40b593b481af42ea5e4a95ddcdabeb8711934",
+      "mmr_tip": "sha256:30a365c10c9124c1596299a6333a9dc6db303d2c3e094688cb65bc75089045e9",
+      "llm_in_science_leaf": false
+    },
+    {
+      "path": "docs/DEVPOST_DESCRIPTION.md",
+      "bytes": 6998,
+      "content_leaf": "sha256:fa373c4abde11edd0e4d09251f6cd86d0823d208f8cdf926c74269a5bab23ae6",
+      "file_sha256": "sha256:0be36ff272f601bc9d3219cccc2fddb3ea65718a8ed87fa2241c6c6be53e35e4",
+      "node_id": "DEVPOST_DESCRIPTION_md",
+      "parent_mmr_tip": "sha256:30a365c10c9124c1596299a6333a9dc6db303d2c3e094688cb65bc75089045e9",
+      "mmr_tip": "sha256:0d1c422f3da6568f9569008ac3d04ba432282aa68b52b7ca313c28edd6d1953c",
+      "llm_in_science_leaf": false
+    },
+    {
+      "path": "docs/DEVPOST_SUBMISSION.md",
+      "bytes": 3869,
+      "content_leaf": "sha256:bd5245ceeff947c3b9e29e08cd7f9934c5ad3f9acbd4aae0ee2ca2f28874ddd8",
+      "file_sha256": "sha256:b59f0e2bc14e55e88824a3f48e2112dd025f46f65b04a058b9b897ac90e5937e",
+      "node_id": "DEVPOST_SUBMISSION_md",
+      "parent_mmr_tip": "sha256:0d1c422f3da6568f9569008ac3d04ba432282aa68b52b7ca313c28edd6d1953c",
+      "mmr_tip": "sha256:4aaea8dc4ce475a30404310283f22036a1d8b97ff5779cf11b28f8688467977b",
+      "llm_in_science_leaf": false
+    },
+    {
+      "path": "docs/PITCH_PACK.md",
+      "bytes": 10794,
+      "content_leaf": "sha256:bca901c86216cd313fad2f54eafc8d88fab003cbf9876c1e946472fbceef0138",
+      "file_sha256": "sha256:bb3628b3bc2f9660b93fcad7559309aa12d6e98d6f7c69278e763b97f5609013",
+      "node_id": "PITCH_PACK_md",
+      "parent_mmr_tip": "sha256:4aaea8dc4ce475a30404310283f22036a1d8b97ff5779cf11b28f8688467977b",
+      "mmr_tip": "sha256:4a2c8f671057ac04d94a01a230bd23e085910ef53cbe9e6804ccfaa64bd01eba",
+      "llm_in_science_leaf": false
+    },
+    {
+      "path": ".planning/STATE.md",
+      "bytes": 2361,
+      "content_leaf": "sha256:a09f099439aa8353c1745fc5be37fe49e0d8ed49f412781d8263dca5cd545a29",
+      "file_sha256": "sha256:4cde0e99b5f57a9973f77a0521c63edd06a12e9504c793607856bf65ee1017c0",
+      "node_id": "STATE_md",
+      "parent_mmr_tip": "sha256:4a2c8f671057ac04d94a01a230bd23e085910ef53cbe9e6804ccfaa64bd01eba",
+      "mmr_tip": "sha256:429ee6e97c24d2273dcf22377494d733fc0eee3f26c76f8fdfc1075f9cbb4eba",
+      "llm_in_science_leaf": false
+    },
+    {
+      "path": "demo-video/CUSTODY.json",
+      "bytes": 7354,
+      "content_leaf": "sha256:2f7c75a629e4e125473194f3b2f7b3a5376999c55fdd7f470595058de0ff9f64",
+      "file_sha256": "sha256:88e9e10ea8ce535efdae79a5d6c4e1f54fc21fc5385a23f3f523056bc55c4035",
+      "node_id": "CUSTODY_json",
+      "parent_mmr_tip": "sha256:429ee6e97c24d2273dcf22377494d733fc0eee3f26c76f8fdfc1075f9cbb4eba",
+      "mmr_tip": "sha256:22b7c7d7f7b5a157e396e7ff54119077b70a521a102348a606e911442b65095b",
+      "llm_in_science_leaf": false
+    },
+    {
+      "path": "demo-video/braintona-demo.mp4",
+      "bytes": 6495437,
+      "content_leaf": "sha256:3bd3c6c0c90c1bfaff234bfcc81f5c4d1930d7a92d48fe2c9321918ee2e5f0f2",
+      "file_sha256": "sha256:f4fd96545dff3ae253fa4df935189adaa64e0d2d0b9038483080770ba678d6ad",
+      "node_id": "braintona-demo_mp4",
+      "parent_mmr_tip": "sha256:22b7c7d7f7b5a157e396e7ff54119077b70a521a102348a606e911442b65095b",
+      "mmr_tip": "sha256:b938e24abbb107a55b15fe69da2bbd7fedc6c116c7a6ef485e41c773dc20d25d",
+      "llm_in_science_leaf": false
+    },
+    {
+      "path": ".planning/quick/260724-braintona-hacksprint/FCG_BAG.json",
+      "bytes": 7201,
+      "content_leaf": "sha256:1f1b9542478de666a264acc293c9b5f8d732571a9e7ff58c365d7f71cc4a2db6",
+      "file_sha256": "sha256:63ba649e8ecf922caa9dd9b878e6e00981c7bead9e6d2f24c5d37224c5f37167",
+      "node_id": "FCG_BAG_json",
+      "parent_mmr_tip": "sha256:b938e24abbb107a55b15fe69da2bbd7fedc6c116c7a6ef485e41c773dc20d25d",
+      "mmr_tip": "sha256:c8b07fe3695668fa32f136fc28057eb3acd7c26368016e0f9ba132ecbc5dae04",
+      "llm_in_science_leaf": false
+    },
+    {
+      "path": ".planning/quick/260724-braintona-hacksprint/DUAL_LICENSE_FCG.json",
+      "bytes": 966,
+      "content_leaf": "sha256:48a7e88e9dcd7a386bdcc029986be98b0a6215adcfdae588980c2eae0016e8ab",
+      "file_sha256": "sha256:073364d3ab425af4f5f264add662e6929784ae04199cf9c0afc8cadfdd5eba96",
+      "node_id": "DUAL_LICENSE_FCG_json",
+      "parent_mmr_tip": "sha256:c8b07fe3695668fa32f136fc28057eb3acd7c26368016e0f9ba132ecbc5dae04",
+      "mmr_tip": "sha256:a11f303c878a9a912da9e2571813036b40242acc98fa48f8718ea630b0d46b00",
+      "llm_in_science_leaf": false
+    }
+  ],
+  "mmr_tip": "sha256:a11f303c878a9a912da9e2571813036b40242acc98fa48f8718ea630b0d46b00",
+  "leaf_count": 13
+}

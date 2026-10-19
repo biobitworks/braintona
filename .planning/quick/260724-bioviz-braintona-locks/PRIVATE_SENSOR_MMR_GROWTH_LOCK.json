@@ -1,0 +1,70 @@
+{
+  "schema": "portfolio.operator_goal_lock.v1",
+  "lane": "260724-cloudmer-pitch-live-cellico",
+  "decision_id": "D17.7c",
+  "ts_utc": "2026-07-24T18:43:00Z",
+  "extends": [
+    "D17.7b",
+    "D17.7a",
+    "D17.3",
+    "D17.5"
+  ],
+  "operator_lock": "The voice human/AI MMR component builds over time with other sensor data, keeping that sensor stream private in the user vault \u2014 public/sponsor surfaces see tips and labels, not private preimages.",
+  "expansions": {
+    "builds_over_time": "Append-only FCO leaves \u2192 advancing MMR tip as new voice and sensor events seal (session / life-course custody growth)",
+    "other_sensor_data": "Additional local sensor leaves (e.g. PhoneBio-class presence/ambient/device signals) bagged beside voice human/AI leaves under the same private twin tip family",
+    "keeping_it_private": "Raw sensor bytes and private Merkle tip stay in the user vault (D17.3); sponsors/agents verify public commits / labeled hashes only"
+  },
+  "means": [
+    "Start from voice actual-vs-AI MMR (D17.7b) as the first component",
+    "Over time, seal additional sensor leaves into the same private MMR growth path (or a linked private family tip)",
+    "Vault retains private preimages; multi-sponsor verify uses public peaks / tips only",
+    "Aligns with PhoneBio tertiary lineage (local sensors \u2192 people estimate \u2192 voice distinguishing) without promoting presence to identity",
+    "SS+MSM admission still gates what may enter the twin lane; privacy is structural, not a slogan"
+  ],
+  "claim_ceiling": {
+    "allowed": [
+      "twin tip grows over time as voice + other sensor leaves append under MMR",
+      "sensor/voice raw data stays private in user vault",
+      "sponsors verify tips/labels without receiving private sensor preimages",
+      "architecture goal linking D17.7b voice component + D17.5 PhoneBio sensor lineage + D17.3 vault",
+      "On-device growth on computers/phones; Samsung ExecuTorch quant path (D17.7d)"
+    ],
+    "forbidden": [
+      "continuous clinical monitoring / medical device claims",
+      "surveillance or biometric identity from ambient sensors",
+      "claim private sensor stream is uploaded to sponsors or cellico.bio",
+      "PhoneBio people-count as exact headcount identity proof",
+      "guarantee that vault privacy is unbreakable"
+    ]
+  },
+  "distinct_from": [
+    "public ops+content pipeline receipts (may grow publicly)",
+    "sponsor-hosted private sensor warehouses",
+    "clinical remote-patient-monitoring products"
+  ],
+  "parents": [
+    "D17.7b",
+    "D17.7a",
+    "D17.3",
+    "D17.5",
+    "PB-G3"
+  ],
+  "lineage_pointers": [
+    "VOICE_HUMAN_AI_MMR_COMPONENT_LOCK.json",
+    "PHONEBIO_TERTIARY_GOAL_LINEAGE.json",
+    "SPONSOR_FCO_FCG_PHI_GOAL_LOCK.json#merkle_root_custody"
+  ],
+  "llm_in_science_leaf": false,
+  "authority": {
+    "pi_sign": false,
+    "claim_promotion": false,
+    "writeback": false
+  },
+  "extended_by": "D17.7d",
+  "on_device_runtime": {
+    "decision": "D17.7d",
+    "text": "Within computers, phones, etc.; Samsung + ExecuTorch quantized models as worked example",
+    "lock": "ON_DEVICE_EXECUTORCH_QUANT_EDGE_LOCK.json"
+  }
+}

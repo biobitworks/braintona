@@ -1,0 +1,20 @@
+{
+  "schema": "braintona.redteam_e2e.v1",
+  "canvas": "braintona-redteam-e2e.canvas.tsx",
+  "p0_fixed": [
+    "studio_stale_voice",
+    "unquoted_clone_env",
+    "cta_duplicates"
+  ],
+  "p1_fixed": [
+    "graph_focus",
+    "cors_allowlist",
+    "pointer_path_redact"
+  ],
+  "open": [
+    "unauth_mutate",
+    "content_leaf_dup",
+    "discord_path_b"
+  ],
+  "llm_in_science_leaf": false
+}

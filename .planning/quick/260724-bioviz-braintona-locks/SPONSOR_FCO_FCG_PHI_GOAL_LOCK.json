@@ -1,0 +1,195 @@
+{
+  "schema": "portfolio.operator_goal_lock.v1",
+  "lane": "260724-cloudmer-pitch-live-cellico",
+  "ts_utc": "2026-07-24T18:44:00Z",
+  "decision_id": "D17",
+  "operator_lock": "The main goal is to show the FCO/FCG model through multiple sponsors, independent of each sponsor's security protocols, while maintaining privacy of PHI when interacting with them \u2014 while also being a GTM-viable project.",
+  "expansions": {
+    "FCO": "Fractal Custody Object \u2014 hashed custody unit (route-comparable leaf)",
+    "FCG": "Fractal Custody Graph \u2014 graph over FCOs (navigable provenance)",
+    "sponsors": "Independent research / infrastructure / review parties that may each run their own security stacks",
+    "independent_of_security_protocols": "FCO/FCG custody must remain portable and comparable across sponsors without requiring adoption of any one sponsor's native authZ/security protocol as the SoT",
+    "PHI_privacy": "Protected Health Information is not uploaded, ingested, or exposed on public cellico.bio / pitch surfaces; sponsor interactions stay PHI-private by design (no patient intake)"
+  },
+  "layering": {
+    "custody_portability": "FCO/FCG",
+    "governance_backbone": "Antigence + MSM scoring",
+    "science_product": "Cloudmer + cellico-bio FxF search",
+    "not": "FCO/FCG does not replace HIPAA or a sponsor's own security program; it is the shared custody grammar across them"
+  },
+  "claim_ceiling": {
+    "allowed": [
+      "portable FCO/FCG across multiple sponsors as architecture goal",
+      "independence from any single sponsor security protocol as design constraint",
+      "PHI non-ingest / no patient intake on public surfaces",
+      "BYOM sponsor lane as a worked example for portable FCO/FCG",
+      "bringing an FCO-custodied Pythia-family model into a BYOM-capable sponsor",
+      "EleutherAI Pythia architecture cite (fixture / template \u2014 not clinical capability)",
+      "GTM-viable project framing (sponsor path + demoable pitch + PHI-private BYOM story)",
+      "gtm-cellico as publication/sequencing governance router (not website SoT)",
+      "private Merkle root stays in the user's vault (architecture goal)",
+      "sponsors/agents verify via public commit / pubkey \u2014 not by holding the private root",
+      "Bitcoin-wallet analogy for user-vault Merkle root custody (user holds private authority; others verify publicly)",
+      "candidate greenfield app for D17 stack (OPERATOR GO required)",
+      "WorkOS staging AuthKit free *.authkit.app host URL (identity only)",
+      "Pythia as digital-twin precursor (architecture / custody framing)",
+      "Anticube SS (self \u00d7 safe) admission disposition for the Pythia precursor lane",
+      "public paraphrase self-and-safe without requiring the word Anticube",
+      "Pythia as SS + MSM digital-twin example (custody/governance twin role)",
+      "portable twin package across sponsors that accept models, rules, governance",
+      "sponsors host admitted twin payloads without holding private Merkle root",
+      "MMR of actual voice vs AI voice as the twin's load-bearing component",
+      "explicit content_class human vs ai on sealed audio bytes",
+      "twin MMR tip grows over time with voice + other sensor leaves",
+      "sensor/voice raw data remains private in user vault; sponsors see tips/labels",
+      "on-device private twin/sensor MMR growth on computers and phones",
+      "ExecuTorch + quantized models as edge runtime path",
+      "Samsung phones as ExecuTorch-capable quantized worked example (not partnership claim)"
+    ],
+    "forbidden": [
+      "claim that FCO/FCG replaces HIPAA or sponsor security controls",
+      "claim of clinical PHI processing or patient care",
+      "guarantee of zero privacy breach / perfect security",
+      "naming an unapproved commercial sponsor as partner/endorser",
+      "conflating FCO Pythia with CLAI clinical Pythia product claims",
+      "claim that BYOM Pythia processes PHI or provides clinical care",
+      "claim of current revenue, signed customers, or market leadership",
+      "claim of clinical product clearance as GTM proof",
+      "private Merkle root stored in sponsor systems or agent-writable paths",
+      "guarantee that user-vault root custody is unbreakable",
+      "claim that Cellico/FCO is a Bitcoin wallet, exchange, or payment product",
+      "BTC yield / investment / on-chain settlement claims on pitch",
+      "claim WorkOS provides a free branded product domain equivalent to cellico.bio",
+      "WorkOS holds the private Merkle root or PI signing key",
+      "gate public demo behind WorkOS without OPERATOR approve",
+      "living / clinically validated digital twin of a patient",
+      "Anticube SS as clinical immunology or safety certification",
+      "SMS conflated with Anticube SS",
+      "PHI processed inside a twin precursor on public cellico.bio",
+      "claim every sponsor already accepts BYOM/rules/governance (architecture goal only)",
+      "sponsor security stack becomes custody SoT for the twin",
+      "PHI or private root shipped inside twin package to sponsors",
+      "deepfake detector / biometric speaker ID via voice MMR",
+      "unlabeled mixing of human and AI audio in one leaf",
+      "continuous clinical monitoring claims from private sensor MMR growth",
+      "private sensor stream uploaded to sponsors or public cellico.bio",
+      "ambient sensors as biometric identity / surveillance product",
+      "Samsung partnership / endorsement / exclusivity without OPERATOR approve",
+      "claim product ships integrated on all Samsung phones today",
+      "ExecuTorch quant model as clinical or protocol safety SoT"
+    ]
+  },
+  "surfaces": {
+    "pitch_slide": "founder-handoff",
+    "disclaimer_bullets": [
+      "No PHI uploads of any kind.",
+      "No patient intake of any kind."
+    ],
+    "public_fcg_index": "/cellico/custody/fcg.json"
+  },
+  "llm_in_science_leaf": false,
+  "authority": {
+    "pi_sign": false,
+    "claim_promotion": false,
+    "writeback": false
+  },
+  "worked_example": {
+    "id": "D17.1",
+    "operator_lock": "Specifically, on one sponsor that supports bring-your-own-model (BYOM), we can use / bring our FCO-custodied Pythia model.",
+    "pythia_sense": "FCO Vitalogy\u2192Pythia-14M (EleutherAI Pythia / GPT-NeoX family architecture) as the from-scratch custody train template \u2014 not the unrelated clinical CLAI 'Pythia' prompt tool",
+    "byom": "Bring-your-own-model: sponsor lane accepts an externally supplied model; FCO/FCG remains the custody SoT independent of that sponsor's security protocol",
+    "phi": "PHI stays private in the interaction; no public cellico.bio PHI ingest",
+    "sponsor_naming": "Do not name a commercial sponsor on the public pitch until OPERATOR individually approves the name",
+    "distinct_from": [
+      "sponsor-native hosted model as custody SoT",
+      "CLAI-group clinical Pythia prompt optimizer",
+      "claim that Pythia is clinically validated or processes PHI on cellico.bio"
+    ],
+    "digital_twin_precursor": {
+      "id": "D17.7",
+      "operator_lock": "FCO-custodied Pythia can be a digital-twin precursor that is Anticube SS (self \u00d7 safe).",
+      "receipt": "PYTHIA_DIGITAL_TWIN_PRECURSOR_SS_LOCK.json"
+    },
+    "ss_msm_multi_sponsor_twin": {
+      "id": "D17.7a",
+      "operator_lock": "Pythia is a worked example of Anticube SS + MSM that can act as a digital twin across multiple sponsors that accept models, rules, governance, and related portable packages.",
+      "receipt": "PYTHIA_SS_MSM_MULTI_SPONSOR_TWIN_LOCK.json"
+    },
+    "voice_human_ai_mmr_component": {
+      "id": "D17.7b",
+      "operator_lock": "The component is the MMR of actual voice data versus AI voice.",
+      "receipt": "VOICE_HUMAN_AI_MMR_COMPONENT_LOCK.json"
+    },
+    "private_sensor_mmr_growth": {
+      "id": "D17.7c",
+      "operator_lock": "Voice human/AI MMR builds over time with other sensor data, keeping it private in the user vault.",
+      "receipt": "PRIVATE_SENSOR_MMR_GROWTH_LOCK.json"
+    },
+    "on_device_executorch_quant": {
+      "id": "D17.7d",
+      "operator_lock": "Private twin/sensor growth runs within computers, phones, etc. Worked example: Samsung phones with ExecuTorch access and quantized models.",
+      "receipt": "ON_DEVICE_EXECUTORCH_QUANT_EDGE_LOCK.json"
+    }
+  },
+  "gtm_viability": {
+    "id": "D17.2",
+    "operator_lock": "This must remain a go-to-market viable project \u2014 not custody/research-only.",
+    "means": [
+      "Demoable public companion + pitch (cellico.bio / bioviz-tech) that sells the portable FCO/FCG story",
+      "Sponsor-facing path: multi-sponsor custody + BYOM Pythia worked example without adopting each sponsor security SoT",
+      "PHI-private interaction as a buyer requirement, not an afterthought",
+      "gtm-cellico routes publication / packaging / sequencing under GTM_GOVERNANCE_ONLY; owner repos execute product",
+      "Cloudmer + cellico-bio remain the science/product layer sponsors can pressure-test"
+    ],
+    "not": [
+      "claim of current revenue, signed customers, or clinical product clearance",
+      "gtm-cellico as website SoT or deploy authority",
+      "research fixture with no buyer/sponsor path"
+    ]
+  },
+  "merkle_root_custody": {
+    "id": "D17.3",
+    "operator_lock": "The Merkle root should stay in the user's vault \u2014 like a Bitcoin wallet (user holds the private authority; others verify on a public ledger/commit).",
+    "means": [
+      "Private Merkle root (and any key material that can mint/rotate its authority) remains in the user's vault \u2014 HSM / secure enclave / user-controlled keychain",
+      "Sponsors, agents, and models may see public commits / public FCG peaks for verify \u2014 never the private root preimage or private key",
+      "Aligns with FCO DESIGN_vitalogy_pythia_first_model_keys.md \u00a72.1 (hardware vault or hash-commitment only; agent-unrewritable)",
+      "Supports D17 independence from each sponsor's security protocol: root authority is not relocated into the sponsor stack"
+    ],
+    "public_vs_private": {
+      "stays_in_user_vault": [
+        "private Merkle root",
+        "ed25519 private key that seals bag authority"
+      ],
+      "may_be_shared_for_verify": [
+        "public root / commit hex",
+        "pubkey id",
+        "unsigned/public FCG peaks recomputable from public bytes"
+      ]
+    },
+    "forbidden": [
+      "plaintext private Merkle root in git, agent transcripts, sponsor DBs, model weights, or cellico.bio public surfaces",
+      "agent or sponsor overwrites the private root JSON and is trusted",
+      "claim that keeping the root in a vault guarantees perfect security"
+    ],
+    "bitcoin_wallet_analogy": {
+      "id": "D17.3a",
+      "like": [
+        "User holds private authority (private Merkle root / sealing key) in their own vault/wallet",
+        "Others can verify publicly without taking custody of the private material",
+        "Losing/leaking the private material = lose exclusive control; sponsors must not be the wallet SoT"
+      ],
+      "not": [
+        "This is not a Bitcoin product, exchange, or payment rail",
+        "Not a claim of BTC compatibility, on-chain settlement, or financial return",
+        "Public FCG peaks/commits are verify surfaces \u2014 not a substitute for the user vault"
+      ]
+    }
+  },
+  "greenfield_workos_option": {
+    "id": "D17.4",
+    "status": "candidate_needs_operator_go",
+    "lock": "May build a new app from scratch; WorkOS staging AuthKit provides a free *.authkit.app URL (not a free custom product domain).",
+    "receipt": "NEW_APP_WORKOS_OPTION.json"
+  }
+}

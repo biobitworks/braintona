@@ -1,0 +1,31 @@
+{
+  "schema": "braintona.demo_script_seed.v1",
+  "seed_id": "S01_handoff_gap",
+  "ordinal": 1,
+  "kind": "seed_of_truth",
+  "created_before": "compiled_teleprompter",
+  "content_class": "human",
+  "statement": "Agents already answer. The next person still re-checks everything. That is the handoff gap.",
+  "say": "Agents already answer. [pause] The next person still re-checks everything. [pause] That's the handoff gap.",
+  "ui": {
+    "path": "/pitch.html",
+    "action": "talk_only"
+  },
+  "proves": "problem",
+  "claim_ceiling": {
+    "allowed": [
+      "handoff re-check pain as operator problem framing"
+    ],
+    "forbidden": [
+      "claim agents are useless",
+      "claim Braintona replaces human judgment of science truth"
+    ]
+  },
+  "parents": [],
+  "llm_in_science_leaf": false,
+  "authority": {
+    "claim_promotion": false,
+    "writeback": false,
+    "pi_sign": false
+  }
+}
